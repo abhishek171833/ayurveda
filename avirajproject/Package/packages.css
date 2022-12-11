@@ -1,0 +1,141 @@
+*{
+    margin: 0; padding:0; box-sizing: border-box;
+    font-family: 'Mulish', sans-serif;}
+    .packages{ width: 100vw;
+        background: #dfe6e9; color: #fff;}
+    h1{
+        font-size: 2rem;
+        padding: 20px 0;
+        text-align: center;
+        color: #d632cc;
+    }
+    p{
+        text-align: center;
+    }
+    .pack{ width: 80vw; height: auto; margin: auto;
+        display: flex;  justify-content: space-around;
+        flex-wrap: wrap; transition: all 0.2 linear;
+    }
+    .snehpan{
+        text-align: center;
+        height: fit-content;
+        background:#4fc797;
+        
+        flex:1 1 200px;
+        margin: 20px;
+    }
+    .vaman{
+        text-align: center;
+        height:fit-content;
+        background:#46ed89;
+        
+        flex:1 1 200px;
+        margin: 20px;
+    }
+    .basti{
+        text-align: center;
+        height: fit-content;
+        background:#81ecec;
+        
+        flex:1 1 200px;
+        margin: 20px;
+    }
+    .swedan{
+        text-align: center;
+        height:fit-content;
+        background:#46ed89;
+        
+        flex:1 1 200px;
+        margin: 20px;
+    }
+    .shirodhara{
+        text-align: center;
+        height:fit-content;
+        background:#46ed89;
+        
+        flex:1 1 200px;
+        margin: 20px;
+    }
+    .nasya{
+        text-align: center;
+        height:fit-content;
+        background:#46ed89;
+        
+        flex:1 1 200px;
+        margin: 20px; 
+    }
+    /*img css */
+    .vaman img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    .basti img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    .snehpan img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    .shirodhara img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    .nasya img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    .shirodhara img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    .swedan img{
+        margin-left: 1%;
+        width: 7vw;
+        height: 6vw;
+    }
+    /*button css*/
+    .vaman button{
+        color: #46ed89;
+        background-color: darkgoldenrod;
+        font-size: 151%;
+    }
+    .basti button{
+        color: #46ed89;
+        background-color: darkgoldenrod;
+        font-size: 151%;
+    }
+    .swedan button{
+        color: #46ed89;
+        background-color: darkgoldenrod;
+        font-size: 151%;
+    }
+    .snehpan button{
+        color: #46ed89;
+        background-color: darkgoldenrod;
+        font-size: 151%;
+    }
+    .shirodhara button{
+        color: #46ed89;
+        background-color: darkgoldenrod;
+        font-size: 151%;
+    }
+    .nasya button{
+        color: #46ed89;
+        background-color: darkgoldenrod;
+        font-size: 151%;
+    }
+    
+    @media(max-width:400px){
+        .vaman img{width: 18vw;
+        height: 17vw;}
+    }
+    @media (max-width: 768px){
+        .packages{height:auto; }
+    }

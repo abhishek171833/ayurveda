@@ -38,22 +38,22 @@
                         <img style="width:190px;cursor:pointer;" src="./assets/img/navbar-logo.png"/>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">treatment</a>
+                        <a class="nav-link" href="#">Treatment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#packages">packages</a>
+                        <a class="nav-link" href="#packages">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">about doctor</a>
+                        <a class="nav-link" href="#about">About Doctor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">about ayurveda</a>
+                        <a class="nav-link" href="#">About Ayurveda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">about panchakarama</a>
+                        <a class="nav-link" href="#">About Panchakarama</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">book appointment</a>
+                        <a class="nav-link" href="#">Book Appointment</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -198,10 +198,10 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Threads</div>
+                            <div class="portfolio-caption-heading">Vaman</div>
                             <div class="portfolio-caption-subheading text-muted">Illustration</div>
                         </div>
                     </div>
@@ -213,10 +213,10 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Explore</div>
+                            <div class="portfolio-caption-heading">Nasya</div>
                             <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
                         </div>
                     </div>
@@ -228,10 +228,10 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Finish</div>
+                            <div class="portfolio-caption-heading">Virechan</div>
                             <div class="portfolio-caption-subheading text-muted">Identity</div>
                         </div>
                     </div>
@@ -243,10 +243,10 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Lines</div>
+                            <div class="portfolio-caption-heading">Basti</div>
                             <div class="portfolio-caption-subheading text-muted">Branding</div>
                         </div>
                     </div>
@@ -258,10 +258,10 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Southwest</div>
+                            <div class="portfolio-caption-heading">Raktamoshan</div>
                             <div class="portfolio-caption-subheading text-muted">Website Design</div>
                         </div>
                     </div>
@@ -273,10 +273,10 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="..." />
+                            <img class="img-fluid" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Window</div>
+                            <div class="portfolio-caption-heading">Shirodhara</div>
                             <div class="portfolio-caption-subheading text-muted">Photography</div>
                         </div>
                     </div>
@@ -423,7 +423,7 @@
         </div>
     </section>
     <!-- Clients-->
-    <div class="py-5">
+    <!--<div class="py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-3 col-sm-6 my-3">
@@ -444,7 +444,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>!-->
     <!-- Contact-->
     <section class="page-section" id="contact">
         <div class="container">
@@ -551,9 +551,9 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project details-->
-                                <h2 class="text-uppercase">Project Name</h2>
+                                <h2 class="text-uppercase">Vaman</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
@@ -591,9 +591,9 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project details-->
-                                <h2 class="text-uppercase">Project Name</h2>
+                                <h2 class="text-uppercase">Nasya</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
@@ -631,9 +631,9 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project details-->
-                                <h2 class="text-uppercase">Project Name</h2>
+                                <h2 class="text-uppercase">Virechan</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
@@ -671,9 +671,9 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project details-->
-                                <h2 class="text-uppercase">Project Name</h2>
+                                <h2 class="text-uppercase">Basti</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/4.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
@@ -711,9 +711,9 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project details-->
-                                <h2 class="text-uppercase">Project Name</h2>
+                                <h2 class="text-uppercase">Raktamoshan</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/5.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
@@ -751,9 +751,9 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project details-->
-                                <h2 class="text-uppercase">Project Name</h2>
+                                <h2 class="text-uppercase">Shirodhara</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/6.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,

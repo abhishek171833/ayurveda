@@ -10,7 +10,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <img style="width:190px;cursor:pointer;" src="./assets/img/navbar-logo.png"/>
+                        <img style="width:190px;cursor:pointer;" src="./assets/img/navbar-logo.png" />
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">treatment</a>
@@ -79,7 +79,7 @@
                             <label for="username" class="form-label  text-secondary">Username</label>
                             <input name="username" type="text" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
-                            </div>
+                        </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label  text-secondary">Email address</label>
                             <input name="lemail" type="email" class="form-control" id="exampleInputEmail1"
@@ -90,7 +90,7 @@
                             <label for="phone" class="form-label  text-secondary">Phone Number</label>
                             <input name="phone" type="number" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
-                            </div>
+                        </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label  text-secondary">Password</label>
                             <input name="lpassword" type="password" class="form-control" id="exampleInputPassword1">
@@ -289,80 +289,58 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">About</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <ul class="timeline">
                 <li>
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg"
-                            alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>2009-2011</h4>
-                            <h4 class="subheading">Our Humble Beginnings</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut
-                                voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero
-                                unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                        </div>
+                    <h3 class="section-subheading text-center">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <div class="col">
+                        <p class="text-center">Health is a state of physical, mental and social well-being, not just the
+                            absence of disease
+                            or infirmity. Good health helps people live a full life. Read more.
+
+                            View original
+                            The word health refers to a state of complete emotional and physical well-being. Healthcare
+                            exists to help people maintain this optimal state of health.
+
+                            According to the Centers for Disease Control and Prevention (CDC), healthcare costs in the
+                            United States were $3.5 trillion in 2017.
+
+                            However, despite this expenditure, people in the U.S. have a lower life expectancy than
+                            people in other developed countries. This is due to a variety of factors, including access
+                            to healthcare and lifestyle choices.
+
+                            Good health is central to handling stress and living a longer, more active life. In this
+                            article, we explain the meaning of good health, the types of health a person needs to
+                            consider, and how to preserve good health.
+
+                            In 1948, the World Health Organization (WHO) defined health with a phrase that modern
+                            authorities still apply.</p>
                     </div>
                 </li>
-                <li class="timeline-inverted">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg"
-                            alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>March 2011</h4>
-                            <h4 class="subheading">An Agency is Born</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut
-                                voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero
-                                unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg"
-                            alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>December 2015</h4>
-                            <h4 class="subheading">Transition to Full Service</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut
-                                voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero
-                                unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-inverted">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg"
-                            alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>July 2020</h4>
-                            <h4 class="subheading">Phase Two Expansion</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut
-                                voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero
-                                unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-inverted">
-                    <div class="timeline-image">
-                        <h4>
-                            Be Part
-                            <br />
-                            Of Our
-                            <br />
-                            Story!
-                        </h4>
-                    </div>
-                </li>
+                <div class="col">
+                    <h3 class="section-subheading text-center">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <p class="text-center">Health is a state of physical, mental and social well-being, not just the
+                        absence of disease
+                        or infirmity. Good health helps people live a full life. Read more.
+
+                        View original
+                        The word health refers to a state of complete emotional and physical well-being. Healthcare
+                        exists to help people maintain this optimal state of health.
+
+                        According to the Centers for Disease Control and Prevention (CDC), healthcare costs in the
+                        United States were $3.5 trillion in 2017.
+
+                        However, despite this expenditure, people in the U.S. have a lower life expectancy than
+                        people in other developed countries. This is due to a variety of factors, including access
+                        to healthcare and lifestyle choices.
+
+                        Good health is central to handling stress and living a longer, more active life. In this
+                        article, we explain the meaning of good health, the types of health a person needs to
+                        consider, and how to preserve good health.
+
+                        In 1948, the World Health Organization (WHO) defined health with a phrase that modern
+                        authorities still apply.</p>
+                </div>
             </ul>
         </div>
     </section>
@@ -446,75 +424,57 @@
         </div>
     </div>
     <!-- Contact-->
-    <section class="page-section" id="contact">
-        <div class="container">
+    <section class="page-section row p-4" id="contact">
+        <div class="col-md-6">
+        <div class="text-center">
+                <h2 class="section-heading text-uppercase">Our Store</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+            <div id="map" class="mx-4">
+                <iframe width="600" height="430" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="col-md-6">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Contact Us</h2>
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- * * SB Forms Contact Form * *-->
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- This form is pre-integrated with SB Forms.-->
-            <!-- To make this form functional, sign up at-->
-            <!-- https://startbootstrap.com/solution/contact-forms-->
-            <!-- to get an API token!-->
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                <div class="row align-items-stretch mb-5">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <!-- Name input-->
-                            <input class="form-control" id="name" type="text" placeholder="Your Name *"
-                                data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                        </div>
-                        <div class="form-group">
-                            <!-- Email address input-->
-                            <input class="form-control" id="email" type="email" placeholder="Your Email *"
-                                data-sb-validations="required,email" />
-                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                        </div>
-                        <div class="form-group mb-md-0">
-                            <!-- Phone number input-->
-                            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"
-                                data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
-                            </div>
+            <form id="contactForm">
+                <div class="row align-items-stretch mb-3">
+                    <div class="form-group">
+                        <!-- Name input-->
+                        <input class="form-control" id="name" type="text" placeholder="Your Name *"
+                            data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Email address input-->
+                        <input class="form-control" id="email" type="email" placeholder="Your Email *"
+                            data-sb-validations="required,email" />
+                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                    </div>
+                    <div class="form-group mb-md-0">
+                        <!-- Phone number input-->
+                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"
+                            data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group form-group-textarea mb-md-0">
-                            <!-- Message input-->
-                            <textarea class="form-control" id="message" placeholder="Your Message *"
-                                data-sb-validations="required"></textarea>
-                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
-                            </div>
+                    <div class="form-group form-group-textarea mb-md-0 my-4">
+                        <!-- Message input-->
+                        <textarea class="form-control" id="message" placeholder="Your Message *"
+                            data-sb-validations="required"></textarea>
+                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
                         </div>
                     </div>
-                </div>
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessMessage">
-                    <div class="text-center text-white mb-3">
-                        <div class="fw-bolder">Form submission successful!</div>
-                        To activate this form, sign up at
-                        <br />
-                        <a
-                            href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                    </div>
-                </div>
-                <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
-                <div class="d-none" id="submitErrorMessage">
-                    <div class="text-center text-danger mb-3">Error sending message!</div>
                 </div>
                 <!-- Submit Button-->
-                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled"
+                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase"
                         id="submitButton" type="submit">Send Message</button></div>
             </form>
         </div>
@@ -779,7 +739,4 @@
                 </div>
             </div>
         </div>
-    </div>  
-</body>
-
-</html>
+        </d

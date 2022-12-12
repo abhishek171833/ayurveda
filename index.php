@@ -21,6 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <style>
+    </style>
 </head>
 
 <body id="page-top">
@@ -44,13 +46,7 @@
                         <a class="nav-link" href="#packages">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About Doctor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Ayurveda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Panchakarama</a>
+                        <a class="nav-link" href="#about">About Ayurveda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Book Appointment</a>
@@ -425,25 +421,25 @@
     </div>!-->
     <!-- Contact-->
     <section class="page-section row p-4" id="contact">
-        <div class="col-md-6">
+        <div class="col-md-6 my-4">
         <div class="text-center">
                 <h2 class="section-heading text-uppercase">Our Store</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div id="map" class="mx-4">
-                <iframe width="600" height="430" id="gmap_canvas"
+                <iframe class="w-100" height="430" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 my-4">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Contact Us</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <form id="contactForm">
+            <form id="contactForm" class="mx-4">
                 <div class="row align-items-stretch mb-3">
                     <div class="form-group">
                         <!-- Name input-->
@@ -474,8 +470,7 @@
                     </div>
                 </div>
                 <!-- Submit Button-->
-                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase"
-                        id="submitButton" type="submit">Send Message</button></div>
+                <div class="text-center"><button class="btn btn-success btn-xl text-uppercase" id="submitButton" type="submit">Send Message</button></div>
             </form>
         </div>
     </section>
@@ -483,7 +478,7 @@
     <footer class="footer py-4">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                <div class="col-lg-4 text-lg-start">Copyright &copy; Ayurveda 2022</div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
                             class="fab fa-twitter"></i></a>

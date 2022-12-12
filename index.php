@@ -46,7 +46,7 @@
                         <a class="nav-link" href="#packages">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About Ayurveda</a>
+                        <a class="nav-link" href="#about">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Book Appointment</a>

@@ -180,8 +180,8 @@
         </div>
     </section>
     <!-- Portfolio Grid-->
-    <section class="page-section bg-light" id="portfolio">
-        <div class="container">
+    <section class="page-section bg-light" id="portfolio" style="padding-bottom:45px;">
+        <div class="container-fluid">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Portfolio</h2>
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
@@ -194,7 +194,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
@@ -209,7 +209,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Nasya</div>
@@ -224,7 +224,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Virechan</div>
@@ -239,7 +239,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Basti</div>
@@ -254,7 +254,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Raktamoshan</div>
@@ -269,7 +269,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Shirodhara</div>
@@ -278,18 +278,21 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-5 text-center">
+                <a href="./routes/packages.php"><button class="btn btn-success">Show more</button></a>
+            </div>
         </div>
     </section>
     <!-- About-->
-    <section class="page-section" id="about">
+    <section class="page-section p-0" id="about">
+        <div class="text-center my-5">
+            <h2 class="section-heading text-uppercase">About Us</h2>
+        </div>
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">About</h2>
-            </div>
             <ul class="timeline">
-                <li>
-                    <h3 class="section-subheading text-center">Lorem ipsum dolor sit amet consectetur.</h3>
-                    <div class="col">
+                <div class="col">
+                    <h4 class="text-center">About Ayurveda</h4>
+                    <div class="col my-4">
                         <p class="text-center">Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
@@ -312,9 +315,9 @@
                             In 1948, the World Health Organization (WHO) defined health with a phrase that modern
                             authorities still apply.</p>
                     </div>
-                </li>
-                <div class="col">
-                    <h3 class="section-subheading text-center">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <div class="col my-4">
+                    <h4 class="text-center">About Our Doctor</h4>
                     <p class="text-center">Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
@@ -352,7 +355,7 @@
                     <div class="team-member">
                         <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
                         <h4>Parveen Anand</h4>
-                        <p class="text-muted">Lead Designer</p>
+                        <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i
                                 class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i
@@ -365,7 +368,7 @@
                     <div class="team-member">
                         <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
                         <h4>Diana Petersen</h4>
-                        <p class="text-muted">Lead Marketer</p>
+                        <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
                                 class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"
@@ -721,4 +724,4 @@
                 </div>
             </div>
         </div>
-        </d
+</div>

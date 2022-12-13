@@ -144,10 +144,10 @@
     <section class="page-section" id="packages">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">What is Ayurveda</h2>
+                <h2 class="section-heading text-uppercase">Packages</h2>
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <!-- <div class="row text-center">
+            <div class="row text-center">
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-circle fa-stack-2x text-primary"></i>
@@ -175,25 +175,25 @@
                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
                         architecto quo inventore harum ex magni, dicta impedit.</p>
                 </div>
-            </div> -->
+            </div>
         </div>
     </section>
-    <!-- Packages Grid-->
-    <section class="page-section bg-light" id="portfolio">
-        <div class="container">
+    <!-- Portfolio Grid-->
+    <section class="page-section bg-light" id="portfolio" style="padding-bottom:45px;">
+        <div class="container-fluid">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Packages</h2>
+                <h2 class="section-heading text-uppercase">Portfolio</h2>
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Packages item 1-->
+                    <!-- Portfolio item 1-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
@@ -202,13 +202,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Packages item 2-->
+                    <!-- Portfolio item 2-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Nasya</div>
@@ -217,13 +217,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Packages item 3-->
+                    <!-- Portfolio item 3-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Virechan</div>
@@ -232,13 +232,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <!-- Packages item 4-->
+                    <!-- Portfolio item 4-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Basti</div>
@@ -247,13 +247,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                    <!-- Packages item 5-->
+                    <!-- Portfolio item 5-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Raktamoshan</div>
@@ -262,13 +262,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <!-- Packages item 6-->
+                    <!-- Portfolio item 6-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid"style="height:312px!important;" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Shirodhara</div>
@@ -277,18 +277,21 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-5 text-center">
+                <a href="./routes/packages.php"><button class="btn btn-success">Show more</button></a>
+            </div>
         </div>
     </section>
     <!-- About-->
-    <section class="page-section" id="about">
+    <section class="page-section p-0" id="about">
+        <div class="text-center my-5">
+            <h2 class="section-heading text-uppercase">About Us</h2>
+        </div>
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">About</h2>
-            </div>
             <ul class="timeline">
-                <li>
-                    <h3 class="section-subheading text-center">Lorem ipsum dolor sit amet consectetur.</h3>
-                    <div class="col">
+                <div class="col">
+                    <h4 class="text-center">About Ayurveda</h4>
+                    <div class="col my-4">
                         <p class="text-center">Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
@@ -306,9 +309,9 @@
                             In 1948, the World Health Organization (WHO) defined health with a phrase that modern
                             authorities still apply.</p>
                     </div>
-                </li>
-                <div class="col">
-                    <h3 class="section-subheading text-center">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <div class="col my-4">
+                    <h4 class="text-center">About Our Doctor</h4>
                     <p class="text-center">Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
@@ -337,11 +340,11 @@
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="team-member">
                         <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
                         <h4>Parveen Anand</h4>
-                        <p class="text-muted">Lead Designer</p>
+                        <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i
                                 class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i
@@ -350,30 +353,17 @@
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="team-member">
                         <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
                         <h4>Diana Petersen</h4>
-                        <p class="text-muted">Lead Marketer</p>
+                        <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
                                 class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"
                             aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"
                             aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
-                        <h4>Larry Parker</h4>
-                        <p class="text-muted">Lead Developer</p>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i
-                                class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -482,8 +472,8 @@
             </div>
         </div>
     </footer>
-    <!-- Packages Modals-->
-    <!-- Packages item 1 modal popup-->
+    <!-- Portfolio Modals-->
+    <!-- Portfolio item 1 modal popup-->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -493,7 +483,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                <!-- Packages details-->
+                                <!-- Project details-->
                                 <h2 class="text-uppercase">Vaman</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
@@ -501,11 +491,20 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                               
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Threads
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Illustration
+                                    </li>
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -514,7 +513,7 @@
             </div>
         </div>
     </div>
-    <!-- Packages item 2 modal popup-->
+    <!-- Portfolio item 2 modal popup-->
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -524,7 +523,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                <!--   details-->
+                                <!-- Project details-->
                                 <h2 class="text-uppercase">Nasya</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
@@ -532,11 +531,20 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                               
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Explore
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Graphic Design
+                                    </li>
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -545,7 +553,7 @@
             </div>
         </div>
     </div>
-    <!-- Packages  item 3 modal popup-->
+    <!-- Portfolio item 3 modal popup-->
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -555,7 +563,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                <!-- Packages  details-->
+                                <!-- Project details-->
                                 <h2 class="text-uppercase">Virechan</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
@@ -563,11 +571,20 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                               
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Finish
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Identity
+                                    </li>
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -576,7 +593,7 @@
             </div>
         </div>
     </div>
-    <!--Packages item 4 modal popup-->
+    <!-- Portfolio item 4 modal popup-->
     <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -586,7 +603,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                <!-- Packages details-->
+                                <!-- Project details-->
                                 <h2 class="text-uppercase">Basti</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
@@ -594,11 +611,20 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Lines
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Branding
+                                    </li>
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -607,7 +633,7 @@
             </div>
         </div>
     </div>
-    <!-- Packages item 5 modal popup-->
+    <!-- Portfolio item 5 modal popup-->
     <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -617,7 +643,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                <!-- Packages details-->
+                                <!-- Project details-->
                                 <h2 class="text-uppercase">Raktamoshan</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
@@ -625,11 +651,20 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Southwest
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Website Design
+                                    </li>
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -638,7 +673,7 @@
             </div>
         </div>
     </div>
-    <!-- Packages item 6 modal popup-->
+    <!-- Portfolio item 6 modal popup-->
     <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -648,7 +683,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="modal-body">
-                                <!-- Packages details-->
+                                <!-- Project details-->
                                 <h2 class="text-uppercase">Shirodhara</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
@@ -656,11 +691,20 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                
+                                <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Window
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Photography
+                                    </li>
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -668,4 +712,4 @@
                 </div>
             </div>
         </div>
-        </d
+</div>

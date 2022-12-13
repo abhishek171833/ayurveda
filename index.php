@@ -24,7 +24,6 @@
     <style>
     </style>
 </head>
-
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-light">
@@ -183,8 +182,8 @@
     <section class="page-section bg-light" id="portfolio">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Packages</h2>
-                <h3 class="section-subheading text-muted">Popular packages of our Website </h3>
+                <h2 class="section-heading text-uppercase">Portfolio</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
@@ -293,22 +292,17 @@
                         <p class="text-center">Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
-
                             View original
                             The word health refers to a state of complete emotional and physical well-being. Healthcare
                             exists to help people maintain this optimal state of health.
-
                             According to the Centers for Disease Control and Prevention (CDC), healthcare costs in the
                             United States were $3.5 trillion in 2017.
-
                             However, despite this expenditure, people in the U.S. have a lower life expectancy than
                             people in other developed countries. This is due to a variety of factors, including access
                             to healthcare and lifestyle choices.
-
                             Good health is central to handling stress and living a longer, more active life. In this
                             article, we explain the meaning of good health, the types of health a person needs to
                             consider, and how to preserve good health.
-
                             In 1948, the World Health Organization (WHO) defined health with a phrase that modern
                             authorities still apply.</p>
                     </div>
@@ -318,22 +312,17 @@
                     <p class="text-center">Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
-
                         View original
                         The word health refers to a state of complete emotional and physical well-being. Healthcare
                         exists to help people maintain this optimal state of health.
-
                         According to the Centers for Disease Control and Prevention (CDC), healthcare costs in the
                         United States were $3.5 trillion in 2017.
-
                         However, despite this expenditure, people in the U.S. have a lower life expectancy than
                         people in other developed countries. This is due to a variety of factors, including access
                         to healthcare and lifestyle choices.
-
                         Good health is central to handling stress and living a longer, more active life. In this
                         article, we explain the meaning of good health, the types of health a person needs to
                         consider, and how to preserve good health.
-
                         In 1948, the World Health Organization (WHO) defined health with a phrase that modern
                         authorities still apply.</p>
                 </div>
@@ -433,7 +422,6 @@
                 </iframe>
             </div>
         </div>
-
         <div class="col-md-6 my-4">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Contact Us</h2>
@@ -513,7 +501,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
+                                <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Threads
@@ -522,11 +510,11 @@
                                         <strong>Category:</strong>
                                         Illustration
                                     </li>
-                                </ul> -->
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                     Select 
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Select
                                 </button>
                             </div>
                         </div>
@@ -553,7 +541,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
+                                <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Explore
@@ -562,11 +550,11 @@
                                         <strong>Category:</strong>
                                         Graphic Design
                                     </li>
-                                </ul> -->
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -593,7 +581,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
+                                <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Finish
@@ -602,11 +590,11 @@
                                         <strong>Category:</strong>
                                         Identity
                                     </li>
-                                </ul> -->
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -633,7 +621,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
+                                <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Lines
@@ -642,11 +630,11 @@
                                         <strong>Category:</strong>
                                         Branding
                                     </li>
-                                </ul> -->
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -673,7 +661,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
+                                <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Southwest
@@ -682,11 +670,11 @@
                                         <strong>Category:</strong>
                                         Website Design
                                     </li>
-                                </ul> -->
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>
@@ -713,7 +701,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
+                                <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Window
@@ -722,11 +710,11 @@
                                         <strong>Category:</strong>
                                         Photography
                                     </li>
-                                </ul> -->
+                                </ul>
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class=""></i>
-                                    Select
+                                    <i class="fas fa-xmark me-1"></i>
+                                    Close Project
                                 </button>
                             </div>
                         </div>

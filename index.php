@@ -183,8 +183,8 @@
     <section class="page-section bg-light" id="portfolio">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Portfolio</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h2 class="section-heading text-uppercase">Packages</h2>
+                <h3 class="section-subheading text-muted">Popular packages of our Website </h3>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
@@ -513,7 +513,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
+                                <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Threads
@@ -522,11 +522,11 @@
                                         <strong>Category:</strong>
                                         Illustration
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
+                                    <i class=""></i>
+                                     Select 
                                 </button>
                             </div>
                         </div>
@@ -553,7 +553,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
+                                <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Explore
@@ -562,11 +562,11 @@
                                         <strong>Category:</strong>
                                         Graphic Design
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
+                                    <i class=""></i>
+                                    Select
                                 </button>
                             </div>
                         </div>
@@ -593,7 +593,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
+                                <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Finish
@@ -602,11 +602,11 @@
                                         <strong>Category:</strong>
                                         Identity
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
+                                    <i class=""></i>
+                                    Select
                                 </button>
                             </div>
                         </div>
@@ -633,7 +633,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
+                                <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Lines
@@ -642,11 +642,11 @@
                                         <strong>Category:</strong>
                                         Branding
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
+                                    <i class=""></i>
+                                    Select
                                 </button>
                             </div>
                         </div>
@@ -673,7 +673,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
+                                <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Southwest
@@ -682,11 +682,11 @@
                                         <strong>Category:</strong>
                                         Website Design
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
+                                    <i class=""></i>
+                                    Select
                                 </button>
                             </div>
                         </div>
@@ -713,7 +713,7 @@
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
                                     nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
+                                <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
                                         Window
@@ -722,11 +722,11 @@
                                         <strong>Category:</strong>
                                         Photography
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Close Project
+                                    <i class=""></i>
+                                    Select
                                 </button>
                             </div>
                         </div>

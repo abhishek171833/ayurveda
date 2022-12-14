@@ -335,7 +335,7 @@ include './include/navbar.php';
                     </div>
                 </div>
             <div class="mt-5 text-center">
-                <a href="./routes/packages.php"><button class="btn btn-success">Show more</button></a>
+                <a href="./routes/deseases.php"><button class="btn btn-success">Show more</button></a>
             </div>
         </div>
     </section>

@@ -34,8 +34,8 @@ include '../include/navbar.php';
 <section class="page-section bg-light" id="portfolio">
         <div class="container-fluid">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Packages</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h2 class="section-heading text-uppercase">Deseases</h2>
+                <h3 class="section-subheading text-muted">Deseases</h3>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">

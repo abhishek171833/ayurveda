@@ -12,16 +12,16 @@
                         <img style="width:190px;cursor:pointer;" src="<?php echo'http://localhost/ayurveda/assets/img/navbar-logo.png'; ?>"/>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Treatment</a>
+                        <a class="nav-link" href="#deseases">Deseases</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#packages">Packages</a>
+                        <a class="nav-link" href="#packages">Panchkarma</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Book Appointment</a>
+                        <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

@@ -154,8 +154,94 @@ include './include/navbar.php';
     <section class="page-section bg-light" id="portfolio" style="padding-bottom:45px;">
         <div class="container-fluid">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Packages</h2>
-                <h3 class="section-subheading text-muted">Our Popular Packages.</h3>
+                <h2 class="section-heading text-uppercase">Panchkarma</h2>
+                <h3 class="section-subheading text-muted">Our Top 5 Panchkarma Packages.</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Packages item 1-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Vaman</div>
+                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!--Packages item 2-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Nasya</div>
+                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Packages item 3-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Virechan</div>
+                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-md-6 mb-4 mb-lg-0">
+                    <!-- Packages item 4-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Basti</div>
+                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4 mb-sm-0">
+                    <!-- Packages item 5-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Raktamoshan</div>
+                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+    <section class="page-section bg-dark" id="deseases" style="padding-bottom:45px;">
+        <div class="container-fluid">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase text-light">Deseases</h2>
+                <h3 class="section-subheading text-muted">Desease.</h3>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
@@ -233,22 +319,21 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <!-- Packages item 6-->
+                <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                    <!-- Packages item 5-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Shirodhara</div>
+                            <div class="portfolio-caption-heading">Raktamoshan</div>
                             <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
                         </div>
                     </div>
-    
-            </div>
+                </div>
             <div class="mt-5 text-center">
                 <a href="./routes/packages.php"><button class="btn btn-success">Show more</button></a>
             </div>
@@ -386,7 +471,7 @@ include './include/navbar.php';
         </div>
         <div class="col-md-6 my-4">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Contact Us</h2>
+                <h2 class="section-heading text-uppercase">Send Inquiry</h2>
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <form id="contactForm" class="mx-4">
@@ -404,6 +489,15 @@ include './include/navbar.php';
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                     </div>
+                    <div class="form-group">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Select Desease</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                  
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
                         <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"

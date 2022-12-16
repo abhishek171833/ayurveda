@@ -203,8 +203,9 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-            
-                <div class="col-md-6 mb-4 mb-lg-0">
+            </div>
+            <div class="row">
+            <div class="col-md-6 mb-4 mb-lg-0">
                     <!-- Packages item 4-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
@@ -234,7 +235,7 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </section>
     <section class="page-section bg-dark" id="deseases" style="padding-bottom:45px;">

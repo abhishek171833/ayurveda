@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <img style="width:190px;cursor:pointer;" src="<?php echo'http://localhost/ayurveda/assets/img/navbar-logo.png'; ?>"/>
+                        <img style="width:190px;cursor:pointer;" src="<?php echo'http://localhost:8080/ayurveda/assets/img/navbar-logo.png'; ?>"/>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Treatment</a>

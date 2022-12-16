@@ -151,7 +151,7 @@ include './include/navbar.php';
         </div>
     </section>
     <!-- Packages Grid-->
-    <section class="page-section bg-light" id="portfolio" style="padding-bottom:45px;">
+    <section class="page-section bg-light" id="portfolio" style="padding-bottom:45px; background-color:#4fd64e45 !important">
         <div class="container-fluid">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Panchkarma</h2>
@@ -407,8 +407,8 @@ include './include/navbar.php';
                                 class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i
                                 class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i
-                                class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Instagram Profile"><i
+                                class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -421,7 +421,7 @@ include './include/navbar.php';
                         <a class="btn btn-dark btn-social mx-2" href="#!"
                             aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"
-                            aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            aria-label="Diana Petersen Instagram Profile"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>

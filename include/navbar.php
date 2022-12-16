@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <img style="width:190px;cursor:pointer;" src="<?php echo'http://localhost/ayurveda/assets/img/navbar-logo.png'; ?>"/>
+                        <img style="width:190px;cursor:pointer;" src="<?php echo'http://localhost:8080/ayurveda/assets/img/navbar-logo.png'; ?>"/>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#deseases">Deseases</a>
@@ -22,6 +22,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Book">Book Appointment</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Book">Book Appointment</a>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"

@@ -24,7 +24,7 @@
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#Book">Book Appointment</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#Appointment" >Book Appointment</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

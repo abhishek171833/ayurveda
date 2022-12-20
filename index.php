@@ -207,7 +207,7 @@ include './include/navbar.php';
                 <h3 class="section-subheading text-muted">Our Top 5 Panchkarma Packages.</h3>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="col-md-6 mb-5">
                     <!-- Packages item 1-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
@@ -222,7 +222,7 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="col-md-6 mb-5">
                     <!--Packages item 2-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
@@ -237,7 +237,7 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="col-md-6 mb-5">
                     <!-- Packages item 3-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
@@ -252,9 +252,8 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-4 mb-lg-0">
+            
+                <div class="col-md-6 mb-5">
                     <!-- Packages item 4-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
@@ -269,7 +268,7 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4 mb-sm-0">
+                <div class="col-md-12 mb-5">
                     <!-- Packages item 5-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
@@ -284,7 +283,7 @@ include './include/navbar.php';
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
     </section>
     <section class="page-section bg-dark" id="deseases" style="padding-bottom:45px;">
@@ -312,7 +311,7 @@ include './include/navbar.php';
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!--Desease item 2-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal2">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -327,7 +326,7 @@ include './include/navbar.php';
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Desease item 3-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal3">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -342,7 +341,7 @@ include './include/navbar.php';
                 <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                     <!-- Desease item 4-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal4">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -357,7 +356,7 @@ include './include/navbar.php';
                 <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                     <!-- Desease item 5-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal5">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -372,7 +371,7 @@ include './include/navbar.php';
                 <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                     <!-- Desease item 5-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal6">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -610,6 +609,7 @@ include './include/navbar.php';
                 </div>
             </div>
         </div>
+    </div>
         <!-- Packages item 2 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -868,7 +868,219 @@ include './include/navbar.php';
                 </div>
             </div>
         </div>
+        <div class="portfolio-modal modal fade" id="DeseaseModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                            alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Packages details-->
+                                    <h2 class="text-uppercase">aviraj2</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
+                                        deserunt
+                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
+                                        repudiandae,
+                                        nostrum, reiciendis facere nemo!</p>
+                                    <!-- <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Window
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Photography
+                                    </li>
+                                </ul> -->
+                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                    type="button">
+                                    <i class=""></i>
+                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
+
+                                </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="DeseaseModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                            alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Packages details-->
+                                    <h2 class="text-uppercase">aviraj3</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
+                                        deserunt
+                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
+                                        repudiandae,
+                                        nostrum, reiciendis facere nemo!</p>
+                                    <!-- <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Window
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Photography
+                                    </li>
+                                </ul> -->
+                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                    type="button">
+                                    <i class=""></i>
+                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
+
+                                </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="DeseaseModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                            alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Packages details-->
+                                    <h2 class="text-uppercase">aviraj4</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
+                                        deserunt
+                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
+                                        repudiandae,
+                                        nostrum, reiciendis facere nemo!</p>
+                                    <!-- <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Window
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Photography
+                                    </li>
+                                </ul> -->
+                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                    type="button">
+                                    <i class=""></i>
+                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
+
+                                </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="DeseaseModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                            alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Packages details-->
+                                    <h2 class="text-uppercase">aviraj5</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
+                                        deserunt
+                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
+                                        repudiandae,
+                                        nostrum, reiciendis facere nemo!</p>
+                                    <!-- <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Window
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Photography
+                                    </li>
+                                </ul> -->
+                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                    type="button">
+                                    <i class=""></i>
+                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
+
+                                </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="DeseaseModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                            alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Packages details-->
+                                    <h2 class="text-uppercase">aviraj6</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
+                                        deserunt
+                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
+                                        repudiandae,
+                                        nostrum, reiciendis facere nemo!</p>
+                                    <!-- <ul class="list-inline">
+                                    <li>
+                                        <strong>Client:</strong>
+                                        Window
+                                    </li>
+                                    <li>
+                                        <strong>Category:</strong>
+                                        Photography
+                                    </li>
+                                </ul> -->
+                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                    type="button">
+                                    <i class=""></i>
+                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
+
+                                </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php
+
+        
 include './include/footer.php';
 ?>
 </body>

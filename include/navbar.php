@@ -1,38 +1,25 @@
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <img style="width:190px;cursor:pointer;" src="<?php echo'http://localhost:8080/ayurveda/assets/img/navbar-logo.png'; ?>"/>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#deseases">Deseases</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#packages">Panchkarma</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#Appointment" >Book Appointment</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
-                        class="mx-2 btn btn-outline-success" type="button">Login</button>
-                    <button data-bs-toggle="modal" data-bs-target="#Signupmodal" class="mx-2 btn btn-outline-success"
-                        type="button">Signup</button>
-                </form>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.png" alt="..." /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link text-white" href="#deseases">Deseases</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#packages">Panchkarma</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#Appointment"  data-bs-toggle="modal" data-bs-target="#Appointment">Book Appointment</a></li>
+                    </ul>               
+                    <form class="d-flex" role="search">
+                        <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
+                            class="mx-2 btn btn-success" type="button">Login</button>
+                        <button data-bs-toggle="modal" data-bs-target="#Signupmodal" class="mx-2 btn btn-success"
+                            type="button">Signup</button>
+                     </form>
+
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>

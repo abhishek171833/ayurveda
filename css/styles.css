@@ -11377,7 +11377,7 @@ p {
   font-size: 0.95rem;
   color: #fff;
   letter-spacing: 0.0625em;
-  background: #000;
+  /* background: #000; */
 }
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #ffc800;

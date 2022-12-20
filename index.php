@@ -1083,4 +1083,5 @@ include './include/navbar.php';
         
 include './include/footer.php';
 ?>
+<script src="js/scripts.js"></script>
 </body>

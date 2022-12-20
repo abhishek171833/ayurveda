@@ -217,7 +217,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted">/-</div>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Nasya</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -247,7 +247,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Virechan</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -264,7 +264,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Basti</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -279,7 +279,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Raktamoshan</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -304,7 +304,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -319,7 +319,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Nasya</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -334,7 +334,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Virechan</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -349,7 +349,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Basti</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -364,7 +364,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Raktamoshan</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -379,7 +379,7 @@ include './include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Raktamoshan</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>

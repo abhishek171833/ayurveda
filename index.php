@@ -101,7 +101,7 @@ include './include/navbar.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-success">Sign Up</button>
                 </div>
                 </form>
             </div>
@@ -130,7 +130,7 @@ include './include/navbar.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-success">Login</button>
                 </div>
                 </form>
             </div>

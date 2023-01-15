@@ -21,11 +21,83 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         @media (min-width: 990px) {}
     </style>
 </head>
+<?php
+    if(isset($_POST['lemail'])){
+    require('./db/database.php');
+    $res=mysqli_query($db,"SELECT * FROM `student` WHERE Email='$_POST[lemail]' && Password='$_POST[lpassword]';");
+    $count=mysqli_num_rows($res);
+    if($count):
+        $_SESSION['login_user'] = $_POST['lemail']; ?>
 
+        <script>
+            setTimeout(() => {
+                swal("Success!", "You Logged In Successfully!", "success")
+                .then(()=>{
+                    window.location.href = "welcome.php";
+                })
+            }, 1000);
+        </script>
+        
+        <?php else:?>
+        <script>
+            setTimeout(() => {
+                swal("Error!", "Email Or Password Does Not Match!", "error");
+            }, 1000);
+        </script>
+    <?php  endif;
+    }
+
+    if(isset($_POST['susername'])){
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT Email FROM `Users` WHERE Email='$_POST[sEmail]';");
+        $email=mysqli_num_rows($res);
+
+        
+        $res=mysqli_query($db,"SELECT phone FROM `Users` WHERE phone='$_POST[sphone]';");
+        $phone=mysqli_num_rows($res);
+
+        if($_POST['spassword'] != $_POST['scpassword']):?>
+            <script>
+                setTimeout(() => {
+                    swal("Warning!", "Password And Confirm Password Does Not Match!", "warning");
+                }, 1000);
+            </script>
+
+        <?php 
+
+        elseif ($email): ?>
+            <script>
+                setTimeout(() => {
+                    swal("Warning!", "User With This Email Already Exists!", "warning");
+                }, 1000);
+            </script>
+        <?php 
+
+
+        elseif($phone): ?>
+            <script>
+                setTimeout(() => {
+                    swal("Warning!", "User With This Phone Number Already Exists!", "warning");
+                }, 1000);
+            </script>
+
+        <?php else:
+                $hash = password_hash($_POST['spassword'],PASSWORD_DEFAULT);
+                mysqli_query($db,"INSERT INTO `users` (`name`, `phone`, `email`, `password`) VALUES('$_POST[susername]','$_POST[sphone]','$_POST[sEmail]','$hash');");?>
+                <script>
+                    setTimeout(() => {
+                        swal("Success!", "Sign Up Successfully Now You Can Log In!", "success");
+                    }, 1000);
+                </script>
+            <?php
+            endif;
+        }
+    ?>
 <body id="page-top">
     <?php
 include './include/navbar.php';
@@ -75,28 +147,28 @@ include './include/navbar.php';
                 <div class="modal-body">
                     <form action="./index.php" method="post">
                         <div class="mb-3">
-                            <label for="username" class="form-label  text-secondary">Username</label>
-                            <input name="username" type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <label for="susername" class="form-label  text-secondary">Username</label>
+                            <input name="susername" type="text" class="form-control" id="susername"
+                                aria-describedby="usernameHelp" required>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label  text-secondary">Email address</label>
-                            <input name="lemail" type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <label for="sEmail" class="form-label  text-secondary">Email address</label>
+                            <input name="sEmail" type="email" class="form-control" id="sEmail"
+                                aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label  text-secondary">Phone Number</label>
-                            <input name="phone" type="number" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <label for="sphone" class="form-label  text-secondary">Phone Number</label>
+                            <input name="sphone" type="number" class="form-control" id="sphone"
+                                aria-describedby="emailHelp" required>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label  text-secondary">Password</label>
-                            <input name="lpassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="spassword" class="form-label  text-secondary">Password</label>
+                            <input name="spassword" type="password" class="form-control" id="spassword" required>
                         </div>
                         <div class="mb-3">
-                            <label for="cpassword" class="form-label  text-secondary">Confirm Password</label>
-                            <input name="cpassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="scpassword" class="form-label  text-secondary">Confirm Password</label>
+                            <input name="scpassword" type="password" class="form-control" id="scpassword" required>
                         </div>
                 </div>
                 <div class="modal-footer">

@@ -29,7 +29,7 @@
 <?php
     if(isset($_POST['lemail'])){
     require('./db/database.php');
-    $res=mysqli_query($db,"SELECT * FROM `student` WHERE Email='$_POST[lemail]' && Password='$_POST[lpassword]';");
+    $res=mysqli_query($db,"SELECT * FROM `users` WHERE email='$_POST[lemail]' && password='$_POST[lpassword]';");
     $count=mysqli_num_rows($res);
     if($count):
         $_SESSION['login_user'] = $_POST['lemail']; ?>
@@ -38,7 +38,7 @@
             setTimeout(() => {
                 swal("Success!", "You Logged In Successfully!", "success")
                 .then(()=>{
-                    window.location.href = "welcome.php";
+                    window.location.href = "index.php";
                 })
             }, 1000);
         </script>
@@ -87,8 +87,8 @@
             </script>
 
         <?php else:
-                $hash = password_hash($_POST['spassword'],PASSWORD_DEFAULT);
-                mysqli_query($db,"INSERT INTO `users` (`name`, `phone`, `email`, `password`) VALUES('$_POST[susername]','$_POST[sphone]','$_POST[sEmail]','$hash');");?>
+                // $hash = password_hash($_POST['spassword'],PASSWORD_DEFAULT);
+                mysqli_query($db,"INSERT INTO `users` (`name`, `phone`, `email`, `password`) VALUES('$_POST[susername]','$_POST[sphone]','$_POST[sEmail]','$_POST[susername]');");?>
                 <script>
                     setTimeout(() => {
                         swal("Success!", "Sign Up Successfully Now You Can Log In!", "success");

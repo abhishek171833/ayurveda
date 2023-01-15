@@ -14,10 +14,16 @@
                         <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#Appointment"  data-bs-toggle="modal" data-bs-target="#Appointment">Book Appointment</a></li>
                     </ul>               
                     <form class="d-flex" role="search" style="position:absolute;right:0;">
+                    <?php 
+                    session_start();
+                    if(!isset($_SESSION['login_user'])){?>
+                        <a href="./include/logout.php" class="mx-2 btn btn-success" type="button">Logout</a>
+                    <?php } else{ ?>
                         <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
                             class="mx-2 btn btn-success" type="button">Login</button>
                         <button data-bs-toggle="modal" data-bs-target="#Signupmodal" class="mx-2 btn btn-success"
                             type="button">Signup</button>
+                    <?php }?>
                      </form>
 
                 </div>

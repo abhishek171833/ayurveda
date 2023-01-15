@@ -1,8 +1,9 @@
-<?php 
-session_start();
-// unset($_SESSION['login_user']);
-// session_destroy();
-print_r($_SESSION['login_user']);
-die;
-header('location:../index.php');
+<?php
+     session_start();
+     if(isset($_SESSION['login_user']))
+    {
+        unset($_SESSION['login_user']);
+    }
+    header('Location: ../index.php');
 ?>
+  

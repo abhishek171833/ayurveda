@@ -16,7 +16,7 @@
                     <form class="d-flex" role="search" style="position:absolute;right:0;">
                     <?php 
                     session_start();
-                    if(!isset($_SESSION['login_user'])){?>
+                    if(isset($_SESSION['login_user'])){?>
                         <a href="./include/logout.php" class="mx-2 btn btn-success" type="button">Logout</a>
                     <?php } else{ ?>
                         <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"

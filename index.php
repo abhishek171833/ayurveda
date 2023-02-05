@@ -609,7 +609,7 @@
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div id="map" class="mx-4">
-                <iframe class="w-100" height="430" id="gmap_canvas"
+                <iframe class="w-100" height="490" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
@@ -685,18 +685,15 @@
                                 Vaman starts with oral intake of medicated ghee in ascending doses for a period of 3 to 7 days and includes a full body Abhyangam massage. This continues for a few days and ends with therapeutic vomiting.
 
                                 <h1>ADVANTAGE OF VAMAN</h1>
-                               Ayurvedic Vaman treatment is meant for purification of the upper digestive tract. This is an important component of Panchkarma treatment and is beneficial in management of Kapha predominant disorders such as asthma, cough and Psoriasis.
+                                <ul>
+                                    <li> Ayurvedic Vaman treatment is meant for purification of the upper digestive tract.</li>
+                                    <li>Important component of Panchkarma and treatment  beneficial for asthma, cough and Psoriasis.</li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                               
                                 </p>
-                                <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Threads
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Illustration
-                                    </li>
-                                </ul> -->
+                               
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
                                     <i class=""></i>

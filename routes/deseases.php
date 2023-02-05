@@ -49,7 +49,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -199,7 +199,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -229,7 +229,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -259,7 +259,7 @@ include '../include/navbar.php';
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">Vaman</div>
-                            <div class="portfolio-caption-subheading text-muted">Rs.5000/-</div>
+                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
@@ -279,7 +279,7 @@ include '../include/navbar.php';
                                 <!--Packages details-->
                                 <h2 class="text-uppercase">Vaman</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="../assets/img/portfolio/7.jpg" alt="..." />
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
@@ -294,11 +294,11 @@ include '../include/navbar.php';
                                         Illustration
                                     </li>
                                 </ul> -->
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
                                     <i class=""></i>
                                     <a href="./routes/select.php?img_source=home.jpg&name=Vaman&description=Vaman" class="text-light">Select</a>
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>

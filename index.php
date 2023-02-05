@@ -329,7 +329,7 @@
                             <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Nasya</div>
+                            <div class="portfolio-caption-heading">Virechan</div>
                             <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
@@ -344,7 +344,7 @@
                             <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Virechan</div>
+                            <div class="portfolio-caption-heading">Nasya</div>
                             <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
@@ -375,7 +375,7 @@
                             <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Raktamoshan</div>
+                            <div class="portfolio-caption-heading">Shirodhara</div>
                             <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
@@ -609,7 +609,7 @@
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
             <div id="map" class="mx-4">
-                <iframe class="w-100" height="430" id="gmap_canvas"
+                <iframe class="w-100" height="490" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
@@ -678,27 +678,27 @@
                             <div class="modal-body">
                                 <!--Packages details-->
                                 <h2 class="text-uppercase">Vaman</h2>
-                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <p class="item-intro text-muted"></p>
                                 <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
-                                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                    repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                    nostrum, reiciendis facere nemo!</p>
-                                <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Threads
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Illustration
-                                    </li>
-                                </ul> -->
+                                <p>Vaman includes induced vomiting, which helps to get rid of waste products (vitiated doshas) from the body.
+                                
+                                Vaman starts with oral intake of medicated ghee in ascending doses for a period of 3 to 7 days and includes a full body Abhyangam massage. This continues for a few days and ends with therapeutic vomiting.
+
+                                <h1>ADVANTAGE OF VAMAN</h1>
+                                <ul>
+                                    <li> Ayurvedic Vaman treatment is meant for purification of the upper digestive tract.</li>
+                                    <li>Important component of Panchkarma and treatment  beneficial for asthma, cough and Psoriasis.</li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                               
+                                </p>
+                               
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                     type="button">
                                     <i class=""></i>
                                     <a href="./routes/select.php?img_source=home.jpg&name=Vaman&description=Vaman"
-                                        class="text-light">Select</a>
+                                        class="text-light">BOOK APPOINTMENT</a>
                                 </button>
                             </div>
                         </div>
@@ -718,15 +718,13 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Packages details-->
-                                    <h2 class="text-uppercase">Nasya</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">virechan</h2>
+                                    <p class="item-intro text-muted"></p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
+                                    <p>Virechanam is a component of Panchkarma Ayurvedic treatment in which a person takes oral medication that induces purgation. The unwanted Doshas are taken out of body by the anal route.
+                                        <h1>ADVANTAGE OF VIRECHAN</h1>
+                                         Virechanam helps to get rid of Pitta toxins from the body that get accumulated in the liver and gallbladder. It is extremely beneficial in management of Pitta disorders such as dermatitis, chronic fever, heartburn, jaundice, etc.
+                                    </p>
                                     <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
@@ -741,7 +739,7 @@
                                         type="button">
                                         <i class=""></i>
                                         <a href="./routes/select.php?img_source=home.jpg&name=Nasya&description=Nasya"
-                                            class="text-light">Select</a>
+                                            class="text-light">BOOK APPOINTMENT</a>
                                     </button>
                                 </div>
                             </div>
@@ -761,15 +759,20 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Packages details-->
-                                    <h2 class="text-uppercase">Virechan</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Nasya</h2>
+                                    <p class="item-intro text-muted"></p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
+                                    <p>
+                                    Nasya treatment refers to an Ayurvedic therapy that includes instillation of herbal oils,
+                                     juices or powders through the nasal route. It works specifically on disorders of ear,
+                                      nose and throat. Nasya is one among the five Panchakarma therapies.
+                                       It is especially desirable for diseases of parts above the base of the neck; nasal passage being the gateway of the head.
+                                        <h1>ADVANTAGE of NASYA</h1>
+                                        Nasyam Ayurvedic treatment cleanses, purifies and strengthens the nasal passages, allowing you to breathe fully and easily again.
+                                         Due to its many benefits Nasyam is a recommended remedy for congestion, allergies, sinusitis, headaches, migraine, 
+                                         cervical spondylosis, hair fall, premature greying of hair, rhinitis and other nasal infections.
+
+                                    </p>
                                     <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
@@ -784,7 +787,7 @@
                                         type="button">
                                         <i class=""></i>
                                         <a href="./routes/select.php?img_source=home.jpg&name=Virechan&description=Virechan"
-                                            class="text-light">Select</a>
+                                            class="text-light">BOOK APPOINTMENT</a>
                                     </button>
                                 </div>
                             </div>
@@ -805,14 +808,16 @@
                                 <div class="modal-body">
                                     <!-- Packages details-->
                                     <h2 class="text-uppercase">Basti</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <p class="item-intro text-muted"></p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
+                                    <p>
+                                    Basti is an important part of Ayurvedic body de-toxification therapy known as “Panchkarma”.
+                                      Vasti refers to enema, which is administration of medication through anal route.
+
+                                    <h1>ADVANTAGE of BASTI</h1>
+                                    Often recommended for complex and chronic diseases, basti is a therapy that uses enema of herbal oils or decoctions to heal the body.
+                                     It is one of the five pradhana karmas of Panchakarma, and is used to treat vata disorders.
+                                    </p>
                                     <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
@@ -827,7 +832,7 @@
                                         type="button">
                                         <i class=""></i>
                                         <a href="./routes/select.php?img_source=home.jpg&name=Virechan&description=Virechan"
-                                            class="text-light">Select</a>
+                                            class="text-light">BOOK APPOINTMENT</a>
                                     </button>
                                 </div>
                             </div>
@@ -847,15 +852,22 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Packages details-->
-                                    <h2 class="text-uppercase">Raktamoshan</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">Shirodhara</h2>
+                                    <p class="item-intro text-muted"></p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
+                                    <p>
+                                    Shirodhara comes from the two Sanskrit words “shiro” (head) and “dhara” (flow).
+                                     It’s an Ayurvedic healing technique that involves having someone pour liquid — usually oil, milk, buttermilk,
+                                      or water — onto your forehead. It’s often combined with a body, scalp, or head massage.
+
+                                    Ayurveda is a holistic health approach that originated in India thousands of years ago. It focuses on rebalancing the life forces,
+                                     called doshas, within your body.
+                                    <h1>ADVANTAGE of SHIRODHARA</h1>
+                                    The benefits of Shirodhara massage include treatment of Sleep problems, Memory loss, Poor concentration, Chronic headaches,
+                                     Stress, Depression, Mental tension, Hypertension, Facial Paralysis and Degenerative conditions of the brain.
+                                      The medicated oils absorbed through the scalp stimulate the hair follicles, 
+                                      and hence Shirodhara is a vital therapy to treat hair problems such as Premature greying of hair or Hair fall.
+                                    </p>
                                     <!-- <ul class="list-inline">
                                     <li>
                                         <strong>Client:</strong>
@@ -870,7 +882,7 @@
                                         type="button">
                                         <i class=""></i>
                                         <a href="./routes/select.php?img_source=home.jpg&name=Basti&description=Basti"
-                                            class="text-light">Select</a>
+                                            class="text-light">BOOK APPOINTMENT</a>
                                     </button>
                                 </div>
                             </div>

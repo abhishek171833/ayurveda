@@ -296,91 +296,76 @@
     </div>
     </section>
     <!-- Panchakarma Grid-->
-    <section class="page-section bg-light" id="portfolio"
-        style="padding-bottom:45px; background-color:#4fd64e45 !important">
+    <section class="page-section bg-light" id="packages"
+        style="background-color:#4fd64e45 !important">
         <div class="container-fluid">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Panchkarma</h2>
                 <h3 class="section-subheading text-muted">Our Top 5 Panchkarma Packages.</h3>
             </div>
             <div class="row">
-                <div class="col-md-6 mb-5">
+
+                <?php 
+                    require('db/database.php');
+                    $sql = "select * from packages;";
+                    $query = mysqli_query($db, $sql);
+                    while ($row = mysqli_fetch_assoc($query)){?>
+
+                <div class="<?php if($row['id'] == '5'){echo "col-md-12";}else{echo "col-md-6";} ?> mb-5">
                     <!-- Packages item 1-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#packages<?=$row['id']?>">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="<?=$row['image_path']?>" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Vaman</div>
+                            <div class="portfolio-caption-heading"><?= $row['title'] ?></div>
                             <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-5">
-                    <!--Packages item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+
+                <div class="portfolio-modal modal fade" id="packages<?=$row['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                                    alt="Close modal" /></div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <div class="modal-body">
+                                            <!--Packages details-->
+                                            <h2 class="text-uppercase"><?=$row['title']?></h2>
+                                            <p class="item-intro text-muted"></p>
+                                            <img class="img-fluid d-block mx-auto" src="<?=$row['image_path']?>" alt="..." />
+                                            <p><?=$row['desc']?></p>
+                                            <h1>ADVANTAGE OF <?=$row['title']?></h1>
+                                            <ul>
+                                                 <?php $advantages = (explode(",",$row['advantages']));
+                                                foreach ($advantages as $value) { ?>
+                                                   <li><?=$value?></li>
+                                                  <?php }
+                                                ?>
+                                            </ul>
+                                            <button data-id="<?=$row['id']?>" class="btn btn-primary btn-xl text-uppercase book-packages" data-bs-dismiss="modal"
+                                                type="button">
+                                                <i class=""></i>
+                                                <a class="text-light text-decoration-none">BOOK APPOINTMENT</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Virechan</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-5">
-                    <!-- Packages item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Nasya</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="col-md-6 mb-5">
-                    <!-- Packages item 4-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Basti</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 mb-5">
-                    <!-- Packages item 5-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Shirodhara</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-                </div>
+
+                <?php }?>
+
+
+            </div>
         </div>
     </section>
     <section class="page-section bg-dark" id="deseases" style="padding-bottom:45px;">
@@ -486,7 +471,7 @@
             </div>
     </section>
     <!-- About-->
-    <section class="page-section p-0" id="about">
+    <section class="page-section py-2" id="about">
         <div class="text-center my-5">
             <h2 class="section-heading text-uppercase">About Us</h2>
         </div>
@@ -665,486 +650,6 @@
             </form>
         </div>
     </section>
-    <!-- Packages Modals-->
-    <!-- Packages item 1 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                        alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!--Packages details-->
-                                <h2 class="text-uppercase">Vaman</h2>
-                                <p class="item-intro text-muted"></p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
-                                <p>Vaman includes induced vomiting, which helps to get rid of waste products (vitiated doshas) from the body.
-                                
-                                Vaman starts with oral intake of medicated ghee in ascending doses for a period of 3 to 7 days and includes a full body Abhyangam massage. This continues for a few days and ends with therapeutic vomiting.
-
-                                <h1>ADVANTAGE OF VAMAN</h1>
-                                <ul>
-                                    <li> Ayurvedic Vaman treatment is meant for purification of the upper digestive tract.</li>
-                                    <li>Important component of Panchkarma and treatment  beneficial for asthma, cough and Psoriasis.</li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                               
-                                </p>
-                               
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Vaman&description=Vaman"
-                                        class="text-light">BOOK APPOINTMENT</a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- Packages item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">virechan</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Virechanam is a component of Panchkarma Ayurvedic treatment in which a person takes oral medication that induces purgation. The unwanted Doshas are taken out of body by the anal route.
-                                        <h1>ADVANTAGE OF VIRECHAN</h1>
-                                         Virechanam helps to get rid of Pitta toxins from the body that get accumulated in the liver and gallbladder. It is extremely beneficial in management of Pitta disorders such as dermatitis, chronic fever, heartburn, jaundice, etc.
-                                    </p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Explore
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Graphic Design
-                                    </li>
-                                </ul> -->
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class=""></i>
-                                        <a href="./routes/select.php?img_source=home.jpg&name=Nasya&description=Nasya"
-                                            class="text-light">BOOK APPOINTMENT</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Packages item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">Nasya</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
-                                    <p>
-                                    Nasya treatment refers to an Ayurvedic therapy that includes instillation of herbal oils,
-                                     juices or powders through the nasal route. It works specifically on disorders of ear,
-                                      nose and throat. Nasya is one among the five Panchakarma therapies.
-                                       It is especially desirable for diseases of parts above the base of the neck; nasal passage being the gateway of the head.
-                                        <h1>ADVANTAGE of NASYA</h1>
-                                        Nasyam Ayurvedic treatment cleanses, purifies and strengthens the nasal passages, allowing you to breathe fully and easily again.
-                                         Due to its many benefits Nasyam is a recommended remedy for congestion, allergies, sinusitis, headaches, migraine, 
-                                         cervical spondylosis, hair fall, premature greying of hair, rhinitis and other nasal infections.
-
-                                    </p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Finish
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Identity
-                                    </li>
-                                </ul> -->
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class=""></i>
-                                        <a href="./routes/select.php?img_source=home.jpg&name=Virechan&description=Virechan"
-                                            class="text-light">BOOK APPOINTMENT</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Packages item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">Basti</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>
-                                    Basti is an important part of Ayurvedic body de-toxification therapy known as “Panchkarma”.
-                                      Vasti refers to enema, which is administration of medication through anal route.
-
-                                    <h1>ADVANTAGE of BASTI</h1>
-                                    Often recommended for complex and chronic diseases, basti is a therapy that uses enema of herbal oils or decoctions to heal the body.
-                                     It is one of the five pradhana karmas of Panchakarma, and is used to treat vata disorders.
-                                    </p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Lines
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Branding
-                                    </li>
-                                </ul> -->
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class=""></i>
-                                        <a href="./routes/select.php?img_source=home.jpg&name=Virechan&description=Virechan"
-                                            class="text-light">BOOK APPOINTMENT</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Packages item 5 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">Shirodhara</h2>
-                                    <p class="item-intro text-muted"></p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/7.jpg" alt="..." />
-                                    <p>
-                                    Shirodhara comes from the two Sanskrit words “shiro” (head) and “dhara” (flow).
-                                     It’s an Ayurvedic healing technique that involves having someone pour liquid — usually oil, milk, buttermilk,
-                                      or water — onto your forehead. It’s often combined with a body, scalp, or head massage.
-
-                                    Ayurveda is a holistic health approach that originated in India thousands of years ago. It focuses on rebalancing the life forces,
-                                     called doshas, within your body.
-                                    <h1>ADVANTAGE of SHIRODHARA</h1>
-                                    The benefits of Shirodhara massage include treatment of Sleep problems, Memory loss, Poor concentration, Chronic headaches,
-                                     Stress, Depression, Mental tension, Hypertension, Facial Paralysis and Degenerative conditions of the brain.
-                                      The medicated oils absorbed through the scalp stimulate the hair follicles, 
-                                      and hence Shirodhara is a vital therapy to treat hair problems such as Premature greying of hair or Hair fall.
-                                    </p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Southwest
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Website Design
-                                    </li>
-                                </ul> -->
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class=""></i>
-                                        <a href="./routes/select.php?img_source=home.jpg&name=Basti&description=Basti"
-                                            class="text-light">BOOK APPOINTMENT</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Packages item 6 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">Shirodhara</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                        type="button">
-                                        <i class=""></i>
-                                        <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan"
-                                            class="text-light">Select</a>
-
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-modal modal fade" id="DeseaseModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">aviraj</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
-
-                                </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-modal modal fade" id="DeseaseModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">aviraj2</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
-
-                                </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-modal modal fade" id="DeseaseModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">aviraj3</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
-
-                                </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-modal modal fade" id="DeseaseModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">aviraj4</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
-
-                                </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-modal modal fade" id="DeseaseModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">aviraj5</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
-
-                                </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="portfolio-modal modal fade" id="DeseaseModal6" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -1193,4 +698,22 @@
 include './include/footer.php';
 ?>
 <script src="js/scripts.js"></script>
+<script>
+     document.addEventListener("DOMContentLoaded", () => {
+        let package_button = document.querySelectorAll(".book-packages")
+        package_button.forEach(element => {
+            element.addEventListener("click",function(){
+                let id = this.getAttribute('data-id')
+                let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
+                if(session_user == "No user"){
+                    swal("Error!", "Please Login to Continue!", "error")
+                }
+                else{
+                    console.log("abhishek")
+                    window.location.href = "./routes/select.php?img_source=home.jpg&name=Vaman&description=Vaman";
+                }
+            })
+        });
+    });
+</script>
 </body>

@@ -21,7 +21,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $("#datepicker" ).datepicker({ minDate: 0});
+            } );
+        </script>
     <style>
         @media (min-width: 990px) {}
     </style>
@@ -108,7 +116,7 @@
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#packages">Panchkarma</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#about">About</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#contact">Contact</a></li>
-                <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#Appointment"  data-bs-toggle="modal" data-bs-target="#Appointment">Book Appointment</a></li>
+                <li class="nav-item rounded bg-success"><a class="nav-link text-white" type="button" id="book_appoinement">Book Appointment</a></li>
             </ul>               
             <form class="d-flex" role="search" style="position:absolute;right:0;">
             <?php 
@@ -138,25 +146,23 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="email" class="form-control" id="name" aria-describedby="emailHelp">
+                            <label for="name" class="form-label">Appointment Time</label>
+                            <input class="form-control" id="datepicker" name="to_date">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
+                            <label for="address" class="form-label">Message</label>
                             <textarea type="email" class="form-control" id="address"
-                                aria-describedby="emailHelp"></textarea>
+                                aria-describedby="emailHelp" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Upload Your Documents</label>
+                            <input type="file" class="form-control" id="file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Book Appointment</button>
+                    <button type="submit" class="btn btn-success">Book Appointment</button>
                 </div>
             </div>
         </div>
@@ -329,31 +335,36 @@
 
                 <div class="portfolio-modal modal fade" id="packages<?=$row['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content p-2">
                             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
                                     alt="Close modal" /></div>
                             <div class="container">
                                 <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <div class="modal-body">
+                                    <div class="col-lg-12">
+                                        <div class="modal-body row">
                                             <!--Packages details-->
-                                            <h2 class="text-uppercase"><?=$row['title']?></h2>
-                                            <p class="item-intro text-muted"></p>
-                                            <img class="img-fluid d-block mx-auto" src="<?=$row['image_path']?>" alt="..." />
-                                            <p><?=$row['desc']?></p>
-                                            <h1>ADVANTAGE OF <?=$row['title']?></h1>
-                                            <ul>
-                                                 <?php $advantages = (explode(",",$row['advantages']));
-                                                foreach ($advantages as $value) { ?>
-                                                   <li><?=$value?></li>
-                                                  <?php }
-                                                ?>
-                                            </ul>
-                                            <button data-id="<?=$row['id']?>" class="btn btn-primary btn-xl text-uppercase book-packages" data-bs-dismiss="modal"
-                                                type="button">
-                                                <i class=""></i>
-                                                <a class="text-light text-decoration-none">BOOK APPOINTMENT</a>
-                                            </button>
+                                            <h2 class="text-uppercase mb-5"><?=$row['title']?></h2>
+                                            <div class="col-md-6">
+                                                <img style="height:50% !important;" class="img-fluid d-block mx-auto" src="<?=$row['image_path']?>" alt="..." />
+                                                <p><?=$row['desc']?></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>ADVANTAGE OF <?=$row['title']?></h3>
+                                                <ol>
+                                                     <?php $advantages = (explode(",",$row['advantages']));
+                                                    foreach ($advantages as $value) { ?>
+                                                       <li><?=$value?></li>
+                                                      <?php }
+                                                    ?>
+                                                </ol>
+                                                <button data-id="<?=$row['id']?>" class="btn btn-primary btn-xl text-uppercase book-packages" data-bs-dismiss="modal"
+                                                    type="button">
+                                                    <i class=""></i>
+                                                    <a class="text-light text-decoration-none">BOOK APPOINTMENT</a>
+                                                </button>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -375,99 +386,62 @@
                 <h3 class="section-subheading text-muted">Desease.</h3>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Desease item 1-->
+
+                <?php 
+                    require('db/database.php');
+                    $sql = "select * from deseases;";
+                    $query = mysqli_query($db, $sql);
+                    while ($row = mysqli_fetch_assoc($query)){?>
+
+                <div class="col-md-4 mb-5">
+                    <!-- Packages item 1-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal1">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#deseases<?=$row['id']?>">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
+                            <img class="img-fluid w-100" src="<?=$row['image_path']?>" alt="..." />
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Vaman</div>
+                            <div class="portfolio-caption-heading"><?= $row['title'] ?></div>
                             <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!--Desease item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal2">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+
+                <div class="portfolio-modal modal fade" id="deseases<?=$row['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content p-2">
+                            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                                    alt="Close modal" /></div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <div class="modal-body row">
+                                            <!--Packages details-->
+                                            <h2 class="text-uppercase mb-5"><?=$row['title']?></h2>
+                                            <div class="col-md-6">
+                                                <img style="height:50% !important;" class="img-fluid d-block mx-auto" src="<?=$row['image_path']?>" alt="..." />
+                                                <p><?=$row['description']?></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>ADVANTAGE OF <?=$row['title']?></h3>
+                                                <ol>
+                                                    <?php $advantages = (explode(",",$row['description']));
+                                                    foreach ($advantages as $value) { ?>
+                                                    <li><?=$value?></li>
+                                                    <?php }
+                                                    ?>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Nasya</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Desease item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal3">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Virechan</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <!-- Desease item 4-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal4">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/8.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Basti</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                    <!-- Desease item 5-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal5">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Raktamoshan</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                    <!-- Desease item 5-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#DeseaseModal6">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid w-100" src="assets/img/portfolio/7.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Raktamoshan</div>
-                            <div class="portfolio-caption-subheading text-muted"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5 text-center">
-                    <a href="./routes/deseases.php"><button class="btn btn-success">Show more</button></a>
-                </div>
+                <?php }?>
             </div>
     </section>
     <!-- About-->
@@ -528,7 +502,7 @@
                 <h3 class="section-subheading text-muted mb-4">Our Team</h3>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="team-member">
                         <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
                         <h4>Parveen Anand</h4>
@@ -541,7 +515,20 @@
                             aria-label="Parveen Anand Instagram Profile"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                        <h4>Diana Petersen</h4>
+                        <p class="text-muted">Doctor</p>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"
+                            aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"
+                            aria-label="Diana Petersen Instagram Profile"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
                     <div class="team-member">
                         <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
                         <h4>Diana Petersen</h4>
@@ -555,37 +542,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
                     <p class="large text-muted">Our Team</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
-    <!-- Clients-->
-    <!--<div class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg"
-                            alt="..." aria-label="Microsoft Logo" /></a>
-                </div>
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg"
-                            alt="..." aria-label="Google Logo" /></a>
-                </div>
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg"
-                            alt="..." aria-label="Facebook Logo" /></a>
-                </div>
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg"
-                            alt="..." aria-label="IBM Logo" /></a>
-                </div>
-            </div>
-        </div>
-    </div>!-->
-    <!-- Contact-->
     <section class="page-section row p-4" id="contact">
         <div class="col-md-6 my-4">
             <div class="text-center">
@@ -649,63 +612,17 @@
             </form>
         </div>
     </section>
-        <div class="portfolio-modal modal fade" id="DeseaseModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                            alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Packages details-->
-                                    <h2 class="text-uppercase">aviraj6</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/8.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos
-                                        deserunt
-                                        repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores
-                                        repudiandae,
-                                        nostrum, reiciendis facere nemo!</p>
-                                    <!-- <ul class="list-inline">
-                                    <li>
-                                        <strong>Client:</strong>
-                                        Window
-                                    </li>
-                                    <li>
-                                        <strong>Category:</strong>
-                                        Photography
-                                    </li>
-                                </ul> -->
-                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class=""></i>
-                                    <a href="./routes/select.php?img_source=home.jpg&name=Raktamoshan&description=Raktamoshan" class="text-light">Select</a>
-
-                                </button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-
-        
-include './include/footer.php';
-?>
+<?php include './include/footer.php';?>
 <script src="js/scripts.js"></script>
 <script>
      document.addEventListener("DOMContentLoaded", () => {
+         let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
         let package_button = document.querySelectorAll(".book-packages")
         package_button.forEach(element => {
             element.addEventListener("click",function(){
                 let id = this.getAttribute('data-id')
-                let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
                 if(session_user == "No user"){
-                    swal("Error!", "Please Login to Continue!", "error")
+                    swal("Warning!", "Please Login To Continue!", "warning")
                 }
                 else{
                     console.log("abhishek")
@@ -713,6 +630,19 @@ include './include/footer.php';
                 }
             })
         });
+        
+        let book_appoinement = document.getElementById("book_appoinement")
+        book_appoinement.addEventListener("click",function(e){
+            if(session_user == "No user"){
+                swal("Warning!", "Please Login To Book Appoinement!", "warning")
+            }
+            else{
+                book_appoinement.setAttribute("data-bs-toggle","modal")
+                book_appoinement.setAttribute("href","#Appointment")
+                book_appoinement.setAttribute("data-bs-target","#Appointment")
+                book_appoinement.click();
+            }
+        })
     });
 </script>
 </body>

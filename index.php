@@ -475,12 +475,12 @@
         <div class="text-center my-5">
             <h2 class="section-heading text-uppercase">About Us</h2>
         </div>
-        <div class="container">
-            <ul class="timeline">
-                <div class="col">
+        <div class="container-fluid px-5">
+            <ul class="timeline row">
+                <div class="col-md-6">
                     <h4 class="text-center">About Ayurveda</h4>
                     <div class="col my-4">
-                        <p class="text-center">Health is a state of physical, mental and social well-being, not just the
+                        <p>Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
                             View original
@@ -498,9 +498,9 @@
                             authorities still apply.</p>
                     </div>
                 </div>
-                <div class="col my-4">
+                <div class="col-md-6">
                     <h4 class="text-center">About Our Doctor</h4>
-                    <p class="text-center">Health is a state of physical, mental and social well-being, not just the
+                    <p>Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
                         View original
@@ -521,11 +521,11 @@
         </div>
     </section>
     <!-- Team-->
-    <section class="page-section bg-light" id="team">
+    <section class="page-section bg-light py-4" id="team">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted mb-4">Our Team</h3>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -557,8 +557,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque,
-                        laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                    <p class="large text-muted">Our Team</p>
                 </div>
             </div>
         </div>

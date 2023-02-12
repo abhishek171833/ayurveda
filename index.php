@@ -28,11 +28,11 @@
                 die;
             }
             else{
-                $path = "./Appointments/$user_id";
+                $path = "./appointments/$user_id";
                 if(!is_dir($path)){
-                    mkdir($path);
+                    mkdir($path, 0777, true);
                 }
-                move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name.".".$file_ext[1]);
+                move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name);
                 mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]');");
 
                 $message['status'] = 1;

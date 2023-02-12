@@ -1,6 +1,50 @@
+<?php
+    if(isset($_POST['file'])){
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_POST[user_email]';");
+        $user_id = $res->fetch_row()[0];
+
+        if(isset($_FILES["file"])){
+            $errors= array();
+            $file_name = $_FILES['file']['name'];
+            $file_size =$_FILES['file']['size'];
+            $file_tmp =$_FILES['file']['tmp_name'];
+            $file_type=$_FILES['file']['type'];
+            $file_ext=explode('.',$_FILES['file']['name']);
+            
+            $extensions= array("docx","xlsx","xls","doc","ppt","pptx","txt","pdf");
+            
+            if(in_array($file_ext[1],$extensions)=== false){
+                $message['status'] = 0;
+                $message['message']="File Type Not Allowed, Please choose Only Document or Pdf File";
+                echo json_encode($message);
+                die;
+            }
+            if($file_size > 2097152){
+                $errors[]='File size must be excately 2 MB';
+                $message['status'] = 0;
+                $message['message'] = "File Size Must Be Excately 2 MB";
+                echo json_encode($message);
+                die;
+            }
+            else{
+                $path = "./Appointments/$user_id";
+                if(!is_dir($path)){
+                    mkdir($path);
+                }
+                move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name.".".$file_ext[1]);
+                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]');");
+
+                $message['status'] = 1;
+                $message['message'] = "Appointment Booked Successfully";
+                echo json_encode($message);
+                die;
+            }
+            }
+        }
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,40 +71,41 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script>
             $( function() {
-                $("#datepicker" ).datepicker({ minDate: 0});
+                $("#appointment_time" ).datepicker({ minDate: 0});
             } );
         </script>
     <style>
         @media (min-width: 990px) {}
     </style>
 </head>
-<?php
+<?php 
     if(isset($_POST['lemail'])){
-    require('./db/database.php');
-    $res=mysqli_query($db,"SELECT * FROM `users` WHERE email='$_POST[lemail]' && password='$_POST[lpassword]';");
-    $count=mysqli_num_rows($res);
-    if($count):
-        $_SESSION['login_user'] = $_POST['lemail']; ?>
-        <script>
-            setTimeout(() => {  
-                swal("Success!", "You Logged In Successfully!", "success")
-            }, 1000);
-        </script>
-        
-        <?php else:?>
-        <script>
-            setTimeout(() => {
-                swal("Error!", "Email Or Password Does Not Match!", "error");
-            }, 1000);
-        </script>
-    <?php  endif;
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT * FROM `users` WHERE email='$_POST[lemail]' && password='$_POST[lpassword]';");
+        $count=mysqli_num_rows($res);
+        if($count):
+            $_SESSION['login_user'] = $_POST['lemail'];
+            ?>
+            <script>
+                setTimeout(() => {  
+                    swal("Success!", "You Logged In Successfully!", "success")
+                }, 1000);
+            </script>
+            
+            <?php else:?>
+            <script>
+                setTimeout(() => {
+                    swal("Error!", "Email Or Password Does Not Match!", "error");
+                }, 1000);
+            </script>
+        <?php  endif;
     }
-
+?>
+<?php
     if(isset($_POST['susername'])){
         require('./db/database.php');
         $res=mysqli_query($db,"SELECT Email FROM `Users` WHERE Email='$_POST[sEmail]';");
         $email=mysqli_num_rows($res);
-
         
         $res=mysqli_query($db,"SELECT phone FROM `Users` WHERE phone='$_POST[sphone]';");
         $phone=mysqli_num_rows($res);
@@ -136,7 +181,7 @@
     </div>
 </nav>
     <!--Book Appointment Modal -->
-    <div class="modal fade" id="Appointment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="AppointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -144,25 +189,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form enctype="multipart/form-data" id="normal_appoinement_form">
                         <div class="mb-3">
                             <label for="name" class="form-label">Appointment Time</label>
-                            <input class="form-control" id="datepicker" name="to_date">
+                            <input class="form-control" id="appointment_time" name="appointment_time" required>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Message</label>
-                            <textarea type="email" class="form-control" id="address"
+                            <textarea name="appointment_message" type="email" class="form-control" id="appointment_message"
                                 aria-describedby="emailHelp" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="file" class="form-label">Upload Your Documents</label>
-                            <input type="file" class="form-control" id="file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple>
+                            <input name="file" type="file" class="form-control" id="file" accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" multiple required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Book Appointment</button>
+                    <button type="submit" id="book_appoinement_btn" class="btn btn-success">Book Appointment</button>
                 </div>
             </div>
         </div>
@@ -263,42 +308,6 @@
             </button>
             </div>
     </header>
-    <!-- Services-->
-    <!-- <section class="page-section" id="packages">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Treatments</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-            </div>
-            <!-- <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="my-3">E-Commerce</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                        architecto quo inventore harum ex magni, dicta impedit.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="my-3">Responsive Design</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                        architecto quo inventore harum ex magni, dicta impedit.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="my-3">Web Security</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                        architecto quo inventore harum ex magni, dicta impedit.</p>
-                </div>
-            </div> -->
     </div>
     </section>
     <!-- Panchakarma Grid-->
@@ -634,15 +643,50 @@
         let book_appoinement = document.getElementById("book_appoinement")
         book_appoinement.addEventListener("click",function(e){
             if(session_user == "No user"){
-                swal("Warning!", "Please Login To Book Appoinement!", "warning")
+                swal("Warning!", "Please Login To Book Appointment!", "warning")
             }
             else{
                 book_appoinement.setAttribute("data-bs-toggle","modal")
-                book_appoinement.setAttribute("href","#Appointment")
-                book_appoinement.setAttribute("data-bs-target","#Appointment")
+                book_appoinement.setAttribute("href","#AppointmentModal")
+                book_appoinement.setAttribute("data-bs-target","#AppointmentModal")
                 book_appoinement.click();
             }
         })
     });
+    let book_appoinement_btn = document.getElementById("book_appoinement_btn")
+    let user_email = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{echo json_encode("No user");} ?>;
+    book_appoinement_btn.addEventListener("click",async function(){
+        // console.log("abhishek");return false;
+        let formData = new FormData(normal_appoinement_form);
+        if(appointment_time.value == ""){
+            swal("Warning!","Please Select Appointment Time!","warning")
+        }
+        else if(file.value == ""){
+            swal("Warning!","Please Select File!","warning")
+        }
+        else if(appointment_message.value == ""){
+            swal("Warning!","Please Select Message!","warning")
+        }
+        else{
+            formData.append('appointment_time',appointment_time.value)
+            formData.append('file',file.value)
+            formData.append('appointment_message',appointment_message.value)
+            formData.append('user_email',user_email)
+            console.log(formData);
+            let fetch_res = await fetch("index.php",{
+                method:"POST",
+                body:formData
+            })
+            let json_res = await fetch_res.json();
+            if(json_res.status){
+                swal("Success!",json_res.message,"success")
+            }
+            else{
+                swal("Error!",json_res.message,"error")
+            }
+        }
+        // let res_json = await fetch_res.json();
+
+    })
 </script>
 </body>

@@ -1,7 +1,8 @@
 <?php
+    session_start();
     if(isset($_POST['file'])){
         require('./db/database.php');
-        $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_POST[user_email]';");
+        $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
         $user_id = $res->fetch_row()[0];
 
         if(isset($_FILES["file"])){

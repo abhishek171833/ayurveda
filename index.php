@@ -809,9 +809,9 @@
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
-                formData.append('package_appointment_time',appointment_time.value)
+                formData.append('package_appointment_time',package_appointment_time.value)
                 formData.append('package_file',file.value)
-                formData.append('package_appointment_message',appointment_message.value)
+                formData.append('package_appointment_message',package_appointment_message.value)
                 formData.append('package_id',package_id.value)
                 let fetch_res = await fetch("index.php",{
                     method:"POST",

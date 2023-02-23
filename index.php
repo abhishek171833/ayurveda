@@ -63,13 +63,13 @@
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
         <script>
             $( function() {
                 $("#appointment_time" ).datepicker({ minDate: 0});
@@ -168,7 +168,15 @@
             <?php 
             if(isset($_SESSION['login_user'])){
                 ?>
-                <a href="./include/logout.php" class="mx-2 btn btn-success" type="button">Logout</a>
+                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li class="px-2"><a class="dropdown-item" href="#!">Welcome <?=$_SESSION['login_user']?></a></li>
+                            <li class="px-2"><a class="dropdown-item" href="./include/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             <?php } else{ 
                 ?>
                 <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
@@ -268,7 +276,7 @@
                     <form action="./index.php" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label  text-secondary">Email address</label>
-                            <input name="lemail" type="email" class="form-control" id="exampleInputEmail1"
+                            <input name="lemail" type="email" class="form-control" id="exampleInputEmail"
                                 aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
@@ -367,14 +375,11 @@
                                                       <?php }
                                                     ?>
                                                 </ol>
-                                                <button data-id="<?=$row['id']?>" class="btn btn-primary btn-xl text-uppercase book-packages" data-bs-dismiss="modal"
-                                                    type="button">
-                                                    <i class=""></i>
-                                                    <a class="text-light text-decoration-none">BOOK APPOINTMENT</a>
+                                                <button data-id="<?=$row['id']?>" class="btn btn-primary btn-xl text-uppercase book-packages" type="button">
+                                                    <i class=""></i>    
+                                                    <a class="text-light text-decoration-none book_appointment_packages">BOOK APPOINTMENT</a>
                                                 </button>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -565,12 +570,12 @@
                 <h2 class="section-heading text-uppercase">Our Store</h2>
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <div id="map" class="mx-4">
+            <!-- <div id="map" class="mx-4">
                 <iframe class="w-100" height="490" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-6 my-4">
             <div class="text-center">
@@ -622,12 +627,48 @@
             </form>
         </div>
     </section>
+
+    <div class="portfolio-modal modal fade" id="packages_appointment_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content p-2">
+                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
+                        alt="Close modal"/></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="modal-body row">
+                                <form>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="appointment_modal_toggler" data-bs-toggle="modal" data-bs-target="#packages_appointment_modal" class="d-none" type="button">Login</button>
 <?php include './include/footer.php';?>
 <script src="js/scripts.js"></script>
 <script>
      document.addEventListener("DOMContentLoaded", () => {
+        console.log("abhishek")
          let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
         let package_button = document.querySelectorAll(".book-packages")
+        console.log(package_button)
         package_button.forEach(element => {
             element.addEventListener("click",function(){
                 let id = this.getAttribute('data-id')
@@ -636,7 +677,11 @@
                 }
                 else{
                     console.log("abhishek")
-                    window.location.href = "./routes/select.php?img_source=home.jpg&name=Vaman&description=Vaman";
+                    let package_modal = document.getElementById("packages"+id)
+                    console.log(package_modal)
+                    $(`#packages${id}`).modal('hide');
+                    appointment_modal_toggler.click();
+                    
                 }
             })
         });
@@ -653,41 +698,39 @@
                 book_appoinement.click();
             }
         })
-    });
-    let book_appoinement_btn = document.getElementById("book_appoinement_btn")
-    let user_email = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{echo json_encode("No user");} ?>;
-    book_appoinement_btn.addEventListener("click",async function(){
-        // console.log("abhishek");return false;
-        let formData = new FormData(normal_appoinement_form);
-        if(appointment_time.value == ""){
-            swal("Warning!","Please Select Appointment Time!","warning")
-        }
-        else if(file.value == ""){
-            swal("Warning!","Please Select File!","warning")
-        }
-        else if(appointment_message.value == ""){
-            swal("Warning!","Please Select Message!","warning")
-        }
-        else{
-            formData.append('appointment_time',appointment_time.value)
-            formData.append('file',file.value)
-            formData.append('appointment_message',appointment_message.value)
-            formData.append('user_email',user_email)
-            console.log(formData);
-            let fetch_res = await fetch("index.php",{
-                method:"POST",
-                body:formData
-            })
-            let json_res = await fetch_res.json();
-            if(json_res.status){
-                swal("Success!",json_res.message,"success")
+
+        let book_appoinement_btn = document.getElementById("book_appoinement_btn")
+        let user_email = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{echo json_encode("No user");} ?>;
+        book_appoinement_btn.addEventListener("click",async function(){
+            let formData = new FormData(normal_appoinement_form);
+            if(appointment_time.value == ""){
+                swal("Warning!","Please Select Appointment Time!","warning")
+            }
+            else if(file.value == ""){
+                swal("Warning!","Please Select File!","warning")
+            }
+            else if(appointment_message.value == ""){
+                swal("Warning!","Please Select Message!","warning")
             }
             else{
-                swal("Error!",json_res.message,"error")
+                formData.append('appointment_time',appointment_time.value)
+                formData.append('file',file.value)
+                formData.append('appointment_message',appointment_message.value)
+                formData.append('user_email',user_email)
+                console.log(formData);
+                let fetch_res = await fetch("index.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success")
+                }
+                else{
+                    swal("Error!",json_res.message,"error")
+                }
             }
-        }
-        // let res_json = await fetch_res.json();
-
-    })
+        })
+    });
 </script>
 </body>

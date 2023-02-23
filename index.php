@@ -19,14 +19,14 @@
                 $message['status'] = 0;
                 $message['message']="File Type Not Allowed, Please choose Only Document or Pdf File";
                 echo json_encode($message);
-                die;
+                exit();
             }
             if($file_size > 2097152){
                 $errors[]='File size must be excately 2 MB';
                 $message['status'] = 0;
                 $message['message'] = "File Size Must Be Excately 2 MB";
                 echo json_encode($message);
-                die;
+                exit();
             }
             else{
                 $path = "./appointments/$user_id";
@@ -34,15 +34,59 @@
                     mkdir($path, 0777, true);
                 }
                 move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name);
-                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]');");
+                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`file_name`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]','$file_name');");
 
                 $message['status'] = 1;
                 $message['message'] = "Appointment Booked Successfully";
                 echo json_encode($message);
-                die;
-            }
+                exit();
             }
         }
+    }
+    if(isset($_POST['package_id'])){
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
+        $user_id = $res->fetch_row()[0];
+
+        if(isset($_FILES["package_file"])){
+            $errors= array();
+            $file_name = $_FILES['package_file']['name'];
+            $file_size =$_FILES['package_file']['size'];
+            $file_tmp =$_FILES['package_file']['tmp_name'];
+            $file_type=$_FILES['package_file']['type'];
+            $file_ext=explode('.',$_FILES['package_file']['name']);
+            
+            $extensions= array("docx","xlsx","xls","doc","ppt","pptx","txt","pdf");
+            
+            if(in_array($file_ext[1],$extensions)=== false){
+                $message['status'] = 0;
+                $message['message']="File Type Not Allowed, Please choose Only Document or Pdf File";
+                echo json_encode($message);
+                exit();
+            }
+            if($file_size > 2097152){
+                $errors[]='File size must be excately 2 MB';
+                $message['status'] = 0;
+                $message['message'] = "File Size Must Be Excately 2 MB";
+                echo json_encode($message);
+                exit();
+            }
+            else{
+                $path = "./appointments/$user_id";
+                if(!is_dir($path)){
+                    mkdir($path, 0777, true);
+                }
+                move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name);
+
+                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`package_id`,`file_name`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_appointment_time]',$_POST[package_id],'$file_name');");
+
+                $message['status'] = 1;
+                $message['message'] = "Appointment Booked Successfully";
+                echo json_encode($message);
+                exit();
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +116,10 @@
         crossorigin="anonymous"></script>
         <script>
             $( function() {
-                $("#appointment_time" ).datepicker({ minDate: 0});
+                $("#appointment_time").datepicker({ minDate: 0});
+            } );
+            $( function() {
+                $("#package_appointment_time").datepicker({ minDate: 0});
             } );
         </script>
     <style>
@@ -163,27 +210,29 @@
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#about">About</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#contact">Contact</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" type="button" id="book_appoinement">Book Appointment</a></li>
+                <li>
+                <?php 
+                    if(isset($_SESSION['login_user'])){
+                        ?>
+                        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li class="px-2"><a class="dropdown-item" href="#!">Welcome <b><?=$_SESSION['login_user']?></b></a></li>
+                                    <li class="px-2"><a class="dropdown-item" href="./include/logout.php">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    <?php } else{ 
+                        ?>
+                        <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
+                            class="mx-2 btn btn-success" type="button">Login</button>
+                        <button data-bs-toggle="modal" data-bs-target="#Signupmodal" class="mx-2 btn btn-success"
+                            type="button">Signup</button>
+                    <?php }?>
+                </li>
             </ul>               
             <form class="d-flex" role="search" style="position:absolute;right:0;">
-            <?php 
-            if(isset($_SESSION['login_user'])){
-                ?>
-                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li class="px-2"><a class="dropdown-item" href="#!">Welcome <?=$_SESSION['login_user']?></a></li>
-                            <li class="px-2"><a class="dropdown-item" href="./include/logout.php">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            <?php } else{ 
-                ?>
-                <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
-                    class="mx-2 btn btn-success" type="button">Login</button>
-                <button data-bs-toggle="modal" data-bs-target="#Signupmodal" class="mx-2 btn btn-success"
-                    type="button">Signup</button>
-            <?php }?>
                 </form>
 
         </div>
@@ -205,7 +254,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Message</label>
-                            <textarea name="appointment_message" type="email" class="form-control" id="appointment_message"
+                            <textarea name="appointment_message" type="text" class="form-control" id="appointment_message"
                                 aria-describedby="emailHelp" required></textarea>
                         </div>
                         <div class="mb-3">
@@ -351,45 +400,47 @@
                     </div>
                 </div>
 
-                <div class="portfolio-modal modal fade" id="packages<?=$row['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content p-2">
-                            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                                    alt="Close modal" /></div>
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12">
-                                        <div class="modal-body row">
-                                            <!--Packages details-->
-                                            <h2 class="text-uppercase mb-5"><?=$row['title']?></h2>
-                                            <div class="col-md-6">
-                                                <img style="height:50% !important;" class="img-fluid d-block mx-auto" src="<?=$row['image_path']?>" alt="..." />
-                                                <p><?=$row['desc']?></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h3>ADVANTAGE OF <?=$row['title']?></h3>
-                                                <ol>
-                                                     <?php $advantages = (explode(",",$row['advantages']));
-                                                    foreach ($advantages as $value) { ?>
-                                                       <li><?=$value?></li>
-                                                      <?php }
-                                                    ?>
-                                                </ol>
-                                                <button data-id="<?=$row['id']?>" class="btn btn-primary btn-xl text-uppercase book-packages" type="button">
-                                                    <i class=""></i>    
-                                                    <a class="text-light text-decoration-none book_appointment_packages">BOOK APPOINTMENT</a>
-                                                </button>
+                <div class="modal fade" id="packages<?=$row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Book Appointment</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="card">
+                                            <img class="card-img-top" src="<?=$row['image_path']?>" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?=$row['title']?></h5>
+                                                <p class="card-text"><?=$row['desc']?></p>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-7">
+                                        <h3>ADVANTAGE OF <?=$row['title']?></h3>
+                                        <ol>
+                                            <?php $advantages = (explode(",",$row['advantages']));
+                                            foreach ($advantages as $value) { ?>
+                                            <li><?=$value?></li>
+                                            <?php }
+                                            ?>
+                                        </ol>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button data-id="<?=$row['id']?>" data-image="<?=$row['image_path']?>" date-title="<?=$row['title']?>" data-desc="<?=$row['desc']?>" class="btn btn-success btn-xl text-uppercase book-packages" type="button">  
+                                    <a class="text-light text-decoration-none book_appointment_packages">BOOK APPOINTMENT</a>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <?php }?>
-
 
             </div>
         </div>
@@ -570,12 +621,12 @@
                 <h2 class="section-heading text-uppercase">Our Store</h2>
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <!-- <div id="map" class="mx-4">
+            <div id="map" class="mx-4">
                 <iframe class="w-100" height="490" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
-            </div> -->
+            </div>
         </div>
         <div class="col-md-6 my-4">
             <div class="text-center">
@@ -628,58 +679,74 @@
         </div>
     </section>
 
-    <div class="portfolio-modal modal fade" id="packages_appointment_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content p-2">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                        alt="Close modal"/></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="modal-body row">
-                                <form>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <div class="modal fade" id="packages_appointment_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Book Appointment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <img class="card-img-top" id="package_image" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="package_title"></h5>
+                                    <p class="card-text" id="package_desc"></p>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
                             </div>
                         </div>
+                        <div class="col-md-7">
+                            <form enctype="multipart/form-data" id="package_appoinement_form">
+                                <input type="hidden" id="package_id">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Appointment Time</label>
+                                    <input class="form-control" id="package_appointment_time" name="package_appointment_time" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Message</label>
+                                    <textarea name="package_appointment_message" type="text" class="form-control" id="package_appointment_message"
+                                        aria-describedby="emailHelp" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="file" class="form-label">Upload Your Documents</label>
+                                    <input name="package_file" type="file" class="form-control" id="package_file" accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" multiple required>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="package_book_appoinement_btn" class="btn btn-success">Book Appointment</button>
                 </div>
             </div>
         </div>
     </div>
-    <button id="appointment_modal_toggler" data-bs-toggle="modal" data-bs-target="#packages_appointment_modal" class="d-none" type="button">Login</button>
+    <button id="appointment_modal_toggler" data-bs-toggle="modal" data-bs-target="#packages_appointment_modal" class="d-none" type="button"></button>
 <?php include './include/footer.php';?>
 <script src="js/scripts.js"></script>
 <script>
      document.addEventListener("DOMContentLoaded", () => {
-        console.log("abhishek")
          let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
         let package_button = document.querySelectorAll(".book-packages")
-        console.log(package_button)
         package_button.forEach(element => {
             element.addEventListener("click",function(){
                 let id = this.getAttribute('data-id')
+                let title = this.getAttribute('data-title')
+                let desc = this.getAttribute('data-desc')
+                let image = this.getAttribute('data-image')
                 if(session_user == "No user"){
                     swal("Warning!", "Please Login To Continue!", "warning")
                 }
                 else{
-                    console.log("abhishek")
                     let package_modal = document.getElementById("packages"+id)
-                    console.log(package_modal)
                     $(`#packages${id}`).modal('hide');
+                    package_id.value = id;
+                    package_title.innerText = title;
+                    package_desc.innerText = desc; 
+                    package_image.setAttribute("src",image)
                     appointment_modal_toggler.click();
                     
                 }
@@ -700,7 +767,6 @@
         })
 
         let book_appoinement_btn = document.getElementById("book_appoinement_btn")
-        let user_email = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{echo json_encode("No user");} ?>;
         book_appoinement_btn.addEventListener("click",async function(){
             let formData = new FormData(normal_appoinement_form);
             if(appointment_time.value == ""){
@@ -716,8 +782,6 @@
                 formData.append('appointment_time',appointment_time.value)
                 formData.append('file',file.value)
                 formData.append('appointment_message',appointment_message.value)
-                formData.append('user_email',user_email)
-                console.log(formData);
                 let fetch_res = await fetch("index.php",{
                     method:"POST",
                     body:formData
@@ -725,6 +789,38 @@
                 let json_res = await fetch_res.json();
                 if(json_res.status){
                     swal("Success!",json_res.message,"success")
+                }
+                else{
+                    swal("Error!",json_res.message,"error")
+                }
+            }
+        })
+
+        let package_book_appoinement_btn = document.getElementById("package_book_appoinement_btn")
+        package_book_appoinement_btn.addEventListener("click",async function(){
+            let formData = new FormData(package_appoinement_form);
+            if(package_appointment_time.value == ""){
+                swal("Warning!","Please Select Appointment Time!","warning")
+            }
+            else if(package_file.value == ""){
+                swal("Warning!","Please Select File!","warning")
+            }
+            else if(package_appointment_message.value == ""){
+                swal("Warning!","Please Select Message!","warning")
+            }
+            else{
+                formData.append('package_appointment_time',appointment_time.value)
+                formData.append('package_file',file.value)
+                formData.append('package_appointment_message',appointment_message.value)
+                formData.append('package_id',package_id.value)
+                let fetch_res = await fetch("index.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success")
+                    $(`#packages_appointment_modal`).modal('hide');
                 }
                 else{
                     swal("Error!",json_res.message,"error")

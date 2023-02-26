@@ -368,7 +368,7 @@
                     </tbody>
                 </table>
             <?php } } else {?>
-                <div class="text-center">You Don't Have Any Appointments Yet!</div>
+                <div class="text-center">You Don't Have Any Appointments Yet! Book Your First Appointment Now</div>
             <?php } ?>
             </div>
         </div>

@@ -106,6 +106,26 @@
         }
     }
 ?>
+<?php 
+    if(isset($_POST['lemail'])){
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT * FROM `users` WHERE email='$_POST[lemail]' && password='$_POST[lpassword]';");
+        $count=mysqli_num_rows($res);
+        if($count){
+            $_SESSION['login_user'] = $_POST['lemail'];
+            $message['status'] = 1;
+            $message['message'] = "You Logged In Successfully!";
+            echo json_encode($message);
+            exit();
+        }
+        else{
+            $message['status'] = 0;
+            $message['message'] = "Email Or Password Does Not Match!!";
+            echo json_encode($message);
+            exit();
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,7 +170,7 @@
             height: 50vw;
             background: url(assets/img/home.jpg);
             /* background-size: cover; */
-            animation: slide 10s infinite; 
+            animation: slide 20s infinite; 
             /* background:red; */
         }
         @keyframes slide{
@@ -162,24 +182,36 @@
                 background:url(assets/img/map-image.png);
                 /* background-size: cover; */
             }
-            35%{
+            30%{
                 background:url(assets/img/header-bg.jpg);
                 /* background-size: cover; */
             }
+            40%{
+                background:url(assets/img/contactus.png);
+                /* background-size: cover; */
+            }
             50%{
+                background:url(assets/img/map-image.png);
+                /* background-size: cover; */
+            }
+            60%{
                 background:url(assets/img/contactus.png);
                 /* background-size: cover; */
             }
             70%{
-                background:url(assets/img/map-image.png);
+                background:url(assets/img/header-bg.jpg);
                 /* background-size: cover; */
             }
-            90%{
+            80%{
                 background:url(assets/img/contactus.png);
                 /* background-size: cover; */
             }
-            100%{
+            90%{
                 background:url(assets/img/header-bg.jpg);
+                /* background-size: cover; */
+            }
+            100%{
+                background:url(assets/img/contactus.png);
                 /* background-size: cover; */
             }
         }
@@ -194,29 +226,6 @@
         }
     </style>
 </head>
-<?php 
-    if(isset($_POST['lemail'])){
-        require('./db/database.php');
-        $res=mysqli_query($db,"SELECT * FROM `users` WHERE email='$_POST[lemail]' && password='$_POST[lpassword]';");
-        $count=mysqli_num_rows($res);
-        if($count):
-            $_SESSION['login_user'] = $_POST['lemail'];
-            ?>
-            <script>
-                setTimeout(() => {  
-                    swal("Success!", "You Logged In Successfully!", "success")
-                }, 1000);
-            </script>
-            
-            <?php else:?>
-            <script>
-                setTimeout(() => {
-                    swal("Error!", "Email Or Password Does Not Match!", "error");
-                }, 1000);
-            </script>
-        <?php  endif;
-    }
-?>
 <?php
     if(isset($_POST['susername'])){
         require('./db/database.php');
@@ -466,7 +475,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="./index.php" method="post">
+                    <form method="post" id="login_form">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label  text-secondary">Email address</label>
                             <input name="lemail" type="email" class="form-control" id="exampleInputEmail"
@@ -477,12 +486,12 @@
                             <label for="exampleInputPassword1" class="form-label  text-secondary">Password</label>
                             <input name="lpassword" type="password" class="form-control" id="exampleInputPassword1">
                         </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <button id="login_btn"type="button" class="btn btn-success">Login</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
@@ -978,6 +987,42 @@
                 let json_res = await fetch_res.json();
                 if(json_res.status){
                     swal("Success!",json_res.message,"success")
+                    document.getElementById("contactForm").reset();
+                }
+                else{
+                    swal("Error!",json_res.message,"error")
+                    document.getElementById("contactForm").reset();
+                }
+            }
+        })
+
+        let login_button = document.getElementById("login_btn")
+        console.log(login_button);
+        login_button.addEventListener("click",async function(e){
+            // e.preventDefault();
+
+            let formData = new FormData(login_form);
+            if(exampleInputEmail.value == ""){
+                swal("Warning!","Please Enter Email!","warning")
+                contact_name.focus();
+            }
+            else if(exampleInputPassword1.value == ""){
+                swal("Warning!","Please Enter Password!","warning")
+                contact_email.focus();
+            }
+            else{
+                formData.append('lemail',exampleInputEmail.value)
+                formData.append('lpassword',exampleInputPassword1.value)
+                let fetch_res = await fetch("index.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success").
+                    then(()=>{
+                        location.reload();
+                    })
                     document.getElementById("contactForm").reset();
                 }
                 else{

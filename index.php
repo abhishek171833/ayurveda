@@ -87,6 +87,24 @@
             }
         }
     }
+    if(isset($_POST['contact_name'])){
+        require('./db/database.php');
+
+        $res = mysqli_query($db,"INSERT INTO `contact` (`name`, `email`,`phone_no`,`message`) VALUES('$_POST[contact_name]','$_POST[contact_email]','$_POST[contact_phone]','$_POST[contact_message]');");
+
+        if($res){
+            $message['status'] = 1;
+            $message['message'] = "Submit Your Contact Successfully";
+            echo json_encode($message);
+            exit();
+        }
+        else{
+            $message['status'] = 0;
+            $message['message'] = "Something Went Wrong";
+            echo json_encode($message);
+            exit();
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,6 +132,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
             $( function() {
                 $("#appointment_time").datepicker({ minDate: 0});
@@ -123,7 +144,44 @@
             } );
         </script>
     <style>
-        @media (min-width: 990px) {}
+        #home_header {
+            width: 100%;
+            height: 50vw;
+            background: url(assets/img/home.jpg);
+            /* background-size: cover; */
+            animation: slide 10s infinite; 
+            /* background:red; */
+        }
+        @keyframes slide{
+            10%{
+                background:url(assets/img/contactus.png);
+                /* background-size: cover; */
+            }
+            20%{
+                background:url(assets/img/map-image.png);
+                /* background-size: cover; */
+            }
+            35%{
+                background:url(assets/img/header-bg.jpg);
+                /* background-size: cover; */
+            }
+            50%{
+                background:url(assets/img/contactus.png);
+                /* background-size: cover; */
+            }
+            70%{
+                background:url(assets/img/map-image.png);
+                /* background-size: cover; */
+            }
+            90%{
+                background:url(assets/img/contactus.png);
+                /* background-size: cover; */
+            }
+            100%{
+                background:url(assets/img/header-bg.jpg);
+                /* background-size: cover; */
+            }
+        }
     </style>
 </head>
 <?php 
@@ -197,13 +255,13 @@
     ?>
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.png" alt="..." /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-1"></i>
         </button>
-        <div class="collapse navbar-collapse flex justify-content-center" id="navbarResponsive">
+        <div class="collapse navbar-collapse flex justify-content-end" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase py-4 py-lg-0">
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#deseases">Deseases</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#packages">Panchkarma</a></li>
@@ -211,6 +269,10 @@
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#contact">Contact</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" type="button" id="book_appoinement">Book Appointment</a></li>
                 <li>
+                <?php if(isset($_SESSION['login_user'])){?>
+                <li data-bs-toggle="modal" data-bs-target="#myAppointmentsModal" class="nav-item rounded bg-success"><a class="nav-link text-white" type="button">Your Appointments</a></li>
+                <li>
+                <?php } ?>
                 <?php 
                     if(isset($_SESSION['login_user'])){
                         ?>
@@ -238,6 +300,74 @@
         </div>
     </div>
 </nav>
+
+
+
+
+<div class="modal fade" id="myAppointmentsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-secondary" id="staticBackdropLabel">Your Appointments</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">SrNo</th>
+                    <th scope="col">Appointment Type</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    require('db/database.php');
+                    $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
+                    $user=mysqli_num_rows($res);
+
+                    $res=mysqli_query($db,"SELECT package_id,appointment_time,message FROM `appointments` WHERE user_id='$user';");
+                    $i = 0;
+                    while ($row = mysqli_fetch_assoc($res)){ $i++;
+                    if(!$row['package_id'] == NULL){
+                        $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
+                        $package_name = $res -> fetch_row();
+                        $row['package_id'] = $package_name[0];
+                    }
+                    else{
+                        $row['package_id'] = "Normal Appointment";
+                    }
+                    ?>
+                    <tr>
+                    <th scope="row"><?=$i;?></th>
+                        <td><?=$row['package_id']?></td>
+                        <td><?=$row['appointment_time']?></td>
+                        <td><?=$row['message']?></td>
+                        <td><ul class="list-inline d-flex justify-content-between">
+                            <li>
+                                <a href="add-book.php?book=test&amp;author=test&amp;edition=1st&amp;quantity=2&amp;department=" data-toggle="tooltip" data-placement="left" title="" class="btn btn-success btn-sm rounded-0" type="button" data-original-title="Edit" data-bs-original-title="Edit" aria-label="Edit"><svg class="svg-inline--fa fa-pen-to-square" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z"></path></svg><!-- <i class="fa fa-edit"></i> Font Awesome fontawesome.com --></a>
+                            </li>
+                            <li>
+                                <button data-id="7" data-toggle="tooltip" data-placement="left" title="" class="btn btn-danger btn-sm rounded-0 delete_button" type="button" data-original-title="Delete" data-bs-original-title="Delete" aria-label="Delete"><svg class="svg-inline--fa fa-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM394.8 466.1C393.2 492.3 372.3 512 346.9 512H101.1C75.75 512 54.77 492.3 53.19 466.1L31.1 128H416L394.8 466.1z"></path></svg><!-- <i class="fa fa-trash"></i> Font Awesome fontawesome.com --></button>
+                            </li>
+                        </ul></td>
+                    </tr>
+                    <?php }?>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
     <!--Book Appointment Modal -->
     <div class="modal fade" id="AppointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -344,27 +474,7 @@
     </div>
     <!-- Masthead-->
     <header class="masthead" id="home_header">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img src="./assets/img/home.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                <img src="./assets/img/home.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                <img src="./assets/img/home.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            </div>
+            
     </header>
     </div>
     </section>
@@ -384,7 +494,8 @@
                     $query = mysqli_query($db, $sql);
                     while ($row = mysqli_fetch_assoc($query)){?>
 
-                <div class="<?php if($row['id'] == '5'){echo "col-md-12";}else{echo "col-md-6";} ?> mb-5">
+
+                <div data-aos="<?php if($row['id'] == '5'){echo "fade-up";}else if(is_float($row['id']/2)){echo "fade-right";}else{echo "fade-left";} ?>" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine" class="<?php if($row['id'] == '5'){echo "col-md-12";}else{echo "col-md-6";} ?> mb-5">
                     <!-- Packages item 1-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#packages<?=$row['id']?>">
@@ -459,7 +570,7 @@
                     $query = mysqli_query($db, $sql);
                     while ($row = mysqli_fetch_assoc($query)){?>
 
-                <div class="col-md-4 mb-5">
+                <div class="col-md-4 mb-5" data-aos="flip-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">
                     <!-- Packages item 1-->
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#deseases<?=$row['id']?>">
@@ -475,34 +586,42 @@
                     </div>
                 </div>
 
-                <div class="portfolio-modal modal fade" id="deseases<?=$row['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content p-2">
-                            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg"
-                                    alt="Close modal" /></div>
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12">
-                                        <div class="modal-body row">
-                                            <!--Packages details-->
-                                            <h2 class="text-uppercase mb-5"><?=$row['title']?></h2>
-                                            <div class="col-md-6">
-                                                <img style="height:50% !important;" class="img-fluid d-block mx-auto" src="<?=$row['image_path']?>" alt="..." />
-                                                <p><?=$row['description']?></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h3>ADVANTAGE OF <?=$row['title']?></h3>
-                                                <ol>
-                                                    <?php $advantages = (explode(",",$row['description']));
-                                                    foreach ($advantages as $value) { ?>
-                                                    <li><?=$value?></li>
-                                                    <?php }
-                                                    ?>
-                                                </ol>
+                <div class="modal fade" id="deseases<?=$row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Desease Information</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="card">
+                                            <img class="card-img-top" src="<?=$row['image_path']?>" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?=$row['title']?></h5>
+                                                <p class="card-text"><?=$row['description']?></p>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-7">
+                                        <h3>Recommended pakcages for <?=$row['title']?></h3>
+                                        <ol>
+                                            <!-- <?php $advantages = (explode(",",$row['advantages']));
+                                            foreach ($advantages as $value) { ?>
+                                            <li><?=$value?></li>
+                                            <?php } ?> -->
+                                        </ol>
+                                    </div>
                                 </div>
+
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <!-- <button class="btn btn-success btn-xl text-uppercase book-packages" type="button">  
+                                    <a class="text-light text-decoration-none book_appointment_packages">BOOK APPOINTMENT</a>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -570,7 +689,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                        <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
                         <h4>Parveen Anand</h4>
                         <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i
@@ -583,7 +702,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
                         <h4>Diana Petersen</h4>
                         <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
@@ -596,7 +715,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
                         <h4>Diana Petersen</h4>
                         <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
@@ -636,45 +755,26 @@
             <form id="contactForm" class="mx-4">
                 <div class="row align-items-stretch mb-3">
                     <div class="form-group">
-                        <!-- Name input-->
-                        <input class="form-control" id="name" type="text" placeholder="Your Name *"
-                            data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control" id="contact_name" type="text" placeholder="Your Name *" name="contact_name"/>
                     </div>
                     <div class="form-group">
-                        <!-- Email address input-->
-                        <input class="form-control" id="email" type="email" placeholder="Your Email *"
-                            data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        <input class="form-control" id="contact_email" type="email" placeholder="Your Email *" name="contact_email"/>
                     </div>
-                    <div class="form-group">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select Desease</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-
                     <div class="form-group mb-md-0">
-                        <!-- Phone number input-->
-                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"
-                            data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
-                        </div>
+                        <input class="form-control" id="contact_phone" type="tel" placeholder="Your Phone *" name="contact_phone"/>
                     </div>
                     <div class="form-group form-group-textarea mb-md-0 my-4">
-                        <!-- Message input-->
-                        <textarea class="form-control" id="message" placeholder="Your Message *"
-                            data-sb-validations="required"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
-                        </div>
+                        <textarea class="form-control" id="contact_message" placeholder="Your Message *" name="contact_message"></textarea>
                     </div>
                 </div>
-                <!-- Submit Button-->
-                <div class="text-center"><button class="btn btn-success btn-xl text-uppercase" id="submitButton"
-                        type="submit">Send Message</button></div>
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <div class="g-recaptcha" data-sitekey="6LdSabQkAAAAABAlmMljni1wuC_rG-K56ocK12ka"></div>
+                    </div>
+                    <div class="col-md-12 text-center my-3">
+                        <button class="btn btn-success btn-xl text-uppercase" id="submit_contact_button">Send Message</button>
+                    </div>
+                </div>
             </form>
         </div>
     </section>
@@ -728,6 +828,7 @@
 <?php include './include/footer.php';?>
 <script src="js/scripts.js"></script>
 <script>
+    AOS.init();
      document.addEventListener("DOMContentLoaded", () => {
          let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
         let package_button = document.querySelectorAll(".book-packages")
@@ -824,6 +925,51 @@
                 }
                 else{
                     swal("Error!",json_res.message,"error")
+                }
+            }
+        })
+
+        let contact_btn = document.getElementById("submit_contact_button")
+        contact_btn.addEventListener("click",async function(e){
+            e.preventDefault();
+            let formData = new FormData(contactForm);
+            let response = grecaptcha.getResponse() 
+            if(contact_name.value == ""){
+                swal("Warning!","Please Enter Name!","warning")
+                contact_name.focus();
+            }
+            else if(contact_email.value == ""){
+                swal("Warning!","Please Enter Email!","warning")
+                contact_email.focus();
+            }
+            else if(contact_phone.value == ""){
+                swal("Warning!","Please Enter Phone Number!","warning")
+                contact_phone.focus();
+            }
+            else if(contact_message.value == ""){
+                swal("Warning!","Please Enter Your Message!","warning")
+                contact_phone.focus();
+            }
+            else if(response.length == 0){
+                swal("Warning!","Please Fill The Captcha!","warning")
+            } 
+            else{
+                formData.append('contact_name',contact_name.value)
+                formData.append('contact_email',contact_email.value)
+                formData.append('contact_phone',contact_phone.value)
+                formData.append('contact_message',contact_message.value)
+                let fetch_res = await fetch("index.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success")
+                    document.getElementById("contactForm").reset();
+                }
+                else{
+                    swal("Error!",json_res.message,"error")
+                    document.getElementById("contactForm").reset();
                 }
             }
         })

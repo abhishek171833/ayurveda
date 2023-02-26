@@ -376,8 +376,9 @@
                                 </ul></td>
                             </tr>
                     </tbody>
+                    <?php } ?>
                 </table>
-            <?php } } else {?>
+            <?php } else {?>
                 <div class="text-center">You Don't Have Any Appointments Yet! Book Your First Appointment Now</div>
             <?php } ?>
             </div>

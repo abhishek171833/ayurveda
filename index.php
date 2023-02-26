@@ -188,6 +188,9 @@
         .about-us-shadow{
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
         }
+        .team-images{
+            box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
+        }
     </style>
 </head>
 <?php 
@@ -694,7 +697,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
+                        <img class="mx-auto rounded-circle team-images" src="assets/img/team/1.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
                         <h4>Parveen Anand</h4>
                         <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i
@@ -707,7 +710,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
+                        <img class="mx-auto rounded-circle team-images" src="assets/img/team/2.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
                         <h4>Diana Petersen</h4>
                         <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
@@ -720,7 +723,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
+                        <img class="mx-auto rounded-circle team-images" src="assets/img/team/2.jpg" alt="..." data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine"/>
                         <h4>Diana Petersen</h4>
                         <p class="text-muted">Doctor</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i

@@ -135,6 +135,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
         <script>
             $( function() {
                 $("#appointment_time").datepicker({ minDate: 0});
@@ -651,7 +652,7 @@
             <ul class="timeline row">
                 <div class="col-md-6">
                     <h4 class="text-center my-5" data-aos="fade-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Ayurveda</h4>
-                        <p class="about-us-shadow p-4" data-aos="flip-down" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
+                        <p class="about-us-shadow p-4" data-aos="flip-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
                             View original
@@ -671,7 +672,7 @@
                 </div>
                 <div class="col-md-6">
                     <h4 class="text-center my-5" data-aos="fade-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Our Doctor</h4>
-                    <p class="about-us-shadow p-4" data-aos="flip-down" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
+                    <p class="about-us-shadow p-4" data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
                         View original

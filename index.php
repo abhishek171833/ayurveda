@@ -182,6 +182,12 @@
                 /* background-size: cover; */
             }
         }
+        .portfolio-item{
+            box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
+        }
+        .about-us-shadow{
+            box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
+        }
     </style>
 </head>
 <?php 
@@ -637,9 +643,8 @@
         <div class="container-fluid px-5">
             <ul class="timeline row">
                 <div class="col-md-6">
-                    <h4 class="text-center">About Ayurveda</h4>
-                    <div class="col my-4">
-                        <p>Health is a state of physical, mental and social well-being, not just the
+                    <h4 class="text-center my-5" data-aos="fade-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Ayurveda</h4>
+                        <p class="about-us-shadow p-4" data-aos="flip-down" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
                             View original
@@ -654,12 +659,12 @@
                             article, we explain the meaning of good health, the types of health a person needs to
                             consider, and how to preserve good health.
                             In 1948, the World Health Organization (WHO) defined health with a phrase that modern
-                            authorities still apply.</p>
-                    </div>
+                            authorities still apply.
+                        </p>
                 </div>
                 <div class="col-md-6">
-                    <h4 class="text-center">About Our Doctor</h4>
-                    <p>Health is a state of physical, mental and social well-being, not just the
+                    <h4 class="text-center my-5" data-aos="fade-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Our Doctor</h4>
+                    <p class="about-us-shadow p-4" data-aos="flip-down" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
                         View original

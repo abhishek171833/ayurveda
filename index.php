@@ -923,6 +923,10 @@
                 let json_res = await fetch_res.json();
                 if(json_res.status){
                     swal("Success!",json_res.message,"success")
+                    .then(()=>{
+                        normal_appoinement_form.reset();
+                        location.reload();
+                    })
                 }
                 else{
                     swal("Error!",json_res.message,"error")
@@ -971,13 +975,13 @@
                 swal("Warning!","Please Enter Name!","warning")
                 contact_name.focus();
             }
-            else if(contact_email.value == ""){
-                swal("Warning!","Please Enter Email!","warning")
-                contact_email.focus();
-            }
             else if(contact_phone.value == ""){
                 swal("Warning!","Please Enter Phone Number!","warning")
                 contact_phone.focus();
+            }
+            else if(contact_email.value == ""){
+                swal("Warning!","Please Enter Email!","warning")
+                contact_email.focus();
             }
             else if(contact_message.value == ""){
                 swal("Warning!","Please Enter Your Message!","warning")

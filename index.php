@@ -221,8 +221,18 @@
         .about-us-shadow{
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
         }
-        .team-images{
+        .team-images,#map{
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
+        }
+        .contact-input{
+            box-shadow: 5px 11px 10px 5px black, inset 6px 7px 7px 5px #7d7a69;
+        }
+        input::-webkit-input-placeholder {
+            color: yellow; /*Change the placeholder color*/
+            opacity: 0.5; /*Change the opacity between 0 and 1*/
+        }
+        #submit_contact_button,.g-recaptcha{
+            box-shadow: 5px 11px 10px 5px black, 6px 7px 7px 5px #7d7a69;
         }
     </style>
 </head>
@@ -555,13 +565,13 @@
                                     </div>
                                     <div class="col-md-7">
                                         <h3>ADVANTAGE OF <?=$row['title']?></h3>
-                                        <ol>
+                                        <ul>
                                             <?php $advantages = (explode(",",$row['advantages']));
                                             foreach ($advantages as $value) { ?>
-                                            <li><?=$value?></li>
+                                            <li style="word-wrap:break-word;"><?=$value?></li>
                                             <?php }
                                             ?>
-                                        </ol>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -763,7 +773,7 @@
                 <h2 class="section-heading text-uppercase">Our Store</h2>
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <div id="map" class="mx-4">
+            <div id="map" class="mx-4" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
                 <iframe class="w-100" height="490" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
@@ -775,19 +785,19 @@
                 <h2 class="section-heading text-uppercase">Send Inquiry</h2>
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <form id="contactForm" class="mx-4">
+            <form id="contactForm" class="mx-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
                 <div class="row align-items-stretch mb-3">
-                    <div class="form-group">
-                        <input class="form-control" id="contact_name" type="text" placeholder="Your Name *" name="contact_name"/>
+                    <div class="form-group col-md-6">
+                        <input class="form-control contact-input" id="contact_name" type="text" placeholder="Your Name *" name="contact_name"/>
+                    </div>
+                    <div class="form-group mb-md-0 col-md-6">
+                        <input class="form-control contact-input" id="contact_phone" type="tel" placeholder="Your Phone *" name="contact_phone"/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="contact_email" type="email" placeholder="Your Email *" name="contact_email"/>
+                        <input class="form-control contact-input" id="contact_email" type="email" placeholder="Your Email *" name="contact_email"/>
                     </div>
-                    <div class="form-group mb-md-0">
-                        <input class="form-control" id="contact_phone" type="tel" placeholder="Your Phone *" name="contact_phone"/>
-                    </div>
-                    <div class="form-group form-group-textarea mb-md-0 my-4">
-                        <textarea class="form-control" id="contact_message" placeholder="Your Message *" name="contact_message"></textarea>
+                    <div class="form-group form-group-textarea mb-md-0">
+                        <textarea class="form-control contact-input" id="contact_message" placeholder="Your Message *" name="contact_message"></textarea>
                     </div>
                 </div>
                 <div class="row">

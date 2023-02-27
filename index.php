@@ -225,7 +225,7 @@
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
         }
         .contact-input{
-            box-shadow: 5px 11px 10px 5px black, inset 6px 7px 7px 5px #7d7a69;
+            box-shadow: 5px 11px 10px 5px black, inset 1px 1px 3px 3px #7d7a69;
         }
         input::-webkit-input-placeholder {
             color: yellow; /*Change the placeholder color*/

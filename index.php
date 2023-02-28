@@ -216,10 +216,7 @@
             }
         }
         .portfolio-item{
-            box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
-        }
-        .about-us-shadow{
-            box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
+            box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px black;
         }
         .team-images,#map{
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px green;
@@ -349,14 +346,14 @@
                     $res=mysqli_query($db,"SELECT package_id,appointment_time,message FROM `appointments` WHERE user_id='$user';");
                     $rowcount=mysqli_num_rows($res);
                     if($rowcount>0){ ?>
-                     <table class="table">
+                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">SrNo</th>
                                 <th scope="col">Appointment Type</th>
                                 <th scope="col">Appointment Time</th>
                                 <th scope="col">Message</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                     <?php
@@ -376,14 +373,10 @@
                             <td><?=$row['package_id']?></td>
                             <td><?=$row['appointment_time']?></td>
                             <td><?=$row['message']?></td>
-                            <td><ul class="list-inline d-flex justify-content-between">
-                                <li>
-                                    <a href="add-book.php?book=test&amp;author=test&amp;edition=1st&amp;quantity=2&amp;department=" data-toggle="tooltip" data-placement="left" title="" class="btn btn-success btn-sm rounded-0" type="button" data-original-title="Edit" data-bs-original-title="Edit" aria-label="Edit"><svg class="svg-inline--fa fa-pen-to-square" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z"></path></svg><!-- <i class="fa fa-edit"></i> Font Awesome fontawesome.com --></a>
-                                </li>
-                                <li>
-                                    <button data-id="7" data-toggle="tooltip" data-placement="left" title="" class="btn btn-danger btn-sm rounded-0 delete_button" type="button" data-original-title="Delete" data-bs-original-title="Delete" aria-label="Delete"><svg class="svg-inline--fa fa-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM394.8 466.1C393.2 492.3 372.3 512 346.9 512H101.1C75.75 512 54.77 492.3 53.19 466.1L31.1 128H416L394.8 466.1z"></path></svg><!-- <i class="fa fa-trash"></i> Font Awesome fontawesome.com --></button>
-                                </li>
-                                </ul></td>
+                            <td><ul class="list-inline d-flex justify-content-center">
+                                <i style="cursor:pointer;" class="mx-2 fa-solid fa-pen-to-square"></i>
+                                <i style="cursor:pointer;" class="mx-2 fa-solid fa-trash"></i>
+                            </ul></td>
                             </tr>
                     </tbody>
                     <?php } ?>
@@ -672,7 +665,7 @@
             <ul class="timeline row">
                 <div class="col-md-6">
                     <h4 class="text-center my-5" data-aos="fade-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Ayurveda</h4>
-                        <p class="about-us-shadow p-4" data-aos="flip-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
+                        <p class="shadow-lg p-3 mb-5 bg-white rounded"" data-aos="flip-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
                             absence of disease
                             or infirmity. Good health helps people live a full life. Read more.
                             View original
@@ -692,7 +685,7 @@
                 </div>
                 <div class="col-md-6">
                     <h4 class="text-center my-5" data-aos="fade-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Our Doctor</h4>
-                    <p class="about-us-shadow p-4" data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
+                    <p class="shadow-lg p-3 mb-5 bg-white rounded"" data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
                         absence of disease
                         or infirmity. Good health helps people live a full life. Read more.
                         View original
@@ -773,8 +766,8 @@
                 <h2 class="section-heading text-uppercase">Our Store</h2>
                 <h3 class="my-3 text-light">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <div id="map" class="mx-4" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
-                <iframe class="w-100" height="490" id="gmap_canvas"
+            <div id="map" class="mx-4 rounded" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <iframe class="w-100 rounded" height="490" id="gmap_canvas"
                     src="https://maps.google.com/maps?q=kudal%20bus%20stand&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>

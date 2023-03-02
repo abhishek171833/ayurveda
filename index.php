@@ -175,11 +175,11 @@
         }
         @keyframes slide{
             10%{
-                background:url(assets/img/contactus.png);
+                background:url(assets/img/map-image.png);
                 /* background-size: cover; */
             }
             20%{
-                background:url(assets/img/map-image.png);
+                background:url(assets/img/header-bg.jpg);
                 /* background-size: cover; */
             }
             30%{
@@ -343,9 +343,10 @@
                     $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
                     $user=$res->fetch_row()[0];
 
-                    $res=mysqli_query($db,"SELECT package_id,appointment_time,message FROM `appointments` WHERE user_id='$user';");
+                    $res=mysqli_query($db,"SELECT id,package_id,appointment_time,message FROM `appointments` WHERE user_id='$user';");
                     $rowcount=mysqli_num_rows($res);
                     if($rowcount>0){ ?>
+                    <div class="table-responsive">
                      <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -374,13 +375,14 @@
                             <td><?=$row['appointment_time']?></td>
                             <td><?=$row['message']?></td>
                             <td><ul class="list-inline d-flex justify-content-center">
-                                <i style="cursor:pointer;" class="mx-2 fa-solid fa-pen-to-square"></i>
-                                <i style="cursor:pointer;" class="mx-2 fa-solid fa-trash"></i>
+                                <i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i>
+                                <i onclick="delete_appointment(this);" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
                             </ul></td>
                             </tr>
-                    </tbody>
-                    <?php } ?>
+                            <?php } ?>
+                        </tbody>
                 </table>
+                </div>
             <?php } else {?>
                 <div class="text-center">You Don't Have Any Appointments Yet! Book Your First Appointment Now</div>
             <?php } ?>
@@ -1039,6 +1041,26 @@
                 }
             }
         })
+
     });
+
+    function delete_appointment(element){
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+        });
+    }
 </script>
 </body>

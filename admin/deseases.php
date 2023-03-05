@@ -169,7 +169,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Desease Name</th>
-                                            <th>Action</th>
+                                            <th style="width:90px;">Action</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>

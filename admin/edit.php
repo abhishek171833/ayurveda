@@ -3,13 +3,9 @@ if(isset($_POST['package_name'])){
     require('db/db.php');
     if(!empty($_POST['package_id'])){
         $res = mysqli_query($db,"UPDATE `packages` SET `title` = '$_POST[package_name]', `desc` = '$_POST[package_description] ', `advantages` = '$_POST[package_advantages]' WHERE `packages`.`id` = $_POST[package_id];");
-        $message['message'] = "Package Edited Successfully";
-    }
-    else{
-        $res = mysqli_query($db,"INSERT INTO `packages` (`title`, `desc`,`advantages`,`image_path`) VALUES('$_POST[package_name]','$_POST[package_description]','$_POST[package_advantages]','image_path');");
-        $message['message'] = "Package Added Successfully";
     }
     if($res){
+        $message['message'] = "Package Edited Successfully";
         $message['status'] = 1;
         echo json_encode($message);
         exit();
@@ -195,7 +191,7 @@ if(isset($_POST['package_name'])){
                             <label for="exampleInputPassword1" class="form-label">Package Advantages (add multiple advantages with comma seperated)</label>
                             <textarea class="form-control" name="package_advantages" id="package_advantages" cols="30" rows="5"><?php if(isset($package)){echo $package[3];}else{echo "";}?></textarea>
                         </div>
-                            <button id="edit_package_button" data-id="<?php if(isset($package)){echo $package[0];}else{echo "";}?>" type="submit" class="btn btn-primary"><?php if(isset($package)){echo "Update Package";}else{echo "Add Package";}?></button>
+                            <button id="edit_package_button" data-id="<?php if(isset($package)){echo $package[0];}else{echo "";}?>" type="submit" class="btn btn-primary">Update Package</button>
                         </form>
                     </div>
                 <!-- /.container-fluid -->

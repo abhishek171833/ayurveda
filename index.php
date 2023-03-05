@@ -168,53 +168,12 @@
         #home_header {
             width: 100%;
             height: 50vw;
-            background: url(assets/img/home.jpg);
+            background:url("https://source.unsplash.com/1920x1080/?ayurveda,panchkarma");
             /* background-size: cover; */
-            animation: slide 20s infinite; 
+            animation: slide 3s infinite; 
             /* background:red; */
         }
-        @keyframes slide{
-            10%{
-                background:url(assets/img/map-image.png);
-                /* background-size: cover; */
-            }
-            20%{
-                background:url(assets/img/header-bg.jpg);
-                /* background-size: cover; */
-            }
-            30%{
-                background:url(assets/img/header-bg.jpg);
-                /* background-size: cover; */
-            }
-            40%{
-                background:url(assets/img/contactus.png);
-                /* background-size: cover; */
-            }
-            50%{
-                background:url(assets/img/map-image.png);
-                /* background-size: cover; */
-            }
-            60%{
-                background:url(assets/img/contactus.png);
-                /* background-size: cover; */
-            }
-            70%{
-                background:url(assets/img/header-bg.jpg);
-                /* background-size: cover; */
-            }
-            80%{
-                background:url(assets/img/contactus.png);
-                /* background-size: cover; */
-            }
-            90%{
-                background:url(assets/img/header-bg.jpg);
-                /* background-size: cover; */
-            }
-            100%{
-                background:url(assets/img/contactus.png);
-                /* background-size: cover; */
-            }
-        }
+       
         .portfolio-item{
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px black;
         }

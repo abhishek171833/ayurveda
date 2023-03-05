@@ -16,7 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -170,7 +170,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Package Name</th>
-                                            <th>Action</th>
+                                            <th style="width:80px;">Action</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -191,8 +191,7 @@
                                             <tr>
                                             <td><?=$row['id']?></td>
                                             <td><?=$row['title']?></td>
-                                            <td> <i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i>
-                                <i onclick="delete_appointment(this);" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i></td>
+                                            <td> <a href="edit.php?id=<?=$row['id'];?>"><i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i></a></td>
                                         </tr>
                                     <?php } ?>
 
@@ -266,6 +265,26 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    <script>
+        function delete_appointment(element){
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

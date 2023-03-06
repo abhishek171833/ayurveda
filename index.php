@@ -184,12 +184,18 @@
         #home_header {
             width: 100%;
             height: 50vw;
-            background:url("https://source.unsplash.com/1920x1080/?ayurveda,panchkarma");
-            /* background-size: cover; */
-            animation: slide 3s infinite; 
-            /* background:red; */
         }
-       
+        #home_header::before{
+            content: "";
+            background:url("https://source.unsplash.com/1920x1080/?ayurveda,panchkarma") no-repeat ;
+            position: absolute;
+            top:0px;
+            left:0px;
+            height: 50vw;
+            width:100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
         .portfolio-item{
             box-shadow: 16px 17px 23px 5px black, 9px 9px 16px 4px black;
         }

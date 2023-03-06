@@ -11,14 +11,18 @@
 
     <title>Admin Dashboard - Ayurveda</title>
 
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <!-- Custom styles for this template-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -47,14 +51,18 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+
+            <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="./packages.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Packages</span></a>
-                </li>
-                
+            </li>
             <hr class="sidebar-divider">
+
+            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="deseases.php">
                     <i class="fas fa-fw fa-table"></i>

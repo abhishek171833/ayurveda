@@ -1,11 +1,11 @@
 <?php
     session_start();
-    if(isset($_POST['file'])){
+    if(isset($_POST['appointment_time'])){
         require('./db/database.php');
         $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
         $user_id = $res->fetch_row()[0];
 
-        if(isset($_FILES["file"])){
+        if(isset($_POST["file"])){
             $errors= array();
             $file_name = $_FILES['file']['name'];
             $file_size =$_FILES['file']['size'];
@@ -42,13 +42,21 @@
                 exit();
             }
         }
+        else{
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`file_name`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]','');");
+
+            $message['status'] = 1;
+            $message['message'] = "Appointment Booked Successfully";
+            echo json_encode($message);
+            exit();
+        }
     }
     if(isset($_POST['package_id'])){
         require('./db/database.php');
         $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
         $user_id = $res->fetch_row()[0];
 
-        if(isset($_FILES["package_file"])){
+        if(!empty($_POST["package_file"])){
             $errors= array();
             $file_name = $_FILES['package_file']['name'];
             $file_size =$_FILES['package_file']['size'];
@@ -85,6 +93,14 @@
                 echo json_encode($message);
                 exit();
             }
+        }
+        else{
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`package_id`,`file_name`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_appointment_time]',$_POST[package_id],'');");
+
+            $message['status'] = 1;
+            $message['message'] = "Appointment Booked Successfully";
+            echo json_encode($message);
+            exit();
         }
     }
     if(isset($_POST['contact_name'])){
@@ -881,15 +897,14 @@
             if(appointment_time.value == ""){
                 swal("Warning!","Please Select Appointment Time!","warning")
             }
-            else if(file.value == ""){
-                swal("Warning!","Please Select File!","warning")
-            }
             else if(appointment_message.value == ""){
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
                 formData.append('appointment_time',appointment_time.value)
-                formData.append('file',file.value)
+                if(file.value != ""){
+                    formData.append('file',file.value)
+                }
                 formData.append('appointment_message',appointment_message.value)
                 let fetch_res = await fetch("index.php",{
                     method:"POST",
@@ -915,15 +930,14 @@
             if(package_appointment_time.value == ""){
                 swal("Warning!","Please Select Appointment Time!","warning")
             }
-            else if(package_file.value == ""){
-                swal("Warning!","Please Select File!","warning")
-            }
             else if(package_appointment_message.value == ""){
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
                 formData.append('package_appointment_time',package_appointment_time.value)
-                formData.append('package_file',file.value)
+                if(package_file.value != ""){
+                    formData.append('package_file',file.value)
+                }
                 formData.append('package_appointment_message',package_appointment_message.value)
                 formData.append('package_id',package_id.value)
                 let fetch_res = await fetch("index.php",{

@@ -105,6 +105,22 @@
             exit();
         }
     }
+    if(isset($_POST['delete_appointment_id'])){
+        require('./db/database.php');
+        $res = mysqli_query($db,"DELETE FROM `appointments` WHERE `appointments`.`id` = '$_POST[delete_appointment_id]';");
+        if($res){
+            $message['status'] = 1;
+            $message['message'] = "Your Appointment Deleted Successfully";
+            echo json_encode($message);
+            exit();
+        }
+        else{
+            $message['status'] = 0;
+            $message['message'] = "Something Went Wrong";
+            echo json_encode($message);
+            exit();
+        }
+    }
 ?>
 <?php 
     if(isset($_POST['lemail'])){
@@ -322,20 +338,19 @@
                     if(!$row['package_id'] == NULL){
                         $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
                         $package_name = $res -> fetch_row();
-                        $row['package_id'] = $package_name[0];
+                        $row['package_name'] = "Package (".$package_name[0].")";
                     }
                     else{
-                        $row['package_id'] = "Normal Appointment";
+                        $row['package_name'] = "Normal";
                     }
                     ?>
                         <tr>
                         <th scope="row"><?=$i;?></th>
-                            <td><?=$row['package_id']?></td>
-                            <td><?=$row['appointment_time']?></td>
+                            <td><?=$row['package_name']?></td>
+                            <td><?=date_format(date_create($row['appointment_time']),"D/M/Y")?></td>
                             <td><?=$row['message']?></td>
                             <td><ul class="list-inline d-flex justify-content-center">
-                                <i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i>
-                                <i onclick="delete_appointment(this);" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
+                                <i onclick="delete_appointment(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
                             </ul></td>
                             </tr>
                             <?php } ?>
@@ -1002,7 +1017,6 @@
         })
 
     });
-
     function delete_appointment(element){
         swal({
             title: "Are you sure?",
@@ -1011,15 +1025,29 @@
             buttons: true,
             dangerMode: true,
         })
-        .then((willDelete) => {
+        .then(async (willDelete) => {
             if (willDelete) {
-                swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-                });
-            } else {
-                swal("Your imaginary file is safe!");
+                let formData = new FormData();
+                let appointment_id = element.getAttribute("data-id")
+                formData.append('delete_appointment_id',appointment_id)
+                let fetch_res = await fetch("index.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success").
+                    then(()=>{
+                        location.reload();
+                    })
+                }
+                else{
+                    swal("Error!",json_res.message,"error")
+                    document.getElementById("contactForm").reset();
+                }
             }
         });
     }
+
 </script>
 </body>

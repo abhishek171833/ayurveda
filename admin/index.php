@@ -278,7 +278,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +295,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">21</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +324,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
                                         </div>
                                     </div>
                                 </div>
@@ -341,7 +341,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
                                         </div>
                                     </div>
                                 </div>
@@ -454,10 +454,10 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Logout from the admin panel</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="">Logout</a>
                 </div>
             </div>
         </div>

@@ -1,10 +1,16 @@
-<?php
-if(isset($_POST['delete_desease_id'])){
-    require('./db/db.php');
-    $res = mysqli_query($db,"DELETE FROM `deseases` WHERE `deseases`.`id` = '$_POST[delete_desease_id]';");
+<?php 
+if(isset($_POST['desease_name'])){
+    require('db/db.php');
+    if(!empty($_POST['desease_id'])){
+        $res = mysqli_query($db,"UPDATE `deseases` SET `title` = '$_POST[desease_name]', `description` = '$_POST[desease_description]'  WHERE `deseases`.`id` = $_POST[desease_id];");
+        $message['message'] = "Desease Edited Successfully";
+    }
+    else{
+        $res = mysqli_query($db,"INSERT INTO `deseases` (`title`, `description`, `image_path`) VALUES ('$_POST[desease_name]', '$_POST[desease_description]','image_path')");
+        $message['message'] = "Desease Added Successfully";
+    }
     if($res){
         $message['status'] = 1;
-        $message['message'] = "Desease Deleted Successfully";
         echo json_encode($message);
         exit();
     }
@@ -16,6 +22,7 @@ if(isset($_POST['delete_desease_id'])){
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,9 +43,9 @@ if(isset($_POST['delete_desease_id'])){
         rel="stylesheet">
 
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -142,65 +149,39 @@ if(isset($_POST['delete_desease_id'])){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="row">
-                        <div class="col-md-6 text-center">
-                            <h1 class="h3 mb-2 text-gray-800">Deseases</h1>
-                            <p class="mb-4">Manage website deseases from here</p>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <h1 class="h3 mb-2 text-gray-800"><a class="btn btn-primary" href="./desease_edit.php">Add Desease</a></h1>
-                        </div>
-
-                    </div>
+                    <h1 class="h3 mb-2 text-gray-800 text-center my-4"><?php if(isset($_GET["id"])){echo "Update Desease";}else{echo "Add Desease";}?></h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">All Deaseases</h6>
-                        </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Desease Name</th>
-                                            <th style="width:90px;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
-                                    <tbody>
-                                        <?php 
+                            <div class="container">
+                                <form id="package_edit_form">
+                                    <?php
+                                    if(isset($_GET['id'])){
                                         require('db/db.php');
-                                        $res=mysqli_query($db,"SELECT * FROM `deseases`");
-                                        while ($row = mysqli_fetch_assoc($res)){ ?>
-                                            <tr>
-                                            <td><?=$row['id']?></td>
-                                            <td><?=$row['title']?></td>
-                                            <td> <a href="desease_edit.php?id=<?=$row['id'];?>"><i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i></a>
-                                            <i onclick="delete_desease(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i></td>
-                                        </tr>
-                                    <?php } ?>
-
-                                    </tbody>
-                                </table>
+                                        $res=mysqli_query($db,"SELECT * FROM `deseases` WHERE id='$_GET[id]';");
+                                        $desease=$res->fetch_row();
+                                    }
+                                    ?>
+                                    <div class="mb-3">
+                                        <label for="desease_name" class="form-label">Desease Name</label>
+                                        <input type="text" class="form-control" id="desease_name" value="<?php if(isset($desease)){echo $desease[1];}else{echo "";}?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="desease_description" class="form-label">Desease Description</label>
+                                        <textarea class="form-control" name="package_description" id="desease_description" cols="30" rows="5"><?php if(isset($desease)){echo $desease[2];}else{echo "";}?></textarea>
+                                    </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button id="edit_desease_button" data-id="<?php if(isset($desease)){echo $desease[0];}else{echo "";}?>" type="submit" class="btn btn-primary"><?php if(isset($_GET["id"])){echo "Update Desease";}else{echo "Add Desease";}?></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                </div>
                 <!-- /.container-fluid -->
 
-            </div>
+                </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -260,40 +241,43 @@ if(isset($_POST['delete_desease_id'])){
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
-    <script>
-        function delete_desease(element){
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then(async (willDelete) => {
-            if (willDelete) {
-                let formData = new FormData();
-                let desease_id = element.getAttribute("data-id")
-                formData.append('delete_desease_id',desease_id)
-                let fetch_res = await fetch("deseases.php",{
+     <script>
+        document.getElementById("edit_desease_button").addEventListener("click",async function(e){
+            e.preventDefault();
+            let formData = new FormData();
+            let id = this.getAttribute("data-id");
+            if(desease_name.value == ""){
+                swal("Warning!","Please Enter Desease Name!","warning")
+                contact_name.focus();
+            }
+            else if(desease_description.value == ""){
+                swal("Warning!","Please Enter Deasese Description Number!","warning")
+                contact_phone.focus();
+            }
+            else{
+                formData.append('desease_id',id)
+                formData.append('desease_name',desease_name.value)
+                formData.append('desease_description',desease_description.value)
+                let fetch_res = await fetch("desease_edit.php",{
                     method:"POST",
                     body:formData
                 })
                 let json_res = await fetch_res.json();
                 if(json_res.status){
-                    swal("Success!",json_res.message,"success").
-                    then(()=>{
-                        location.reload();
-                    })
+                    swal("Success!",json_res.message,"success")
+                    document.getElementById("package_edit_form").reset();
+                    setTimeout(() => {
+                        window.location.href = 'deseases.php';
+                    }, 2000);
                 }
                 else{
                     swal("Error!",json_res.message,"error")
-                    document.getElementById("contactForm").reset();
+                    document.getElementById("package_edit_form").reset();
                 }
             }
-        });
-    }
+        })
     </script>
+
 </body>
 
 </html>

@@ -18,6 +18,7 @@ if(isset($_POST['package_name'])){
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,11 +37,11 @@ if(isset($_POST['package_name'])){
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -70,17 +71,15 @@ if(isset($_POST['package_name'])){
                     <span>Dashboard</span></a>
             </li>
 
+            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="./packages.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Packages</span></a>
             </li>
             <hr class="sidebar-divider">
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="deseases.php">
@@ -136,35 +135,53 @@ if(isset($_POST['package_name'])){
                                 </a>
                             </div>
                         </li>
+
                     </ul>
 
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container">
-                    <form id="package_edit_form">
-                        <?php 
-                        require('db/db.php');
-                        $res=mysqli_query($db,"SELECT * FROM `packages` WHERE id='$_GET[id]';");
-                        $package=$res->fetch_row();
-                        ?>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Package Name</label>
-                            <input type="text" class="form-control" id="package_name" value="<?php if(isset($package)){echo $package[1];}else{echo "";}?>">
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800 text-center my-4">Update Package</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="container">
+                                <form id="package_edit_form">
+                                    <?php 
+                                    if(isset($_GET['id'])){
+                                        require('db/db.php');
+                                        $res=mysqli_query($db,"SELECT * FROM `packages` WHERE id='$_GET[id]';");
+                                        $package=$res->fetch_row();
+                                    }
+                                    ?>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Package Name</label>
+                                        <input type="text" class="form-control" id="package_name" value="<?php if(isset($package)){echo $package[1];}else{echo "";}?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Package Description</label>
+                                        <textarea class="form-control" name="package_description" id="package_description" cols="30" rows="5"><?php if(isset($package)){echo $package[2];}else{echo "";}?></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Package Advantages (add multiple advantages with comma seperated)</label>
+                                        <textarea class="form-control" name="package_advantages" id="package_advantages" cols="30" rows="5"><?php if(isset($package)){echo $package[3];}else{echo "";}?></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <button id="edit_package_button" data-id="<?php if(isset($package)){echo $package[0];}else{echo "";}?>" type="submit" class="btn btn-primary">Update Package</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Package Description</label>
-                            <textarea class="form-control" name="package_description" id="package_description" cols="30" rows="5"><?php if(isset($package)){echo $package[2];}else{echo "";}?></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Package Advantages (add multiple advantages with comma seperated)</label>
-                            <textarea class="form-control" name="package_advantages" id="package_advantages" cols="30" rows="5"><?php if(isset($package)){echo $package[3];}else{echo "";}?></textarea>
-                        </div>
-                            <button id="edit_package_button" data-id="<?php if(isset($package)){echo $package[0];}else{echo "";}?>" type="submit" class="btn btn-primary">Update Package</button>
-                        </form>
                     </div>
+
+                </div>
                 <!-- /.container-fluid -->
+
             </div>
             <!-- End of Main Content -->
 

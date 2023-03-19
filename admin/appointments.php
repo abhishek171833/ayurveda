@@ -1,3 +1,21 @@
+<?php
+if(isset($_POST['delete_desease_id'])){
+    require('./db/db.php');
+    $res = mysqli_query($db,"DELETE FROM `deseases` WHERE `deseases`.`id` = '$_POST[delete_desease_id]';");
+    if($res){
+        $message['status'] = 1;
+        $message['message'] = "Desease Deleted Successfully";
+        echo json_encode($message);
+        exit();
+    }
+    else{
+        $message['status'] = 0;
+        $message['message'] = "Something Went Wrong";
+        echo json_encode($message);
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +34,11 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -51,10 +70,6 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="./packages.php">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -101,7 +116,6 @@
                         </button>
                     </form>
 
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -134,22 +148,25 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Manage Packages</h1>
-                    <p class="mb-4">Manage your packages from here</p>
+                    <h1 class="h3 mb-2 text-gray-800 my-4">Appointments</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">All Packages</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">All Appointments</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Package Name</th>
-                                            <th style="width:80px;">Action</th>
+                                            <th>User</th>
+                                            <th>Appointment Message</th>
+                                            <th>Appointment Type</th>
+                                            <th>Appointment Time</th>
+                                            <th>Attachments</th>
+                                            <th style="width:90px;">Action</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -163,14 +180,44 @@
                                         </tr>
                                     </tfoot> -->
                                     <tbody>
-                                    <?php 
+                                        <?php 
                                         require('db/db.php');
-                                        $res=mysqli_query($db,"SELECT * FROM `packages`");
-                                        while ($row = mysqli_fetch_assoc($res)){ ?>
+                                        $res=mysqli_query($db,"SELECT * FROM `appointments`");
+                                        while ($row = mysqli_fetch_assoc($res)){ 
+                                        $date = date_create($row['appointment_time']);
+                                        $date =  date_format($date,"Y/M/d");
+
+                                        $res=mysqli_query($db,"SELECT name FROM `Users` WHERE id='$row[user_id]';");
+                                        $user=$res->fetch_row()[0];
+                                        if($row['package_id'] != NULL){
+                                            $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
+                                            $package=$res->fetch_row()[0];
+                                            $package = "Pakcage (".$package.")";
+                                        }
+                                        else{
+                                            $package = "Normal";
+                                        }
+                                        if($row['file_name'] != NULL){
+                                            $res=mysqli_query($db,"SELECT id FROM `Users` WHERE id='$row[user_id]';");
+                                            $user_file = $res->fetch_row()[0];
+                                            $file = "<a href='../appointments/$user_file/$row[file_name]' download='$row[file_name]'><i style='font-size:25px;cursor:pointer;' class='fa-solid fa-download'></i></a>";
+                                        }
+                                        else{
+                                            $file = "No Attachments";
+                                        }
+                                        ?>
                                             <tr>
                                             <td><?=$row['id']?></td>
-                                            <td><?=$row['title']?></td>
-                                            <td> <a href="edit.php?id=<?=$row['id'];?>"><i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i></a></td>
+                                            <td><?=$user?></td>
+                                            <td><?=$row['message']?></td>
+                                            <td><?=$package?></td>
+                                            <td><?=$date?></td>
+                                            <td class="text-center"><?=$file?></td>
+                                            <td> <select class="form-control" name="appointment_action" id="appointment_action">
+                                                <option value="1">Pending</option>
+                                                <option value="2">Decline</option>
+                                                <option value="3">Approve</option>
+                                            </select></td>
                                         </tr>
                                     <?php } ?>
 
@@ -245,24 +292,37 @@
     <script src="js/demo/datatables-demo.js"></script>
 
     <script>
-        function delete_appointment(element){
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
-                    icon: "success",
-                    });
-                } else {
-                    swal("Your imaginary file is safe!");
+        function delete_desease(element){
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then(async (willDelete) => {
+            if (willDelete) {
+                let formData = new FormData();
+                let desease_id = element.getAttribute("data-id")
+                formData.append('delete_desease_id',desease_id)
+                let fetch_res = await fetch("deseases.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success").
+                    then(()=>{
+                        location.reload();
+                    })
                 }
-            });
-        }
+                else{
+                    swal("Error!",json_res.message,"error")
+                    document.getElementById("contactForm").reset();
+                }
+            }
+        });
+    }
     </script>
 </body>
 

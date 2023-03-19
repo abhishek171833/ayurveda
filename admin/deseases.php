@@ -83,6 +83,12 @@ if(isset($_POST['delete_desease_id'])){
                     <i class="fas fa-fw fa-table"></i>
                     <span>Deseases</span></a>
             </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="appointments.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Appointments</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

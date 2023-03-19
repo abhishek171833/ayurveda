@@ -43,7 +43,7 @@
             }
         }
         else{
-            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`file_name`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]','');");
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]');");
 
             $message['status'] = 1;
             $message['message'] = "Appointment Booked Successfully";
@@ -95,7 +95,7 @@
             }
         }
         else{
-            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`package_id`,`file_name`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_appointment_time]',$_POST[package_id],'');");
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`package_id`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_appointment_time]',$_POST[package_id]);");
 
             $message['status'] = 1;
             $message['message'] = "Appointment Booked Successfully";

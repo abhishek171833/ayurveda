@@ -86,7 +86,7 @@
                 }
                 move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name);
 
-                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`package_id`,`file_name`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_appointment_time]',$_POST[package_id],'$file_name');");
+                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`package_id`,`file_name`) VALUES('$user_id','$_POST[package_appointment_message]',$_POST[package_id],'$file_name');");
 
                 $message['status'] = 1;
                 $message['message'] = "Appointment Booked Successfully";
@@ -95,7 +95,7 @@
             }
         }
         else{
-            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`package_id`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_appointment_time]',$_POST[package_id]);");
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`package_id`) VALUES('$user_id','$_POST[package_appointment_message]',$_POST[package_id]);");
 
             $message['status'] = 1;
             $message['message'] = "Appointment Booked Successfully";
@@ -192,9 +192,9 @@
             $( function() {
                 $("#appointment_time").datepicker({ minDate: 0});
             } );
-            $( function() {
-                $("#package_appointment_time").datepicker({ minDate: 0});
-            } );
+            // $( function() {
+            //     $("#package_appointment_time").datepicker({ minDate: 0});
+            // } );
         </script>
     <style>
         #home_header {
@@ -291,10 +291,17 @@
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#about">About</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" href="#contact">Contact</a></li>
                 <li class="nav-item rounded bg-success"><a class="nav-link text-white" type="button" id="book_appoinement">Book Appointment</a></li>
-                <li>
                 <?php if(isset($_SESSION['login_user'])){?>
-                <li data-bs-toggle="modal" data-bs-target="#myAppointmentsModal" class="nav-item rounded bg-success"><a class="nav-link text-white" type="button">Your Appointments</a></li>
-                <li>
+                
+                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-item rounded bg-success" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Your Appointments</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li class="px-2" data-bs-toggle="modal" data-bs-target="#myNormalAppointmentsModal"><a class="dropdown-item" href="#!">Normal Appointments</a></li>
+                            <li class="px-2" data-bs-toggle="modal" data-bs-target="#myPackageAppointmentsModal"><a class="dropdown-item" href="#!">Package Appointments</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <?php } ?>
                 <?php 
                     if(isset($_SESSION['login_user'])){
@@ -327,11 +334,11 @@
 
 
 
-<div class="modal fade" id="myAppointmentsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="myNormalAppointmentsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 text-secondary" id="staticBackdropLabel">Your Appointments</h1>
+                <h1 class="modal-title fs-5 text-secondary" id="staticBackdropLabel">Your Normal Appointments</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -340,7 +347,7 @@
                     $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
                     $user=$res->fetch_row()[0];
 
-                    $res=mysqli_query($db,"SELECT id,package_id,appointment_time,message FROM `appointments` WHERE user_id='$user';");
+                    $res=mysqli_query($db,"SELECT id,package_id,appointment_time,status,message FROM `appointments` WHERE user_id='$user' and package_id is NULL;");
                     $rowcount=mysqli_num_rows($res);
                     if($rowcount>0){ ?>
                     <div class="table-responsive">
@@ -348,29 +355,33 @@
                         <thead>
                             <tr>
                                 <th scope="col">SrNo</th>
-                                <th scope="col">Appointment Type</th>
                                 <th scope="col">Appointment Time</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Status</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                     <?php
                     $i = 0;
                     while ($row = mysqli_fetch_assoc($res)){ $i++;
-                    if(!$row['package_id'] == NULL){
-                        $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
-                        $package_name = $res -> fetch_row();
-                        $row['package_name'] = "Package (".$package_name[0].")";
-                    }
-                    else{
-                        $row['package_name'] = "Normal";
-                    }
+                        if($row['status'] == 0){
+                            $row['status'] = "<span style='color:yellow;'>Pending</span>";
+                        }
+                        else if($row['status'] == 1){
+                            $row['status'] = "<span style='color:green;'>Approved</span>";
+                        }
+                        else if ($row['status'] == 2){
+                            $row['status'] = "<span style='color:blue;'>Completed</span>";
+                        }
+                        else {
+                            $row['status'] = "<span style='color:red;'>Declined</span>";
+                        }
                     ?>
                         <tr>
                         <th scope="row"><?=$i;?></th>
-                            <td><?=$row['package_name']?></td>
                             <td><?=date_format(date_create($row['appointment_time']),"D/M/Y")?></td>
                             <td><?=$row['message']?></td>
+                            <td><?=$row['status']?></td>
                             <td><ul class="list-inline d-flex justify-content-center">
                                 <i onclick="delete_appointment(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
                             </ul></td>
@@ -387,8 +398,74 @@
     </div>
 </div>
 
+<div class="modal fade" id="myPackageAppointmentsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-secondary" id="staticBackdropLabel">Your Package Appointments</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <?php 
+                    require('db/database.php');
+                    $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
+                    $user=$res->fetch_row()[0];
 
-
+                    $res=mysqli_query($db,"SELECT id,package_id,datetime,message,status FROM `appointments` WHERE user_id='$user' and package_id is not NULL;");
+                    $rowcount=mysqli_num_rows($res);
+                    if($rowcount>0){ ?>
+                    <div class="table-responsive">
+                     <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">SrNo</th>
+                                <th scope="col">Package Name</th>
+                                <th scope="col">Appointment Time</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                    <?php
+                    $i = 0;
+                    while ($row = mysqli_fetch_assoc($res)){ $i++;
+                        if($row['status'] == 0){
+                            $row['status'] = "<span style='color:yellow;'>Pending</span>";
+                        }
+                        else if($row['status'] == 1){
+                            $row['status'] = "<span style='color:green;'>Approved</span>";
+                        }
+                        else if ($row['status'] == 2){
+                            $row['status'] = "<span style='color:blue;'>Completed</span>";
+                        }
+                        else {
+                            $row['status'] = "<span style='color:red;'>Declined</span>";
+                        }
+                        $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
+                        $package_name = $res -> fetch_row();
+                        $row['package_name'] = "Package (".$package_name[0].")";
+                    ?>
+                        <tr>
+                        <th scope="row"><?=$i;?></th>
+                        <td><?=$row['package_name']?></td>
+                            <td><?=date_format(date_create($row['datetime']),"D/M/Y")?></td>
+                            <td><?=$row['message']?></td>
+                            <td><?=$row['status']?></td>
+                            <td><ul class="list-inline d-flex justify-content-center">
+                                <i onclick="delete_appointment(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
+                            </ul></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                </table>
+                </div>
+            <?php } else {?>
+                <div class="text-center">You Don't Have Any Appointments Yet! Book Your First Appointment Now</div>
+            <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -824,10 +901,10 @@
                         <div class="col-md-7">
                             <form enctype="multipart/form-data" id="package_appoinement_form">
                                 <input type="hidden" id="package_id">
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="name" class="form-label">Appointment Time</label>
                                     <input class="form-control" id="package_appointment_time" name="package_appointment_time" required>
-                                </div>
+                                </div> -->
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Message</label>
                                     <textarea name="package_appointment_message" type="text" class="form-control" id="package_appointment_message"
@@ -927,14 +1004,14 @@
         let package_book_appoinement_btn = document.getElementById("package_book_appoinement_btn")
         package_book_appoinement_btn.addEventListener("click",async function(){
             let formData = new FormData(package_appoinement_form);
-            if(package_appointment_time.value == ""){
-                swal("Warning!","Please Select Appointment Time!","warning")
-            }
-            else if(package_appointment_message.value == ""){
+            // if(package_appointment_time.value == ""){
+            //     swal("Warning!","Please Select Appointment Time!","warning")
+            // }
+            if(package_appointment_message.value == ""){
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
-                formData.append('package_appointment_time',package_appointment_time.value)
+                // formData.append('package_appointment_time',package_appointment_time.value)
                 if(package_file.value != ""){
                     formData.append('package_file',file.value)
                 }

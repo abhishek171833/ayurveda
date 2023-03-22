@@ -1,16 +1,17 @@
 <?php
-if(isset($_POST['delete_desease_id'])){
+  if(isset($_POST['status'])){
     require('./db/db.php');
-    $res = mysqli_query($db,"DELETE FROM `deseases` WHERE `deseases`.`id` = '$_POST[delete_desease_id]';");
+    $res=mysqli_query($db,"UPDATE `appointments` SET `status` = '$_POST[status]' WHERE `appointments`.`id` = $_POST[id];");
+    
     if($res){
         $message['status'] = 1;
-        $message['message'] = "Desease Deleted Successfully";
+        $message['message'] = "Appointment Status Changed Successfully";
         echo json_encode($message);
         exit();
     }
     else{
         $message['status'] = 0;
-        $message['message'] = "Something Went Wrong";
+        $message['message'] = "Something went wrong";
         echo json_encode($message);
         exit();
     }
@@ -51,53 +52,7 @@ if(isset($_POST['delete_desease_id'])){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">Ayurveda Admin Panel</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link" href="./packages.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Packages</span></a>
-            </li>
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="deseases.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Deseases</span></a>
-            </li>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link" href="appointments.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Appointments</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
+        <?php include("./sidebar.php") ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -107,53 +62,19 @@ if(isset($_POST['delete_desease_id'])){
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Ayurveda Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/admin.png">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
+                <?php include("./navbar.php") ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800 my-4">Appointments</h1>
+                    <h1 class="h3 mb-2 text-gray-800 my-4">Normal Appointments</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">All Appointments</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">All Normal Appointments</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -163,43 +84,24 @@ if(isset($_POST['delete_desease_id'])){
                                             <th>Id</th>
                                             <th>User</th>
                                             <th>Appointment Message</th>
-                                            <th>Appointment Type</th>
                                             <th>Appointment Time</th>
                                             <th>Attachments</th>
                                             <th style="width:90px;">Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         <?php 
                                         require('db/db.php');
-                                        $res=mysqli_query($db,"SELECT * FROM `appointments`");
+                                        $res=mysqli_query($db,"SELECT * FROM `appointments` where package_id is NULL");
                                         while ($row = mysqli_fetch_assoc($res)){ 
                                         $date = date_create($row['appointment_time']);
                                         $date =  date_format($date,"Y/M/d");
 
-                                        $res=mysqli_query($db,"SELECT name FROM `Users` WHERE id='$row[user_id]';");
-                                        $user=$res->fetch_row()[0];
-                                        if($row['package_id'] != NULL){
-                                            $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
-                                            $package=$res->fetch_row()[0];
-                                            $package = "Pakcage (".$package.")";
-                                        }
-                                        else{
-                                            $package = "Normal";
-                                        }
+                                        $res2=mysqli_query($db,"SELECT name FROM `Users` WHERE id='$row[user_id]';");
+                                        $user=$res2->fetch_row()[0];
                                         if($row['file_name'] != NULL){
-                                            $res=mysqli_query($db,"SELECT id FROM `Users` WHERE id='$row[user_id]';");
-                                            $user_file = $res->fetch_row()[0];
+                                            $res3=mysqli_query($db,"SELECT id FROM `Users` WHERE id='$row[user_id]';");
+                                            $user_file = $res3->fetch_row()[0];
                                             $file = "<a href='../appointments/$user_file/$row[file_name]' download='$row[file_name]'><i style='font-size:25px;cursor:pointer;' class='fa-solid fa-download'></i></a>";
                                         }
                                         else{
@@ -210,13 +112,13 @@ if(isset($_POST['delete_desease_id'])){
                                             <td><?=$row['id']?></td>
                                             <td><?=$user?></td>
                                             <td><?=$row['message']?></td>
-                                            <td><?=$package?></td>
                                             <td><?=$date?></td>
                                             <td class="text-center"><?=$file?></td>
-                                            <td> <select class="form-control" name="appointment_action" id="appointment_action">
-                                                <option value="1">Pending</option>
-                                                <option value="2">Decline</option>
-                                                <option value="3">Approve</option>
+                                            <td> <select class="form-control normal_appointment_action" data-id="<?=$row['id']?>">
+                                                <option <?php if($row['status'] == 0 ) echo "selected";?> value="0">Pending</option>
+                                                <option <?php if($row['status'] == 1 ) echo "selected";?> value="1">Approve</option>
+                                                <option <?php if($row['status'] == 2 ) echo "selected";?> value="2">Complete</option>
+                                                <option <?php if($row['status'] == 3 ) echo "selected";?> value="3">Decline</option>
                                             </select></td>
                                         </tr>
                                     <?php } ?>
@@ -292,37 +194,30 @@ if(isset($_POST['delete_desease_id'])){
     <script src="js/demo/datatables-demo.js"></script>
 
     <script>
-        function delete_desease(element){
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then(async (willDelete) => {
-            if (willDelete) {
+        const select_box = document.querySelectorAll(".normal_appointment_action");
+        select_box.forEach(element => {
+            element.addEventListener("change",async function(e){
                 let formData = new FormData();
-                let desease_id = element.getAttribute("data-id")
-                formData.append('delete_desease_id',desease_id)
-                let fetch_res = await fetch("deseases.php",{
-                    method:"POST",
+                let status = this.value
+                console.log(status)
+                let id = this.getAttribute("data-id");
+                formData.append("status",status)
+                formData.append("id",id)
+                let response = await fetch("normalAppointments.php",{
+                    method:'post',
                     body:formData
                 })
-                let json_res = await fetch_res.json();
+                let json_res = await response.json();
                 if(json_res.status){
-                    swal("Success!",json_res.message,"success").
-                    then(()=>{
+                    swal('Success!',json_res.message,'success').then(function(){
                         location.reload();
                     })
                 }
                 else{
-                    swal("Error!",json_res.message,"error")
-                    document.getElementById("contactForm").reset();
+                    swal('Error!',json_res.message,'error')
                 }
-            }
+            })
         });
-    }
     </script>
 </body>
 

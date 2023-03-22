@@ -1,3 +1,22 @@
+<?php
+  if(isset($_POST['status'])){
+    require('./db/db.php');
+    $res=mysqli_query($db,"UPDATE `appointments` SET `status` = '$_POST[status]' WHERE `appointments`.`id` = $_POST[id];");
+    
+    if($res){
+        $message['status'] = 1;
+        $message['message'] = "Appointment Status Changed Successfully";
+        echo json_encode($message);
+        exit();
+    }
+    else{
+        $message['status'] = 0;
+        $message['message'] = "Something went wrong";
+        echo json_encode($message);
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +35,11 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -49,43 +69,57 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Manage Packages</h1>
-                    <p class="mb-4">Manage your packages from here</p>
+                    <h1 class="h3 mb-2 text-gray-800 my-4">Package Appointments</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">All Packages</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">All Package Appointments</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Package Name</th>
-                                            <th style="width:80px;">Action</th>
+                                            <th>User</th>
+                                            <th>Appointment Message</th>
+                                            <th>Appointment Time</th>
+                                            <th>Attachments</th>
+                                            <th style="width:90px;">Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
                                     <tbody>
-                                    <?php 
+                                        <?php 
                                         require('db/db.php');
-                                        $res=mysqli_query($db,"SELECT * FROM `packages`");
-                                        while ($row = mysqli_fetch_assoc($res)){ ?>
+                                        $res=mysqli_query($db,"SELECT * FROM `appointments` where package_id is not NULL");
+                                        while ($row = mysqli_fetch_assoc($res)){ 
+                                        $date = date_create($row['appointment_time']);
+                                        $date =  date_format($date,"Y/M/d");
+
+                                        $res2=mysqli_query($db,"SELECT name FROM `Users` WHERE id='$row[user_id]';");
+                                        $user=$res2->fetch_row()[0];
+                                        if($row['file_name'] != NULL){
+                                            $res3=mysqli_query($db,"SELECT id FROM `Users` WHERE id='$row[user_id]';");
+                                            $user_file = $res3->fetch_row()[0];
+                                            $file = "<a href='../appointments/$user_file/$row[file_name]' download='$row[file_name]'><i style='font-size:25px;cursor:pointer;' class='fa-solid fa-download'></i></a>";
+                                        }
+                                        else{
+                                            $file = "No Attachments";
+                                        }
+                                        ?>
                                             <tr>
                                             <td><?=$row['id']?></td>
-                                            <td><?=$row['title']?></td>
-                                            <td> <a href="edit.php?id=<?=$row['id'];?>"><i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i></a></td>
+                                            <td><?=$user?></td>
+                                            <td><?=$row['message']?></td>
+                                            <td><?=$date?></td>
+                                            <td class="text-center"><?=$file?></td>
+                                            <td> <select class="form-control package_appointment_action" data-id="<?=$row['id']?>">
+                                                <option <?php if($row['status'] == 0 ) echo "selected";?> value="0">Pending</option>
+                                                <option <?php if($row['status'] == 1 ) echo "selected";?> value="1">Approve</option>
+                                                <option <?php if($row['status'] == 2 ) echo "selected";?> value="2">Complete</option>
+                                                <option <?php if($row['status'] == 3 ) echo "selected";?> value="3">Decline</option>
+                                            </select></td>
                                         </tr>
                                     <?php } ?>
 
@@ -160,24 +194,30 @@
     <script src="js/demo/datatables-demo.js"></script>
 
     <script>
-        function delete_appointment(element){
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
-                    icon: "success",
-                    });
-                } else {
-                    swal("Your imaginary file is safe!");
+    const select_box = document.querySelectorAll(".package_appointment_action");
+        select_box.forEach(element => {
+            element.addEventListener("change",async function(e){
+                let formData = new FormData();
+                let status = this.value
+                console.log(status)
+                let id = this.getAttribute("data-id");
+                formData.append("status",status)
+                formData.append("id",id)
+                let response = await fetch("normalAppointments.php",{
+                    method:'post',
+                    body:formData
+                })
+                let json_res = await response.json();
+                if(json_res.status){
+                    swal('Success!',json_res.message,'success').then(function(){
+                        location.reload();
+                    })
                 }
-            });
-        }
+                else{
+                    swal('Error!',json_res.message,'error')
+                }
+            })
+        });
     </script>
 </body>
 

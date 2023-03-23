@@ -444,13 +444,13 @@
                     $i = 0;
                     while ($row = mysqli_fetch_assoc($res)){ $i++;
                         if($row['status'] == 0){
-                            $row['status'] = "<button class='btn btn-warning'>Pending</button>";
+                            $row['status'] = "<button style='width:105px;' class='btn btn-warning'>Pending</button>";
                         }
                         else if($row['status'] == 1){
-                            $row['status'] = "<button class='btn btn-success'>Approved</button>";
+                            $row['status'] = "<button style='width:105px;' class='btn btn-success'>Approved</button>";
                         }
                         else if($row['status'] == 3){
-                            $row['status'] = "<button class='btn btn-danger'>Declined</button>";
+                            $row['status'] = "<button style='width:105px;' class='btn btn-danger'>Declined</button>";
                         }
                         $res2=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
                         $package_name = $res2-> fetch_row();
@@ -911,7 +911,7 @@
                             </div>
                         </div>
                         <div class="col-md-7">
-                            <form enctype="multipart/form-data" id="package_appoinement_form">
+                            <form enctype="multipart/form-data" id="package_appointment_form">
                                 <input type="hidden" id="package_id">
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Message</label>
@@ -1034,15 +1034,11 @@
 
         let package_book_appoinement_btn = document.getElementById("package_book_appoinement_btn")
         package_book_appoinement_btn.addEventListener("click",async function(){
-            let formData = new FormData(package_appoinement_form);
-            // if(package_appointment_time.value == ""){
-            //     swal("Warning!","Please Select Appointment Time!","warning")
-            // }
+            let formData = new FormData(package_appointment_form);
             if(package_appointment_message.value == ""){
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
-                // formData.append('package_appointment_time',package_appointment_time.value)
                 if(package_file.value != ""){
                     formData.append('package_file',file.value)
                 }
@@ -1054,8 +1050,10 @@
                 })
                 let json_res = await fetch_res.json();
                 if(json_res.status){
-                    swal("Success!",json_res.message,"success")
                     $(`#packages_appointment_modal`).modal('hide');
+                    swal("Success!",json_res.message,"success").then(function(){
+                        location.reload();
+                    })
                 }
                 else{
                     swal("Error!",json_res.message,"error")

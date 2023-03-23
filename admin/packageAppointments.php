@@ -16,6 +16,24 @@
         exit();
     }
 }
+if(isset($_POST['appointment_id'])){
+    require('./db/db.php');
+    $res=mysqli_query($db,"UPDATE `appointments` SET `status` = '2' WHERE `appointments`.`id` = $_POST[appointment_id];");
+    $res2 = mysqli_query($db,"INSERT INTO `treatments` (`message`, `appointment_id`) VALUES ('$_POST[message]',$_POST[appointment_id]);");
+    
+    if($res && $res2){
+        $message['status'] = 1;
+        $message['message'] = "Appointment Status Changed And Treatment Added Successfully";
+        echo json_encode($message);
+        exit();
+    }
+    else{
+        $message['status'] = 0;
+        $message['message'] = "Something went wrong";
+        echo json_encode($message);
+        exit();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,6 +132,9 @@
                                             <td><?=$row['message']?></td>
                                             <td><?=$date?></td>
                                             <td class="text-center"><?=$file?></td>
+                                            <?php if($row['status'] == 2){ ?>
+                                                <td> <span class="text-success">Completed</span></td>
+                                            <?php } else { ?>
                                             <td> <select class="form-control package_appointment_action" data-id="<?=$row['id']?>">
                                                 <option <?php if($row['status'] == 0 ) echo "selected";?> value="0">Pending</option>
                                                 <option <?php if($row['status'] == 1 ) echo "selected";?> value="1">Approve</option>
@@ -121,7 +142,7 @@
                                                 <option <?php if($row['status'] == 3 ) echo "selected";?> value="3">Decline</option>
                                             </select></td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php } }?>
 
                                     </tbody>
                                 </table>
@@ -176,6 +197,27 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="treatmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Write a treatment for this appointment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="treatmentTextarea" rows="5"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="treatment_save_btn">Save</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -202,8 +244,14 @@
                 console.log(status)
                 let id = this.getAttribute("data-id");
                 formData.append("status",status)
+                if(status == "2"){
+                    $("#treatmentModal").modal();
+                    let treatment_btn = document.getElementById("treatment_save_btn");
+                    treatment_btn.setAttribute("data-id",id)
+                    return false;
+                }
                 formData.append("id",id)
-                let response = await fetch("normalAppointments.php",{
+                let response = await fetch("packageAppointments.php",{
                     method:'post',
                     body:formData
                 })
@@ -218,6 +266,32 @@
                 }
             })
         });
+
+        let treatment_btn = document.getElementById("treatment_save_btn");
+        treatment_btn.addEventListener("click",async function(){
+            let formData = new FormData();
+            let treatment_message = document.getElementById("treatmentTextarea");
+            if(treatment_message.value == ""){
+                swal('Warning!',"Please Enter Treatment Before You Save",'warning');
+            }
+            let appointment_id = this.getAttribute("data-id");
+            formData.append("appointment_id",appointment_id)
+            formData.append("message",treatment_message.value)
+            let response = await fetch("packageAppointments.php",{
+                method:'post',
+                body:formData
+            })
+            let json_res = await response.json();
+            if(json_res.status){
+                swal('Success!',json_res.message,'success').then(function(){
+                    location.reload();
+                })
+            }
+            else{
+                swal('Error!',json_res.message,'error')
+            }
+
+        })
     </script>
 </body>
 

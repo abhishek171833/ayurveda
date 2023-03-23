@@ -137,6 +137,23 @@
             exit();
         }
     }
+
+    if(isset($_POST['treatment'])){
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT message FROM `treatments` WHERE Appointment_id='$_POST[appointment_id]';");
+        if($res){
+            $message['status'] = 1;
+            $message['message'] = $treatment_message = $res->fetch_row()[0];
+            echo json_encode($message);
+            exit();
+        } else{
+            $message['status'] = 0;
+            $message['message'] = "Something Went Wrong To Display Treatment Messsage";
+            echo json_encode($message);
+            exit();
+        }
+
+    }
 ?>
 <?php 
     if(isset($_POST['lemail'])){
@@ -192,9 +209,6 @@
             $( function() {
                 $("#appointment_time").datepicker({ minDate: 0});
             } );
-            // $( function() {
-            //     $("#package_appointment_time").datepicker({ minDate: 0});
-            // } );
         </script>
     <style>
         #home_header {
@@ -354,10 +368,10 @@
                      <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">SrNo</th>
-                                <th scope="col">Appointment Time</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">SrNo</th>
+                                <th scope="col" class="text-center">Appointment Time</th>
+                                <th scope="col" class="text-center">Message</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -365,24 +379,24 @@
                     $i = 0;
                     while ($row = mysqli_fetch_assoc($res)){ $i++;
                         if($row['status'] == 0){
-                            $row['status'] = "<span style='color:yellow;'>Pending</span>";
+                            $row['status'] = "<span class='btn btn-warning'>Pending</span>";
                         }
                         else if($row['status'] == 1){
-                            $row['status'] = "<span style='color:green;'>Approved</span>";
+                            $row['status'] = "<span class='btn btn-success'>Approved</span>";
                         }
                         else if ($row['status'] == 2){
-                            $row['status'] = "<span style='color:blue;'>Completed</span>";
+                            $row['status'] = "<span class='btn btn-primary'>Completed</span>";
                         }
                         else {
-                            $row['status'] = "<span style='color:red;'>Declined</span>";
+                            $row['status'] = "<span class='btn btn-danger'>Declined</span>";
                         }
                     ?>
                         <tr>
                         <th scope="row"><?=$i;?></th>
-                            <td><?=date_format(date_create($row['appointment_time']),"D/M/Y")?></td>
-                            <td><?=$row['message']?></td>
-                            <td><?=$row['status']?></td>
-                            <td><ul class="list-inline d-flex justify-content-center">
+                            <td class="text-center"><?=date_format(date_create($row['appointment_time']),"D/M/Y")?></td>
+                            <td class="text-center"><?=$row['message']?></td>
+                            <td class="text-center"><?=$row['status']?></td>
+                            <td class="text-center"><ul class="list-inline d-flex justify-content-center">
                                 <i onclick="delete_appointment(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
                             </ul></td>
                             </tr>
@@ -418,11 +432,11 @@
                      <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">SrNo</th>
-                                <th scope="col">Package Name</th>
-                                <th scope="col">Appointment Time</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">SrNo</th>
+                                <th scope="col" class="text-center">Package Name</th>
+                                <th scope="col" class="text-center">Appointment Time</th>
+                                <th scope="col" class="text-center">Message</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -430,30 +444,33 @@
                     $i = 0;
                     while ($row = mysqli_fetch_assoc($res)){ $i++;
                         if($row['status'] == 0){
-                            $row['status'] = "<span style='color:yellow;'>Pending</span>";
+                            $row['status'] = "<button class='btn btn-warning'>Pending</button>";
                         }
                         else if($row['status'] == 1){
-                            $row['status'] = "<span style='color:green;'>Approved</span>";
+                            $row['status'] = "<button class='btn btn-success'>Approved</button>";
                         }
-                        else if ($row['status'] == 2){
-                            $row['status'] = "<span style='color:blue;'>Completed</span>";
+                        else if($row['status'] == 3){
+                            $row['status'] = "<button class='btn btn-danger'>Declined</button>";
                         }
-                        else {
-                            $row['status'] = "<span style='color:red;'>Declined</span>";
-                        }
-                        $res=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
-                        $package_name = $res -> fetch_row();
+                        $res2=mysqli_query($db,"SELECT title FROM `packages` WHERE id='$row[package_id]';");
+                        $package_name = $res2-> fetch_row();
                         $row['package_name'] = "Package (".$package_name[0].")";
                     ?>
                         <tr>
                         <th scope="row"><?=$i;?></th>
                         <td><?=$row['package_name']?></td>
-                            <td><?=date_format(date_create($row['datetime']),"D/M/Y")?></td>
-                            <td><?=$row['message']?></td>
-                            <td><?=$row['status']?></td>
+                            <td class="text-center"><?=date_format(date_create($row['datetime']),"D/M/Y")?></td>
+                            <td class="text-center"><?=$row['message']?></td>
+                            
+                            <?php if($row['status'] == 2) {?>
+                                <td class="text-center"><button class="btn btn-primary">Completed</button></td>
+                                <td class="text-center"><a class="appointment_message" data-toggle="tooltip" data-placement="top" title="View Treatment" data-id="<?=$row['id']?>" ><i style="cursor:pointer;font-size:25px;color:black;" class="fa-solid fa-eye"></i></a></td>
+                            <?php } else{?>
+                            <td class="text-center"><?=$row['status']?></td>
                             <td><ul class="list-inline d-flex justify-content-center">
-                                <i onclick="delete_appointment(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i>
+                                <a data-toggle="tooltip" data-placement="top" title="Delete Appointment"><i onclick="delete_appointment(this)" data-id="<?=$row['id'];?>" style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-trash delete_button"></i></a>
                             </ul></td>
+                            <?php } ?>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -466,8 +483,6 @@
         </div>
     </div>
 </div>
-
-
 
 
     <!--Book Appointment Modal -->
@@ -721,9 +736,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <!-- <button class="btn btn-success btn-xl text-uppercase book-packages" type="button">  
-                                    <a class="text-light text-decoration-none book_appointment_packages">BOOK APPOINTMENT</a>
-                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -901,10 +913,6 @@
                         <div class="col-md-7">
                             <form enctype="multipart/form-data" id="package_appoinement_form">
                                 <input type="hidden" id="package_id">
-                                <!-- <div class="mb-3">
-                                    <label for="name" class="form-label">Appointment Time</label>
-                                    <input class="form-control" id="package_appointment_time" name="package_appointment_time" required>
-                                </div> -->
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Message</label>
                                     <textarea name="package_appointment_message" type="text" class="form-control" id="package_appointment_message"
@@ -926,9 +934,32 @@
         </div>
     </div>
     <button id="appointment_modal_toggler" data-bs-toggle="modal" data-bs-target="#packages_appointment_modal" class="d-none" type="button"></button>
+
+
+    <div class="modal fade" id="treatmentMessageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Your Treatments</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="message_modal"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="treatment_modal_toggler" data-bs-toggle="modal" data-bs-target="#treatmentMessageModal" class="d-none" type="button"></button>
+
 <?php include './include/footer.php';?>
 <script src="js/scripts.js"></script>
 <script>
+    $(document).ready(function() {
+        $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+    });
     AOS.init();
      document.addEventListener("DOMContentLoaded", () => {
          let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
@@ -1145,6 +1176,23 @@
             }
         });
     }
+
+    let view_treatment = document.querySelectorAll(".appointment_message")
+    view_treatment.forEach(element => {
+            element.addEventListener("click",async function(){
+                let formData = new FormData();
+                let id = this.getAttribute('data-id');
+                formData.append('appointment_id',id)
+                formData.append('treatment',id)
+                let response = await fetch("index.php",{
+                    method:'post',
+                    body:formData
+                })
+                let json_res = await response.json();
+                document.getElementById("message_modal").innerText = json_res.message;
+                treatment_modal_toggler.click();
+            })
+        });
 
 </script>
 </body>

@@ -37,7 +37,7 @@
         <a class="nav-link" href="deseases.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Deseases</span></a>
-        </li>
+    </li>
     <hr class="sidebar-divider">
 
 
@@ -58,6 +58,11 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+    <li class="nav-item">
+        <a class="nav-link" href="contactus-feedback.php">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Contact Us Feedback</span></a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

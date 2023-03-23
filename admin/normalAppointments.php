@@ -199,7 +199,6 @@
             element.addEventListener("change",async function(e){
                 let formData = new FormData();
                 let status = this.value
-                console.log(status)
                 let id = this.getAttribute("data-id");
                 formData.append("status",status)
                 formData.append("id",id)

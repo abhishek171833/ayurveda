@@ -85,7 +85,7 @@
                                             <tr>
                                             <td><?=$row['id']?></td>
                                             <td><?=$row['title']?></td>
-                                            <td> <a href="edit.php?id=<?=$row['id'];?>"><i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i></a></td>
+                                            <td> <a href="package_edit.php?id=<?=$row['id'];?>"><i style="cursor:pointer;font-size:25px;" class="mx-2 fa-solid fa-pen-to-square"></i></a></td>
                                         </tr>
                                     <?php } ?>
 

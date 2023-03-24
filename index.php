@@ -619,7 +619,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid w-100" src="<?=$row['image_path']?>" alt="..." />
+                            <img class="img-fluid w-100" src="./admin/<?=$row['image_path']?>" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading"><?= $row['title'] ?></div>
@@ -639,7 +639,7 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="card">
-                                            <img class="card-img-top" src="<?=$row['image_path']?>" alt="Card image cap">
+                                            <img class="card-img-top" src="./admin/<?=$row['image_path']?>" alt="Card image cap">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?=$row['title']?></h5>
                                                 <p class="card-text"><?=$row['desc']?></p>
@@ -694,7 +694,7 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid w-100" src="<?=$row['image_path']?>" alt="..." />
+                            <img class="img-fluid w-100" src="./admin/<?=$row['image_path']?>" alt="..." />
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading"><?= $row['title'] ?></div>
@@ -714,7 +714,7 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="card">
-                                            <img class="card-img-top" src="<?=$row['image_path']?>" alt="Card image cap">
+                                            <img class="card-img-top" src="./admin/<?=$row['image_path']?>" alt="Card image cap">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?=$row['title']?></h5>
                                                 <p class="card-text"><?=$row['description']?></p>

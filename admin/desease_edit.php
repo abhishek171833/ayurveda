@@ -1,12 +1,34 @@
 <?php 
 if(isset($_POST['desease_name'])){
     require('db/db.php');
+    if(isset($_POST["image_file_input"])){
+        $file_name = $_FILES['image_file_input']['name'];
+        $file_size =$_FILES['image_file_input']['size'];
+        $file_tmp =$_FILES['image_file_input']['tmp_name'];
+        $file_type=$_FILES['image_file_input']['type'];
+        
+        $path = "./assets/img/deseases";
+        if(!is_dir($path)){
+            mkdir($path, 0777, true);
+        }
+        move_uploaded_file($file_tmp,"assets/img/deseases/".$file_name);
+        $file_path_name = "assets/img/deseases/".$file_name;
+
+        if(!empty($_POST['desease_id'])){
+            $res = mysqli_query($db,"UPDATE `deseases` SET `image_path` = '$file_path_name'  WHERE `deseases`.`id` = $_POST[desease_id];");
+        }
+    }
     if(!empty($_POST['desease_id'])){
         $res = mysqli_query($db,"UPDATE `deseases` SET `title` = '$_POST[desease_name]', `description` = '$_POST[desease_description]'  WHERE `deseases`.`id` = $_POST[desease_id];");
         $message['message'] = "Desease Edited Successfully";
     }
     else{
-        $res = mysqli_query($db,"INSERT INTO `deseases` (`title`, `description`, `image_path`) VALUES ('$_POST[desease_name]', '$_POST[desease_description]','image_path')");
+        if(isset($_POST["image_file_input"])){
+            $res = mysqli_query($db,"INSERT INTO `deseases` (`title`, `description`,`image_path`) VALUES ('$_POST[desease_name]', '$_POST[desease_description]','$file_path_name')");
+        }
+        else{
+            $res = mysqli_query($db,"INSERT INTO `deseases` (`title`, `description`,`image_path`) VALUES ('$_POST[desease_name]', '$_POST[desease_description]','assets/img/home.jpg')");
+        }
         $message['message'] = "Desease Added Successfully";
     }
     if($res){
@@ -81,7 +103,7 @@ if(isset($_POST['desease_name'])){
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="container">
-                                <form id="package_edit_form">
+                                <form id="package_edit_form" enctype="multipart/form-data">
                                     <?php
                                     if(isset($_GET['id'])){
                                         require('db/db.php');
@@ -89,17 +111,25 @@ if(isset($_POST['desease_name'])){
                                         $desease=$res->fetch_row();
                                     }
                                     ?>
-                                    <div class="mb-3">
-                                        <label for="desease_name" class="form-label">Desease Name</label>
-                                        <input type="text" class="form-control" id="desease_name" value="<?php if(isset($desease)){echo $desease[1];}else{echo "";}?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="desease_description" class="form-label">Desease Description</label>
-                                        <textarea class="form-control" name="package_description" id="desease_description" cols="30" rows="5"><?php if(isset($desease)){echo $desease[2];}else{echo "";}?></textarea>
-                                    </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <button id="edit_desease_button" data-id="<?php if(isset($desease)){echo $desease[0];}else{echo "";}?>" type="submit" class="btn btn-primary"><?php if(isset($_GET["id"])){echo "Update Desease";}else{echo "Add Desease";}?></button>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="desease_name" class="form-label">Desease Name</label>
+                                            <input type="text" class="form-control" id="desease_name" value="<?php if(isset($desease)){echo $desease[1];}else{echo "";}?>">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="formFile" class="form-label">Desease Image File</label>
+                                            <input class="form-control" type="file" id="image_file_input" style="height:unset;"  accept="image/*" name="image_file_input">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="desease_description" class="form-label">Desease Description</label>
+                                            <textarea class="form-control" name="package_description" id="desease_description" cols="30" rows="4"><?php if(isset($desease)){echo $desease[2];}else{echo "";}?></textarea>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <img id="desease_img" src="<?php if(isset($desease)){echo $desease[3];}else{echo "../assets/img/home.jpg";}?>" alt="abhishek" style="width:250px;">
+                                        </div>
+                                        <div class="text-center col-md-12 mt-3">
+                                            <button id="edit_desease_button" data-id="<?php if(isset($desease)){echo $desease[0];}else{echo "";}?>" type="submit" class="btn btn-primary"><?php if(isset($_GET["id"])){echo "Update Desease";}else{echo "Add Desease";}?></button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -168,9 +198,21 @@ if(isset($_POST['desease_name'])){
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
      <script>
+        $('document').ready(function () {
+            $("#image_file_input").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#desease_img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+
         document.getElementById("edit_desease_button").addEventListener("click",async function(e){
             e.preventDefault();
-            let formData = new FormData();
+            let formData = new FormData(package_edit_form);
             let id = this.getAttribute("data-id");
             if(desease_name.value == ""){
                 swal("Warning!","Please Enter Desease Name!","warning")
@@ -184,6 +226,10 @@ if(isset($_POST['desease_name'])){
                 formData.append('desease_id',id)
                 formData.append('desease_name',desease_name.value)
                 formData.append('desease_description',desease_description.value)
+
+                if(image_file_input.value != ""){
+                    formData.append('image_file_input',image_file_input.value)
+                }
                 let fetch_res = await fetch("desease_edit.php",{
                     method:"POST",
                     body:formData

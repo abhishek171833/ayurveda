@@ -1,6 +1,21 @@
 <?php 
 if(isset($_POST['package_name'])){
     require('db/db.php');
+    if(isset($_POST["image_file_input"])){
+        $file_name = $_FILES['image_file_input']['name'];
+        $file_size =$_FILES['image_file_input']['size'];
+        $file_tmp =$_FILES['image_file_input']['tmp_name'];
+        $file_type=$_FILES['image_file_input']['type'];
+        
+        $path = "./assets/img/packages";
+        if(!is_dir($path)){
+            mkdir($path, 0777, true);
+        }
+        move_uploaded_file($file_tmp,"assets/img/packages/".$file_name);
+        $file_path_name = "assets/img/packages/".$file_name;
+
+        $res = mysqli_query($db,"UPDATE `packages` SET `image_path` = '$file_path_name'  WHERE `packages`.`id` = $_POST[package_id];");
+    }
     if(!empty($_POST['package_id'])){
         $res = mysqli_query($db,"UPDATE `packages` SET `title` = '$_POST[package_name]', `desc` = '$_POST[package_description] ', `advantages` = '$_POST[package_advantages]' WHERE `packages`.`id` = $_POST[package_id];");
     }
@@ -77,7 +92,7 @@ if(isset($_POST['package_name'])){
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="container">
-                                <form id="package_edit_form">
+                                <form id="package_edit_form" enctype="multipart/form-data">
                                     <?php 
                                     if(isset($_GET['id'])){
                                         require('db/db.php');
@@ -85,20 +100,29 @@ if(isset($_POST['package_name'])){
                                         $package=$res->fetch_row();
                                     }
                                     ?>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Package Name</label>
-                                        <input type="text" class="form-control" id="package_name" value="<?php if(isset($package)){echo $package[1];}else{echo "";}?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Package Description</label>
-                                        <textarea class="form-control" name="package_description" id="package_description" cols="30" rows="5"><?php if(isset($package)){echo $package[2];}else{echo "";}?></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Package Advantages (add multiple advantages with comma seperated)</label>
-                                        <textarea class="form-control" name="package_advantages" id="package_advantages" cols="30" rows="5"><?php if(isset($package)){echo $package[3];}else{echo "";}?></textarea>
-                                    </div>
-                                    <div class="text-center">
-                                        <button id="edit_package_button" data-id="<?php if(isset($package)){echo $package[0];}else{echo "";}?>" type="submit" class="btn btn-primary">Update Package</button>
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label for="exampleInputEmail1" class="form-label">Package Name</label>
+                                            <input type="text" class="form-control" id="package_name" value="<?php if(isset($package)){echo $package[1];}else{echo "";}?>">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="formFile" class="form-label">Desease Image File</label>
+                                            <input class="form-control" type="file" id="image_file_input" style="height:unset;"  accept="image/*" name="image_file_input">
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="exampleInputPassword1" class="form-label">Package Description</label>
+                                            <textarea class="form-control" name="package_description" id="package_description" cols="30" rows="5"><?php if(isset($package)){echo $package[2];}else{echo "";}?></textarea>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <img id="package_img" src="<?php if(isset($package)){echo $package[4];}else{echo "../assets/img/home.jpg";}?>" alt="abhishek" style="width:250px;">
+                                        </div>
+                                        <div class="mb-3 col-md-12">
+                                            <label for="exampleInputPassword1" class="form-label">Package Advantages (add multiple advantages with comma seperated)</label>
+                                            <textarea class="form-control" name="package_advantages" id="package_advantages" cols="30" rows="5"><?php if(isset($package)){echo $package[3];}else{echo "";}?></textarea>
+                                        </div>
+                                        <div class="text-center col-md-12">
+                                            <button id="edit_package_button" data-id="<?php if(isset($package)){echo $package[0];}else{echo "";}?>" type="submit" class="btn btn-primary">Update Package</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -169,9 +193,21 @@ if(isset($_POST['package_name'])){
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
+         $('document').ready(function () {
+            $("#image_file_input").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#package_img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+
         document.getElementById("edit_package_button").addEventListener("click",async function(e){
             e.preventDefault();
-            let formData = new FormData();
+            let formData = new FormData(package_edit_form);
             let id = this.getAttribute("data-id");
             if(package_name.value == ""){
                 swal("Warning!","Please Enter Package Name!","warning")
@@ -186,11 +222,14 @@ if(isset($_POST['package_name'])){
                 contact_email.focus();
             }
             else{
+                if(image_file_input.value != ""){
+                    formData.append('image_file_input',image_file_input.value)
+                }
                 formData.append('package_id',id)
                 formData.append('package_name',package_name.value)
                 formData.append('package_description',package_description.value)
                 formData.append('package_advantages',package_advantages.value)
-                let fetch_res = await fetch("edit.php",{
+                let fetch_res = await fetch("package_edit.php",{
                     method:"POST",
                     body:formData
                 })

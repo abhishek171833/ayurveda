@@ -34,7 +34,7 @@
                     mkdir($path, 0777, true);
                 }
                 move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name);
-                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`file_name`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]','$file_name');");
+                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`appointment_date`,`file_name`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]','$_POST[appointment_date]','$file_name');");
 
                 $message['status'] = 1;
                 $message['message'] = "Appointment Booked Successfully";
@@ -43,7 +43,7 @@
             }
         }
         else{
-            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]');");
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`appointment_time`,`appointment_date`) VALUES('$user_id','$_POST[appointment_message]','$_POST[appointment_time]','$_POST[appointment_date]');");
 
             $message['status'] = 1;
             $message['message'] = "Appointment Booked Successfully";
@@ -205,11 +205,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-        <script>
-            $( function() {
-                $("#appointment_time").datepicker({ minDate: 0});
-            } );
-        </script>
     <style>
         #home_header {
             width: 100%;
@@ -361,7 +356,7 @@
                     $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
                     $user=$res->fetch_row()[0];
 
-                    $res=mysqli_query($db,"SELECT id,package_id,appointment_time,status,message FROM `appointments` WHERE user_id='$user' and package_id is NULL;");
+                    $res=mysqli_query($db,"SELECT id,package_id,appointment_time,appointment_date,status,message FROM `appointments` WHERE user_id='$user' and package_id is NULL;");
                     $rowcount=mysqli_num_rows($res);
                     if($rowcount>0){ ?>
                     <div class="table-responsive">
@@ -370,6 +365,7 @@
                             <tr>
                                 <th scope="col" class="text-center">SrNo</th>
                                 <th scope="col" class="text-center">Appointment Time</th>
+                                <th scope="col" class="text-center">Appointment Date</th>
                                 <th scope="col" class="text-center">Message</th>
                                 <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Action</th>
@@ -393,7 +389,8 @@
                     ?>
                         <tr>
                         <th scope="row"><?=$i;?></th>
-                            <td class="text-center"><?=date_format(date_create($row['appointment_time']),"D/M/Y")?></td>
+                            <td class="text-center"><?=$row['appointment_time']?></td>
+                            <td class="text-center"><?=date_format(date_create($row['appointment_date']),"d/M/Y")?></td>
                             <td class="text-center"><?=$row['message']?></td>
                             <td class="text-center"><?=$row['status']?></td>
                             <td class="text-center"><ul class="list-inline d-flex justify-content-center">
@@ -496,8 +493,12 @@
                 <div class="modal-body">
                     <form enctype="multipart/form-data" id="normal_appoinement_form">
                         <div class="mb-3">
+                            <label for="name" class="form-label">Appointment Date</label>
+                            <input class="form-control" id="appointment_date" name="appointment_date" type="date" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="name" class="form-label">Appointment Time</label>
-                            <input class="form-control" id="appointment_time" name="appointment_time" required>
+                            <input class="form-control" id="appointment_time" name="appointment_time" type="time" required>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Message</label>
@@ -1002,13 +1003,19 @@
         let book_appoinement_btn = document.getElementById("book_appoinement_btn")
         book_appoinement_btn.addEventListener("click",async function(){
             let formData = new FormData(normal_appoinement_form);
-            if(appointment_time.value == ""){
+            let appointment_date = document.getElementById("appointment_date").value;
+
+            if(appointment_date == "" || appointment_date.length == 0){
+                swal("Warning!","Please Select Appointment Date!","warning");
+            }
+            else if(appointment_time.value == ""){
                 swal("Warning!","Please Select Appointment Time!","warning")
             }
             else if(appointment_message.value == ""){
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
+                formData.append('appointment_date',appointment_date)
                 formData.append('appointment_time',appointment_time.value)
                 if(file.value != ""){
                     formData.append('file',file.value)
@@ -1107,7 +1114,6 @@
         })
 
         let login_button = document.getElementById("login_btn")
-        console.log(login_button);
         login_button.addEventListener("click",async function(e){
             // e.preventDefault();
 

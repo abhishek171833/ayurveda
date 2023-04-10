@@ -492,13 +492,19 @@
                 </div>
                 <div class="modal-body">
                     <form enctype="multipart/form-data" id="normal_appoinement_form">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Appointment Date</label>
-                            <input class="form-control" id="appointment_date" name="appointment_date" type="date" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Appointment Time</label>
-                            <input class="form-control" id="appointment_time" name="appointment_time" type="time" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Appointment Date</label>
+                                    <input class="form-control" id="appointment_date" name="appointment_date" type="date" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Appointment Time</label>
+                                    <input class="form-control" id="appointment_time" name="appointment_time" type="time" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Message</label>

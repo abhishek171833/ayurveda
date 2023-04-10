@@ -985,6 +985,15 @@
     });
     AOS.init();
      document.addEventListener("DOMContentLoaded", () => {
+
+        let contact_phone = document.getElementById("contact_phone");
+        contact_phone.addEventListener("input",function(e){
+            if(contact_phone.value.length >10){
+                e.preventDefault();
+                swal("Warning!", "Please Enter Within 10 Digit Number!", "warning")
+            }
+        })
+
          let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
         let package_button = document.querySelectorAll(".book-packages")
         package_button.forEach(element => {

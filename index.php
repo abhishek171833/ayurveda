@@ -661,7 +661,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button data-id="<?=$row['id']?>" data-image="<?=$row['image_path']?>" data-title="<?=$row['title']?>" data-desc="<?=$row['desc']?>" class="btn btn-success btn-xl text-uppercase book-packages" type="button">  
+                                <button data-id="<?=$row['id']?>" data-image="./admin/<?=$row['image_path']?>" data-title="<?=$row['title']?>" data-desc="<?=$row['desc']?>" class="btn btn-success btn-xl text-uppercase book-packages" type="button">  
                                     <a class="text-light text-decoration-none book_appointment_packages">BOOK APPOINTMENT</a>
                                 </button>
                             </div>

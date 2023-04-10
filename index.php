@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_POST['appointment_time'])){
+    if(isset($_POST['normal_appointment'])){
         require('./db/database.php');
         $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
         $user_id = $res->fetch_row()[0];
@@ -86,7 +86,7 @@
                 }
                 move_uploaded_file($file_tmp,"appointments/$user_id/".$file_name);
 
-                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`package_id`,`file_name`) VALUES('$user_id','$_POST[package_appointment_message]',$_POST[package_id],'$file_name');");
+                mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`package_id`,`file_name`,`appointment_time`,`appointment_date`) VALUES('$user_id','$_POST[package_appointment_message]',$_POST[package_id],'$file_name','$_POST[appointment_time]','$_POST[appointment_date]');");
 
                 $message['status'] = 1;
                 $message['message'] = "Appointment Booked Successfully";
@@ -95,7 +95,7 @@
             }
         }
         else{
-            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`package_id`) VALUES('$user_id','$_POST[package_appointment_message]',$_POST[package_id]);");
+            mysqli_query($db,"INSERT INTO `appointments` (`user_id`, `message`,`package_id`,`appointment_time`,`appointment_date`) VALUES('$user_id','$_POST[package_appointment_message]','$_POST[package_id]','$_POST[appointment_time]','$_POST[appointment_date]');");
 
             $message['status'] = 1;
             $message['message'] = "Appointment Booked Successfully";
@@ -422,7 +422,7 @@
                     $res=mysqli_query($db,"SELECT id FROM `Users` WHERE Email='$_SESSION[login_user]';");
                     $user=$res->fetch_row()[0];
 
-                    $res=mysqli_query($db,"SELECT id,package_id,datetime,message,status FROM `appointments` WHERE user_id='$user' and package_id is not NULL;");
+                    $res=mysqli_query($db,"SELECT id,package_id,appointment_time,appointment_date,message,status FROM `appointments` WHERE user_id='$user' and package_id is not NULL;");
                     $rowcount=mysqli_num_rows($res);
                     if($rowcount>0){ ?>
                     <div class="table-responsive">
@@ -432,6 +432,7 @@
                                 <th scope="col" class="text-center">SrNo</th>
                                 <th scope="col" class="text-center">Package Name</th>
                                 <th scope="col" class="text-center">Appointment Time</th>
+                                <th scope="col" class="text-center">Appointment Date</th>
                                 <th scope="col" class="text-center">Message</th>
                                 <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Action</th>
@@ -456,7 +457,8 @@
                         <tr>
                         <th scope="row"><?=$i;?></th>
                         <td><?=$row['package_name']?></td>
-                            <td class="text-center"><?=date_format(date_create($row['datetime']),"D/M/Y")?></td>
+                            <td class="text-center"><?=$row['appointment_time']?></td>
+                            <td class="text-center"><?=date_format(date_create($row['appointment_date']),"d/M/Y")?></td>
                             <td class="text-center"><?=$row['message']?></td>
                             
                             <?php if($row['status'] == 2) {?>
@@ -878,7 +880,7 @@
                         <input class="form-control contact-input" id="contact_name" type="text" placeholder="Your Name *" name="contact_name"/>
                     </div>
                     <div class="form-group mb-md-0 col-md-6">
-                        <input class="form-control contact-input" id="contact_phone" type="tel" placeholder="Your Phone *" name="contact_phone"/>
+                        <input class="form-control contact-input" id="contact_phone" type="number" placeholder="Your Phone *" name="contact_phone"/>
                     </div>
                     <div class="form-group">
                         <input class="form-control contact-input" id="contact_email" type="email" placeholder="Your Email *" name="contact_email"/>
@@ -920,6 +922,20 @@
                         <div class="col-md-7">
                             <form enctype="multipart/form-data" id="package_appointment_form">
                                 <input type="hidden" id="package_id">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Appointment Date</label>
+                                            <input class="form-control" id="package_appointment_date" name="appointment_date" type="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Appointment Time</label>
+                                            <input class="form-control" id="package_appointment_time" name="appointment_time" type="time" required>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Message</label>
                                     <textarea name="package_appointment_message" type="text" class="form-control" id="package_appointment_message"
@@ -1021,6 +1037,7 @@
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
+                formData.append('normal_appointment',"normal_appointment_value")
                 formData.append('appointment_date',appointment_date)
                 formData.append('appointment_time',appointment_time.value)
                 if(file.value != ""){
@@ -1048,13 +1065,23 @@
         let package_book_appoinement_btn = document.getElementById("package_book_appoinement_btn")
         package_book_appoinement_btn.addEventListener("click",async function(){
             let formData = new FormData(package_appointment_form);
-            if(package_appointment_message.value == ""){
+            let package_appointment_date = document.getElementById("package_appointment_date").value;
+
+            if(package_appointment_date == "" || package_appointment_date.length == 0){
+                swal("Warning!","Please Select Appointment Date!","warning");
+            }
+            else if(package_appointment_time.value == ""){
+                swal("Warning!","Please Select Appointment Time!","warning");
+            }
+            else if(package_appointment_message.value == ""){
                 swal("Warning!","Please Select Message!","warning")
             }
             else{
                 if(package_file.value != ""){
                     formData.append('package_file',file.value)
                 }
+                formData.append('package_appointment_date',package_appointment_date)
+                formData.append('package_appointment_time',package_appointment_time.value)
                 formData.append('package_appointment_message',package_appointment_message.value)
                 formData.append('package_id',package_id.value)
                 let fetch_res = await fetch("index.php",{

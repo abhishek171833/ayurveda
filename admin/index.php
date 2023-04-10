@@ -59,8 +59,13 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_packages FROM `packages`");
+                                                $package_all_count=$res->fetch_row()[0];
+                                            ?>
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><h4>Packages</h4></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$package_all_count?></div>
                                         </div>
                                         <div class="col-auto">
                                             <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -76,8 +81,13 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_deseases FROM `deseases`");
+                                                $deseases_all_count=$res->fetch_row()[0];
+                                            ?>
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><h4>Deseases</h4></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">21</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$deseases_all_count?></div>
                                         </div>
                                         <div class="col-auto">
                                             <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
@@ -93,18 +103,16 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_users FROM `users`");
+                                                $users_all_count=$res->fetch_row()[0];
+                                            ?>
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><h4>Users</h4>
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?=$users_all_count?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,8 +130,53 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><h4>Appointments</h4></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_normal_appointments FROM `appointments` where package_id is NULL");
+                                                $normal_appointments_all_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><h4>Normal Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$normal_appointments_all_count?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_package_appointments FROM `appointments` where package_id is not NULL");
+                                                $package_appointments_all_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"><h4>Package Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$package_appointments_all_count?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_appointments FROM `appointments`");
+                                                $appointments_all_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><h4>Total Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$appointments_all_count?></div>
                                         </div>
                                         <div class="col-auto">
                                             <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->

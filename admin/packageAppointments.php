@@ -103,6 +103,7 @@ if(isset($_POST['appointment_id'])){
                                             <th>User</th>
                                             <th>Appointment Message</th>
                                             <th>Appointment Time</th>
+                                            <th>Appointment Date</th>
                                             <th>Attachments</th>
                                             <th style="width:90px;">Action</th>
                                         </tr>
@@ -112,8 +113,8 @@ if(isset($_POST['appointment_id'])){
                                         require('db/db.php');
                                         $res=mysqli_query($db,"SELECT * FROM `appointments` where package_id is not NULL");
                                         while ($row = mysqli_fetch_assoc($res)){ 
-                                        $date = date_create($row['appointment_time']);
-                                        $date =  date_format($date,"Y/M/d");
+                                        $date = date_create($row['appointment_date']);
+                                        $date =  date_format($date,"d/M/Y");
 
                                         $res2=mysqli_query($db,"SELECT name FROM `Users` WHERE id='$row[user_id]';");
                                         $user=$res2->fetch_row()[0];
@@ -130,6 +131,7 @@ if(isset($_POST['appointment_id'])){
                                             <td><?=$row['id']?></td>
                                             <td><?=$user?></td>
                                             <td><?=$row['message']?></td>
+                                            <td><?=$row['appointment_time']?></td>
                                             <td><?=$date?></td>
                                             <td class="text-center"><?=$file?></td>
                                             <?php if($row['status'] == 2){ ?>

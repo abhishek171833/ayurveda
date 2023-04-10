@@ -96,7 +96,7 @@
                                         $res=mysqli_query($db,"SELECT * FROM `appointments` where package_id is NULL");
                                         while ($row = mysqli_fetch_assoc($res)){ 
                                         $date = date_create($row['appointment_time']);
-                                        $date =  date_format($date,"Y/M/d");
+                                        $date =  date_format($date,"d/M/Y");
 
                                         $res2=mysqli_query($db,"SELECT name FROM `Users` WHERE id='$row[user_id]';");
                                         $user=$res2->fetch_row()[0];

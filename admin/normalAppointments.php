@@ -85,6 +85,7 @@
                                             <th>User</th>
                                             <th>Appointment Message</th>
                                             <th>Appointment Time</th>
+                                            <th>Appointment Date</th>
                                             <th>Attachments</th>
                                             <th style="width:90px;">Action</th>
                                         </tr>
@@ -112,6 +113,7 @@
                                             <td><?=$row['id']?></td>
                                             <td><?=$user?></td>
                                             <td><?=$row['message']?></td>
+                                            <td><?=$row['appointment_time']?></td>
                                             <td><?=$date?></td>
                                             <td class="text-center"><?=$file?></td>
                                             <td> <select class="form-control normal_appointment_action" data-id="<?=$row['id']?>">

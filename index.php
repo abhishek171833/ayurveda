@@ -156,6 +156,7 @@
     }
 ?>
 <?php 
+    // Login functionality 
     if(isset($_POST['lemail'])){
         require('./db/database.php');
         $res=mysqli_query($db,"SELECT * FROM `users` WHERE email='$_POST[lemail]' && password='$_POST[lpassword]';");
@@ -170,6 +171,46 @@
         else{
             $message['status'] = 0;
             $message['message'] = "Email Or Password Does Not Match!!";
+            echo json_encode($message);
+            exit();
+        }
+    }
+
+    // Sign up functionality 
+    if(isset($_POST['susername'])){
+        require('./db/database.php');
+        $res=mysqli_query($db,"SELECT Email FROM `Users` WHERE Email='$_POST[sEmail]';");
+        $email=mysqli_num_rows($res);
+        
+        $res=mysqli_query($db,"SELECT phone FROM `Users` WHERE phone='$_POST[sphone]';");
+        $phone=mysqli_num_rows($res);
+
+        $res=mysqli_query($db,"SELECT name FROM `Users` WHERE phone='$_POST[susername]';");
+        $username=mysqli_num_rows($res);
+
+        if($email){
+            $message['status'] = 0;
+            $message['message'] = "User With This Email Already Exists!";
+            echo json_encode($message);
+            exit();
+        }
+        else if($phone){
+            $message['status'] = 0;
+            $message['message'] = "User With This Phone Number Already Exists!";
+            echo json_encode($message);
+            exit();
+        }
+        else if($username){
+            $message['status'] = 0;
+            $message['message'] = "User With This Username Already Exists!";
+            echo json_encode($message);
+            exit();
+        }
+        else{
+            mysqli_query($db,"INSERT INTO `users` (`name`, `phone`, `email`, `password`) VALUES('$_POST[susername]','$_POST[sphone]','$_POST[sEmail]','$_POST[spassword]');");
+
+            $message['status'] = 1;
+            $message['message'] = "Sign Up Successfully Now You Can Log In!";
             echo json_encode($message);
             exit();
         }
@@ -237,54 +278,15 @@
         #submit_contact_button,.g-recaptcha{
             box-shadow: 5px 11px 10px 5px black, 6px 7px 7px 5px #7d7a69;
         }
+        .password-eye{
+            float: right;
+            margin-right: 8px;
+            margin-top: -25px;
+            position: relative;
+            /* z-index: 2; */
+        }
     </style>
 </head>
-<?php
-    if(isset($_POST['susername'])){
-        require('./db/database.php');
-        $res=mysqli_query($db,"SELECT Email FROM `Users` WHERE Email='$_POST[sEmail]';");
-        $email=mysqli_num_rows($res);
-        
-        $res=mysqli_query($db,"SELECT phone FROM `Users` WHERE phone='$_POST[sphone]';");
-        $phone=mysqli_num_rows($res);
-
-        if($_POST['spassword'] != $_POST['scpassword']):?>
-            <script>
-                setTimeout(() => {
-                    swal("Warning!", "Password And Confirm Password Does Not Match!", "warning");
-                }, 1000);
-            </script>
-
-        <?php 
-
-        elseif ($email): ?>
-            <script>
-                setTimeout(() => {
-                    swal("Warning!", "User With This Email Already Exists!", "warning");
-                }, 1000);
-            </script>
-        <?php 
-
-
-        elseif($phone): ?>
-            <script>
-                setTimeout(() => {
-                    swal("Warning!", "User With This Phone Number Already Exists!", "warning");
-                }, 1000);
-            </script>
-
-        <?php else:
-                // $hash = password_hash($_POST['spassword'],PASSWORD_DEFAULT);
-                mysqli_query($db,"INSERT INTO `users` (`name`, `phone`, `email`, `password`) VALUES('$_POST[susername]','$_POST[sphone]','$_POST[sEmail]','$_POST[susername]');");?>
-                <script>
-                    setTimeout(() => {
-                        swal("Success!", "Sign Up Successfully Now You Can Log In!", "success");
-                    }, 1000);
-                </script>
-            <?php
-            endif;
-        }
-    ?>
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container-fluid">
@@ -535,9 +537,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="./index.php" method="post">
+                    <form id="sign_up_form">
                         <div class="mb-3">
-                            <label for="susername" class="form-label  text-secondary">Username</label>
+                            <label for="susername" class="form-label text-secondary">Username</label>
                             <input name="susername" type="text" class="form-control" id="susername"
                                 aria-describedby="usernameHelp" required>
                         </div>
@@ -555,15 +557,17 @@
                         <div class="mb-3">
                             <label for="spassword" class="form-label  text-secondary">Password</label>
                             <input name="spassword" type="password" class="form-control" id="spassword" required>
+                            <img toggle="#spassword" src="./assets/img/eye-open.png" alt="" class="password-eye" style="width:25px;cursor:pointer;">
                         </div>
                         <div class="mb-3">
                             <label for="scpassword" class="form-label  text-secondary">Confirm Password</label>
                             <input name="scpassword" type="password" class="form-control" id="scpassword" required>
+                            <img toggle="#scpassword" src="./assets/img/eye-open.png" alt="" class="password-eye" style="width:25px;cursor:pointer;">
                         </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Sign Up</button>
+                    <button type="button" id="sign_up_btn" class="btn btn-success">Sign Up</button>
                 </div>
                 </form>
             </div>
@@ -588,6 +592,7 @@
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label  text-secondary">Password</label>
                             <input name="lpassword" type="password" class="form-control" id="exampleInputPassword1">
+                            <img toggle="#exampleInputPassword1" src="./assets/img/eye-open.png" alt="" class="password-eye" style="width:25px;cursor:pointer;">
                         </div>
                     </form>
                 </div>
@@ -981,18 +986,27 @@
 <script src="js/scripts.js"></script>
 <script>
     $(document).ready(function() {
+        // password eye toggle 
+        $(".password-eye").click(function () {
+            let src = this.getAttribute("src");
+            if(src == "./assets/img/eye-open.png"){
+                this.setAttribute("src","./assets/img/eye-close.png")
+            }
+            else{
+                this.setAttribute("src","./assets/img/eye-open.png")
+            }
+            let input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
         $("body").tooltip({ selector: '[data-toggle=tooltip]' });
     });
     AOS.init();
      document.addEventListener("DOMContentLoaded", () => {
-
-        let contact_phone = document.getElementById("contact_phone");
-        contact_phone.addEventListener("input",function(e){
-            if(contact_phone.value.length >10){
-                e.preventDefault();
-                swal("Warning!", "Please Enter Within 10 Digit Number!", "warning")
-            }
-        })
 
          let session_user = <?php if(isset($_SESSION['login_user'])){echo json_encode($_SESSION['login_user']);}else{ echo json_encode("No user");}?>;
         let package_button = document.querySelectorAll(".book-packages")
@@ -1123,10 +1137,21 @@
                 swal("Warning!","Please Enter Phone Number!","warning")
                 contact_phone.focus();
             }
+            else if(!isValidPhone(contact_phone.value)){
+                swal("Warning!","Please Enter Valid Phone Number!","warning")
+                sphone.focus();
+            }
+
             else if(contact_email.value == ""){
                 swal("Warning!","Please Enter Email!","warning")
                 contact_email.focus();
             }
+
+            else if(!validateEmail(contact_email.value)){
+                swal("Warning!","Please Enter Valid Email!","warning")
+                sEmail.focus();
+            }
+
             else if(contact_message.value == ""){
                 swal("Warning!","Please Enter Your Message!","warning")
                 contact_phone.focus();
@@ -1190,6 +1215,79 @@
             }
         })
 
+        // Sign up functionality and validations 
+        let sign_up_button = document.getElementById("sign_up_btn")
+        sign_up_button.addEventListener("click",async function(e){
+            // e.preventDefault();
+            let sign_up_form = document.getElementById("sign_up_form")
+            let formData = new FormData(sign_up_form);
+            if(susername.value == ""){
+                swal("Warning!","Please Enter Username!","warning")
+                susername.focus();
+            }
+            if(susername.value.length < 3){
+                swal("Warning!","Username Must Be At Least 4 Characters!","warning")
+                susername.focus();
+            }
+            else if(sEmail.value == ""){
+                swal("Warning!","Please Enter Email!","warning")
+                sEmail.focus();
+            }
+            else if(!validateEmail(sEmail.value)){
+                swal("Warning!","Please Enter Valid Email!","warning")
+                sEmail.focus();
+            }
+            else if(sphone.value == ""){
+                swal("Warning!","Please Enter Phone Number!","warning")
+                sphone.focus();
+            }
+            else if(!isValidPhone(sphone.value)){
+                swal("Warning!","Please Enter Valid Phone Number!","warning")
+                sphone.focus();
+            }
+            else if(spassword.value == ""){
+                swal("Warning!","Please Enter Password!","warning")
+                spassword.focus();
+            }
+            else if(spassword.value.length<8){
+                swal("Warning!","The Password Must Be at Least 8 Characters Long. Please Make Sure Your Password Meets This Requirement!","warning")
+                spassword.focus();
+            }
+            else if(!checkPassword(spassword.value)){
+                swal("Warning!","The Password Must Be at Least 8 Characters Long and Contain at Least One Lowercase Letter, One Uppercase Letter, One Digit, and One Special Character (!@#$%^&*). Please Make Sure Your Password Meets These Requirements!","warning")
+                spassword.focus();
+            }
+            else if(spassword.value != scpassword.value){
+                swal("Warning!","The Passwords Entered Do Not Match. Please Verify That You Have Entered the Same Password in Both Fields!","warning")
+                spassword.focus();
+            }
+            else if(scpassword.value == ""){
+                swal("Warning!","Please Enter Confirm Password!","warning")
+                scpassword.focus();
+            }
+            else{
+                formData.append('susername',susername.value)
+                formData.append('sphone',sphone.value)
+                formData.append('sEmail',sEmail.value)
+                formData.append('spassword',spassword.value)
+                let fetch_res = await fetch("index.php",{
+                    method:"POST",
+                    body:formData
+                })
+                let json_res = await fetch_res.json();
+                if(json_res.status){
+                    swal("Success!",json_res.message,"success").
+                    then(()=>{
+                        location.reload();
+                    })
+                    sign_up_form.reset();
+                }
+                else{
+                    swal("Error!",json_res.message,"error")
+                }
+            }
+        })
+
     });
     function delete_appointment(element){
         swal({
@@ -1225,20 +1323,40 @@
 
     let view_treatment = document.querySelectorAll(".appointment_message")
     view_treatment.forEach(element => {
-            element.addEventListener("click",async function(){
-                let formData = new FormData();
-                let id = this.getAttribute('data-id');
-                formData.append('appointment_id',id)
-                formData.append('treatment',id)
-                let response = await fetch("index.php",{
-                    method:'post',
-                    body:formData
-                })
-                let json_res = await response.json();
-                document.getElementById("message_modal").innerText = json_res.message;
-                treatment_modal_toggler.click();
+        element.addEventListener("click",async function(){
+            let formData = new FormData();
+            let id = this.getAttribute('data-id');
+            formData.append('appointment_id',id)
+            formData.append('treatment',id)
+            let response = await fetch("index.php",{
+                method:'post',
+                body:formData
             })
-        });
+            let json_res = await response.json();
+            document.getElementById("message_modal").innerText = json_res.message;
+            treatment_modal_toggler.click();
+        })
+    });
+
+     // Phone Number Expression 
+    function isValidPhone(p_number) {
+        var phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
+        var digits = p_number.replace(/\D/g, "");
+        return phoneRe.test(digits);
+    }
+
+    // Email Address Expression
+    const validateEmail = (email) => {
+        return email.match(
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
+
+    // Password Expression 
+    function checkPassword(password){
+        let pattern = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        return pattern.test(password);
+    }
 
 </script>
 </body>

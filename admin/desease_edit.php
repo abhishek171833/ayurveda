@@ -113,7 +113,7 @@ if(isset($_POST['desease_name'])){
                                     ?>
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
-                                            <label for="desease_name" class="form-label">Desease Name</label>
+                                            <label for="desease_name" class="form-label">Desease Name</label> 
                                             <input type="text" class="form-control" id="desease_name" value="<?php if(isset($desease)){echo $desease[1];}else{echo "";}?>">
                                         </div>
                                         <div class="mb-3 col-md-6">
@@ -216,11 +216,9 @@ if(isset($_POST['desease_name'])){
             let id = this.getAttribute("data-id");
             if(desease_name.value == ""){
                 swal("Warning!","Please Enter Desease Name!","warning")
-                contact_name.focus();
             }
             else if(desease_description.value == ""){
                 swal("Warning!","Please Enter Deasese Description Number!","warning")
-                contact_phone.focus();
             }
             else{
                 formData.append('desease_id',id)

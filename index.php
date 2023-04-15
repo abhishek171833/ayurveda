@@ -185,7 +185,7 @@
         $res=mysqli_query($db,"SELECT phone FROM `Users` WHERE phone='$_POST[sphone]';");
         $phone=mysqli_num_rows($res);
 
-        $res=mysqli_query($db,"SELECT name FROM `Users` WHERE phone='$_POST[susername]';");
+        $res=mysqli_query($db,"SELECT name FROM `Users` WHERE name='$_POST[susername]';");
         $username=mysqli_num_rows($res);
 
         if($email){

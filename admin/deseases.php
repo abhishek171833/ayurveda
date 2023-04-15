@@ -65,7 +65,7 @@ if(isset($_POST['delete_desease_id'])){
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" id="content_container">
 
                     <!-- Page Heading -->
                     <div class="row">

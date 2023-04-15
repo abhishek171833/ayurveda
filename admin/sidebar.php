@@ -2,6 +2,10 @@
     .sidebar .nav-item .nav-link[data-toggle=collapse]::after {
         font-family: 'Font Awesome 5 Free';
     }
+    #content_container{
+        height:75vh;
+        overflow-y:scroll;
+    }
 </style>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->

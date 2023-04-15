@@ -46,7 +46,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" id="content_container">
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Manage Packages</h1>

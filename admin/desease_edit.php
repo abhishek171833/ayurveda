@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION['login_admin'])){
+        header('Location: login.php');
+    }
+?>
+<?php 
 if(isset($_POST['desease_name'])){
     require('db/db.php');
     if(isset($_POST["image_file_input"])){

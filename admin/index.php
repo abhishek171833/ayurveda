@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION['login_admin'])){
+        header('Location: login.php');
+    }
+?>
+<?php 
 if(isset($_POST['chart_data'])){
     require('db/db.php');
     $res=mysqli_query($db,"SELECT count(*) as total_appointments,appointment_date from appointments group by MONTH(appointment_date);");
@@ -322,7 +328,7 @@ if(isset($_POST['chart_data'])){
                 <div class="modal-body">Logout from the admin panel</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="">Logout</a>
+                    <a class="btn btn-primary" href="./db/logout.php">Logout</a>
                 </div>
             </div>
         </div>

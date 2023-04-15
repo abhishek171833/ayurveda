@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['login_admin'])){
+        header('Location: login.php');
+    }
+?>
 <?php
   if(isset($_POST['status'])){
     require('./db/db.php');

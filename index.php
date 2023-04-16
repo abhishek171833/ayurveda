@@ -758,14 +758,14 @@
             </div>
     </section>
     <!-- About-->
-    <section class="page-section py-4" id="about">
+    <section class="page-section py-4 bg-success bg-opacity-50" id="about">
         <div class="text-center my-3">
             <h2 class="section-heading text-uppercase">About Us</h2>
         </div>
         <div class="container-fluid px-5">
             <div class="row mb-2">
                 <div class="col-md-6">
-                    <div class="shadow-lg row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="border-dark shadow-lg row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col-auto d-none d-lg-block">
                             <img src="./assets/img/ayurveda_about.jpeg" alt="" style="width:300px;height:200px;">
                         </div>
@@ -777,7 +777,7 @@
                     </div>
                     </div>
                     <div class="col-md-6">
-                    <div class="shadow-lg row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="border-dark shadow-lg row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div class="col p-4 d-flex flex-column position-static" data-aos="fade-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">
                             <strong class="d-inline-block mb-2 text-success">About Doctor</strong>
                             <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>

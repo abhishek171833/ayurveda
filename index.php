@@ -758,52 +758,36 @@
             </div>
     </section>
     <!-- About-->
-    <section class="page-section py-2" id="about">
-        <div class="text-center my-5">
+    <section class="page-section py-4" id="about">
+        <div class="text-center my-3">
             <h2 class="section-heading text-uppercase">About Us</h2>
         </div>
         <div class="container-fluid px-5">
-            <ul class="timeline row">
+            <div class="row mb-2">
                 <div class="col-md-6">
-                    <h4 class="text-center my-5" data-aos="fade-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Ayurveda</h4>
-                        <p class="shadow-lg p-3 mb-5 bg-white rounded"" data-aos="flip-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
-                            absence of disease
-                            or infirmity. Good health helps people live a full life. Read more.
-                            View original
-                            The word health refers to a state of complete emotional and physical well-being. Healthcare
-                            exists to help people maintain this optimal state of health.
-                            According to the Centers for Disease Control and Prevention (CDC), healthcare costs in the
-                            United States were $3.5 trillion in 2017.
-                            However, despite this expenditure, people in the U.S. have a lower life expectancy than
-                            people in other developed countries. This is due to a variety of factors, including access
-                            to healthcare and lifestyle choices.
-                            Good health is central to handling stress and living a longer, more active life. In this
-                            article, we explain the meaning of good health, the types of health a person needs to
-                            consider, and how to preserve good health.
-                            In 1948, the World Health Organization (WHO) defined health with a phrase that modern
-                            authorities still apply.
-                        </p>
+                    <div class="shadow-lg row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col-auto d-none d-lg-block">
+                            <img src="./assets/img/ayurveda_about.jpeg" alt="" style="width:300px;height:200px;">
+                        </div>
+                        <div class="col p-4 d-flex flex-column position-static" data-aos="fade-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">
+                            <strong class="d-inline-block mb-2 text-primary">About Ayurveda</strong>
+                            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="shadow-lg row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static" data-aos="fade-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">
+                            <strong class="d-inline-block mb-2 text-success">About Doctor</strong>
+                            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <svg class="bd-placeholder-img" width="300" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="true"><title>Placeholder</title><rect width="100%" height="100%" fill="green"></rect><text x="30%" y="50%" fill="#eceeef" dy=".3em">About Doctor</text></svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h4 class="text-center my-5" data-aos="fade-left" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">About Our Doctor</h4>
-                    <p class="shadow-lg p-3 mb-5 bg-white rounded"" data-aos="flip-right" data-aos-offset="250" data-aos-duration="700" data-aos-easing="ease-in-sine">Health is a state of physical, mental and social well-being, not just the
-                        absence of disease
-                        or infirmity. Good health helps people live a full life. Read more.
-                        View original
-                        The word health refers to a state of complete emotional and physical well-being. Healthcare
-                        exists to help people maintain this optimal state of health.
-                        According to the Centers for Disease Control and Prevention (CDC), healthcare costs in the
-                        United States were $3.5 trillion in 2017.
-                        However, despite this expenditure, people in the U.S. have a lower life expectancy than
-                        people in other developed countries. This is due to a variety of factors, including access
-                        to healthcare and lifestyle choices.
-                        Good health is central to handling stress and living a longer, more active life. In this
-                        article, we explain the meaning of good health, the types of health a person needs to
-                        consider, and how to preserve good health.
-                        In 1948, the World Health Organization (WHO) defined health with a phrase that modern
-                        authorities still apply.</p>
-                </div>
-            </ul>
+            </div>
         </div>
     </section>
     <!-- Team-->

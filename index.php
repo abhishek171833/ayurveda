@@ -177,7 +177,7 @@
     }
 
     // Sign up functionality 
-    if(isset($_POST['susername'])){
+    if(isset($_POST['sEmail'])){
         require('./db/database.php');
         $res=mysqli_query($db,"SELECT Email FROM `Users` WHERE Email='$_POST[sEmail]';");
         $email=mysqli_num_rows($res);
@@ -1268,7 +1268,7 @@
                         location.reload();
                     })
                     sign_up_form.reset();
-                    login_button.click();
+                    document.getElementById("login").click();
                 }
                 else{
                     swal("Error!",json_res.message,"error")

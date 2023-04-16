@@ -533,7 +533,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-secondary" id="staticBackdropLabel">Sign Up</h1>
+                    <h1 class="modal-title fs-5 text-secondary" id="staticBackdropLabel">Register</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -568,7 +568,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="sign_up_btn" class="btn btn-success">Sign Up</button>
+                        <button type="button" id="sign_up_btn" class="btn btn-success">Register</button>
                     </div>
                 </form>
             </div>
@@ -1005,6 +1005,9 @@
                 let image = this.getAttribute('data-image')
                 if(session_user == "No user"){
                     swal("Warning!", "Please Login To Continue!", "warning")
+                    .then(()=>{
+                        document.getElementById("login").click();
+                    })
                 }
                 else{
                     let package_modal = document.getElementById("packages"+id)
@@ -1023,6 +1026,9 @@
         book_appoinement.addEventListener("click",function(e){
             if(session_user == "No user"){
                 swal("Warning!", "Please Login To Book Appointment!", "warning")
+                .then(()=>{
+                    document.getElementById("login").click();
+                })
             }
             else{
                 book_appoinement.setAttribute("data-bs-toggle","modal")

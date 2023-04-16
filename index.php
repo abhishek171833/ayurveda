@@ -331,7 +331,7 @@
                         <button id="login" data-bs-toggle="modal" data-bs-target="#Loginmodal"
                             class="mx-2 btn btn-success" type="button">Login</button>
                         <button data-bs-toggle="modal" data-bs-target="#Signupmodal" class="mx-2 btn btn-success"
-                            type="button">Signup</button>
+                            type="button">Register</button>
                     <?php }?>
                 </li>
             </ul>               
@@ -564,11 +564,12 @@
                             <input name="scpassword" type="password" class="form-control" id="scpassword" required>
                             <img toggle="#scpassword" src="./assets/img/eye-open.png" alt="" class="password-eye" style="width:25px;cursor:pointer;">
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="sign_up_btn" class="btn btn-success">Sign Up</button>
-                </div>
+                        <div>Already have an account <a href="#" data-bs-toggle="modal" data-bs-target="#Loginmodal">Login</a></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="sign_up_btn" class="btn btn-success">Sign Up</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -594,6 +595,7 @@
                             <input name="lpassword" type="password" class="form-control" id="exampleInputPassword1">
                             <img toggle="#exampleInputPassword1" src="./assets/img/eye-open.png" alt="" class="password-eye" style="width:25px;cursor:pointer;">
                         </div>
+                        <div>Dont have an account <a href="#" data-bs-toggle="modal" data-bs-target="#Signupmodal">Register</a></div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -1266,6 +1268,7 @@
                         location.reload();
                     })
                     sign_up_form.reset();
+                    login_button.click();
                 }
                 else{
                     swal("Error!",json_res.message,"error")

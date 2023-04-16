@@ -1265,10 +1265,10 @@
                 if(json_res.status){
                     swal("Success!",json_res.message,"success").
                     then(()=>{
-                        location.reload();
+                        // location.reload();
+                        sign_up_form.reset();
+                        document.getElementById("login").click();
                     })
-                    sign_up_form.reset();
-                    document.getElementById("login").click();
                 }
                 else{
                     swal("Error!",json_res.message,"error")

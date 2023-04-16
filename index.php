@@ -758,7 +758,7 @@
             </div>
     </section>
     <!-- About-->
-    <section class="page-section py-4 bg-success bg-opacity-50" id="about">
+    <section class="page-section py-4 bg-success bg-opacity-25" id="about">
         <div class="text-center my-3">
             <h2 class="section-heading text-uppercase">About Us</h2>
         </div>
@@ -773,6 +773,7 @@
                             <strong class="d-inline-block mb-2 text-primary">About Ayurveda</strong>
                             <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.
                             </p>
+                            <a href="https://en.wikipedia.org/wiki/Ayurveda" target="_blank" class="stretched-link">Learn More</a>
                         </div>
                     </div>
                     </div>

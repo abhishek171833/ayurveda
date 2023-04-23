@@ -207,6 +207,86 @@ if(isset($_POST['chart_data'])){
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_appointments FROM `appointments` where status = '0'");
+                                                $appointments_pending_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><h4>Total Pending Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$appointments_pending_count?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_appointments FROM `appointments` where status = '1'");
+                                                $appointments_approve_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><h4>Total Approve Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$appointments_approve_count?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_appointments FROM `appointments` where status = '2'");
+                                                $appointments_complete_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><h4>Total Complete Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$appointments_complete_count?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <?php 
+                                                require('db/db.php');
+                                                $res=mysqli_query($db,"SELECT count(*) as total_appointments FROM `appointments` where status = '3'");
+                                                $appointments_decline_count=$res->fetch_row()[0];
+                                            ?>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"><h4>Total Declined Appointments</h4></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$appointments_decline_count?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card shadow mb-4">
